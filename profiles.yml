@@ -1,0 +1,21 @@
+# MOBIUS-DBT BigQuery profile
+# Project: mobiusos-new. Set BQ_PROJECT / BQ_DATASET or use defaults below.
+# Auth: gcloud auth application-default login or GOOGLE_APPLICATION_CREDENTIALS
+
+mobius_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('BQ_PROJECT', 'mobiusos-new') }}"
+      dataset: "{{ env_var('BQ_DATASET', 'mobius_rag_dev') }}"
+      threads: 4
+      timeout_seconds: 300
+    prod:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('BQ_PROJECT', 'mobiusos-new') }}"
+      dataset: "{{ env_var('BQ_DATASET', 'mobius_rag') }}"
+      threads: 4
+      timeout_seconds: 300

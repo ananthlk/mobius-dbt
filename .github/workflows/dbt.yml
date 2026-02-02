@@ -1,0 +1,50 @@
+# CI: run dbt build (compile, run, test). Optional: dbt docs generate.
+# Requires BigQuery credentials: set BQ_PROJECT, BQ_DATASET, and GOOGLE_APPLICATION_CREDENTIALS (or use OIDC).
+
+name: dbt build
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  dbt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dbt-bigquery
+        run: pip install dbt-bigquery
+
+      - name: dbt debug
+        env:
+          BQ_PROJECT: ${{ vars.BQ_PROJECT || 'your-gcp-project' }}
+          BQ_DATASET: ${{ vars.BQ_DATASET || 'mobius_dbt_dev' }}
+        run: dbt debug
+        continue-on-error: true
+
+      - name: dbt run
+        env:
+          BQ_PROJECT: ${{ vars.BQ_PROJECT || 'your-gcp-project' }}
+          BQ_DATASET: ${{ vars.BQ_DATASET || 'mobius_dbt_dev' }}
+        run: dbt run
+
+      - name: dbt test
+        env:
+          BQ_PROJECT: ${{ vars.BQ_PROJECT || 'your-gcp-project' }}
+          BQ_DATASET: ${{ vars.BQ_DATASET || 'mobius_dbt_dev' }}
+        run: dbt test
+
+      # Optional: generate docs (uncomment and add upload step if desired)
+      # - name: dbt docs generate
+      #   env:
+      #     BQ_PROJECT: ${{ vars.BQ_PROJECT }}
+      #     BQ_DATASET: ${{ vars.BQ_DATASET }}
+      #   run: dbt docs generate

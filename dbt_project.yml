@@ -1,0 +1,33 @@
+# MOBIUS-DBT: dbt-managed BigQuery datalake
+# Phase 1: RAG published embeddings → BigQuery landing → chat_rag mart
+
+name: 'mobius_dbt'
+version: '1.0.0'
+
+profile: 'mobius_dbt'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+vars:
+  landing_dataset: "landing_rag"
+  marts_dataset: "mobius_rag"
+
+models:
+  mobius_dbt:
+    +materialized: view
+    +persist_docs:
+      relation: true
+      columns: true
+    marts:
+      chat_rag:
+        +materialized: table

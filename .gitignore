@@ -1,0 +1,16 @@
+# dbt
+target/
+dbt_packages/
+logs/
+*.log
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Env
+.env
+.env.local

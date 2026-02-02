@@ -1,0 +1,130 @@
+# Chat-server mart: published RAG embeddings
+# Contract: CONTRACT_DBT_RAG.md Section 3. Output for sync → chat server vector DB + PostgreSQL.
+
+version: 2
+
+models:
+  - name: published_rag_embeddings
+    description: "One row per published embedding (chunk or fact). Source: landing_rag.rag_published_embeddings. Sync reads this table and loads vectors into chat server vector DB (e.g. Vertest) and metadata into chat server PostgreSQL."
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: id
+        data_type: string
+        description: Primary key (from chunk_embedding.id). UUID as string.
+        constraints:
+          - type: not_null
+      - name: document_id
+        data_type: string
+        description: Document this row belongs to. UUID as string.
+        constraints:
+          - type: not_null
+      - name: source_type
+        data_type: string
+        description: "hierarchical (chunk) or fact."
+        constraints:
+          - type: not_null
+      - name: source_id
+        data_type: string
+        description: hierarchical_chunks.id or extracted_facts.id. UUID as string.
+        constraints:
+          - type: not_null
+      - name: embedding
+        data_type: "ARRAY<FLOAT64>"
+        description: Embedding vector; 1536 floats. For sync to vector DB.
+      - name: model
+        data_type: string
+        description: Embedding model (e.g. text-embedding-3-small). Empty string if unknown.
+      - name: created_at
+        data_type: timestamp
+        description: When the embedding was created.
+        constraints:
+          - type: not_null
+      - name: text
+        data_type: string
+        description: The text that was embedded (chunk or fact text). Never null; empty string if none.
+      - name: page_number
+        data_type: int64
+        description: Source page (0 when not applicable).
+      - name: paragraph_index
+        data_type: int64
+        description: Paragraph index within page (0 when not applicable).
+      - name: section_path
+        data_type: string
+        description: "e.g. Section 3.2. Empty string when not applicable."
+      - name: chapter_path
+        data_type: string
+        description: "e.g. Chapter 5. Empty string when not applicable."
+      - name: summary
+        data_type: string
+        description: Chunk summary (hierarchical); for facts use empty string or fact_text.
+      - name: document_filename
+        data_type: string
+        description: documents.filename.
+      - name: document_display_name
+        data_type: string
+        description: documents.display_name. Empty string if null.
+      - name: document_authority_level
+        data_type: string
+        description: documents.authority_level. Empty string if null.
+      - name: document_effective_date
+        data_type: string
+        description: documents.effective_date. Empty string if null.
+      - name: document_termination_date
+        data_type: string
+        description: documents.termination_date. Empty string if null.
+      - name: document_payer
+        data_type: string
+        description: documents.payer. Empty string if null.
+      - name: document_state
+        data_type: string
+        description: documents.state. Empty string if null.
+      - name: document_program
+        data_type: string
+        description: documents.program. Empty string if null.
+      - name: document_status
+        data_type: string
+        description: documents.status.
+      - name: document_created_at
+        data_type: timestamp
+        description: documents.created_at.
+      - name: document_review_status
+        data_type: string
+        description: documents.review_status.
+      - name: document_reviewed_at
+        data_type: timestamp
+        description: When document was last reviewed (null if not tracked).
+      - name: document_reviewed_by
+        data_type: string
+        description: Reviewer identifier (empty string or null if not tracked).
+      - name: content_sha
+        data_type: string
+        description: SHA-256 hex of canonical content. For change detection and idempotent sync.
+        constraints:
+          - type: not_null
+      - name: updated_at
+        data_type: timestamp
+        description: Last update time (publish time).
+        constraints:
+          - type: not_null
+      - name: source_verification_status
+        data_type: string
+        description: "For facts: extracted_facts.verification_status; for chunks: n/a or empty."
+    tests:
+      - unique:
+          column_name: id
+      - not_null:
+          column_name: id
+      - not_null:
+          column_name: document_id
+      - not_null:
+          column_name: source_type
+      - not_null:
+          column_name: source_id
+      - not_null:
+          column_name: created_at
+      - not_null:
+          column_name: content_sha
+      - not_null:
+          column_name: updated_at

@@ -1,0 +1,46 @@
+# Sources: raw/landing tables (outside dbt)
+# RAG published embeddings: replicated from Mobius-RAG PostgreSQL to BigQuery landing.
+# Schema: CONTRACT_DBT_RAG.md Section 3; embedding in BigQuery is ARRAY<FLOAT64>(1536).
+
+version: 2
+
+sources:
+  - name: landing_rag
+    description: "BigQuery landing layer for RAG published output. Data is ingested from Mobius-RAG PostgreSQL table rag_published_embeddings. Schema matches CONTRACT_DBT_RAG.md Section 3."
+    database: "{{ target.project }}"
+    schema: landing_rag
+    tables:
+      - name: rag_published_embeddings
+        description: "One row per published embedding (chunk or fact). Replica of RAG PostgreSQL table rag_published_embeddings. Grain: one row per id (chunk_embedding.id)."
+        identifier: rag_published_embeddings
+        columns:
+          - name: id
+            description: "Primary key (from chunk_embedding.id). UUID stored as string in BigQuery."
+          - name: document_id
+            description: "Document this row belongs to. UUID as string."
+          - name: source_type
+            description: "hierarchical (chunk) or fact."
+          - name: source_id
+            description: "hierarchical_chunks.id or extracted_facts.id. UUID as string."
+          - name: embedding
+            description: "Embedding vector; ARRAY<FLOAT64> of length 1536 in BigQuery."
+          - name: model
+            description: "Embedding model (e.g. text-embedding-3-small). Empty string if unknown."
+          - name: created_at
+            description: "When the embedding was created."
+          - name: text
+            description: "The text that was embedded (chunk or fact text). Never null; empty string if none."
+          - name: page_number
+            description: "Source page (0 when not applicable)."
+          - name: paragraph_index
+            description: "Paragraph index within page (0 when not applicable)."
+          - name: section_path
+            description: "e.g. Section 3.2. Empty string when not applicable."
+          - name: chapter_path
+            description: "e.g. Chapter 5. Empty string when not applicable."
+          - name: summary
+            description: "Chunk summary (hierarchical); for facts use empty string or fact_text."
+          - name: content_sha
+            description: "SHA-256 hex of canonical content (document_id + source_id + text). For change detection and idempotent sync."
+          - name: updated_at
+            description: "Last update time (publish time)."
