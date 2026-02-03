@@ -9,10 +9,10 @@ Env (required):
     e.g. postgresql://postgres:***@34.59.175.121:5432/mobius_chat; otherwise Chat gets 0 rows for Vertex ids)
   VERTEX_PROJECT, VERTEX_REGION, VERTEX_INDEX_ID (Vertex AI Vector Search index)
 
+Env (required for Vertex):
+  GCS_BUCKET: bucket for exporting embeddings before index update (batch update only; no stream update).
 Env (optional):
-  VERTEX_INDEX_ENDPOINT_ID (streaming: deployed index endpoint)
-  VERTEX_INDEX_MODE (streaming|batch; default: streaming)
-  GCS_BUCKET, GCS_PREFIX (batch: export mart to GCS before index update)
+  GCS_PREFIX (default: chat_rag_index): prefix under GCS_BUCKET for export.
   BQ_SYNC_RUNS_TABLE (default: <BQ_DATASET>.sync_runs for run output)
 
 Usage:
@@ -147,27 +147,17 @@ def _upsert_vertex_vectors(rows: List[Dict[str, Any]], project: str, region: str
         print("No valid datapoints to upsert.", flush=True)
         return 0
     
-    # Upsert to index (batch API)
-    # Note: Vertex Vector Search upsert API varies by index type (streaming vs batch).
-    # For streaming index: use MatchingEngineIndexEndpoint.upsert_datapoints
-    # For batch: export to GCS then rebuild index (not real-time).
-    # This script assumes streaming index and uses the upsert API.
+    # Upsert to index: MatchingEngineIndex.upsert_datapoints (REST: indexes.upsertDatapoints).
+    # The endpoint is for queries (find_neighbors); upsert is on the Index resource.
     
     try:
         index = aiplatform.MatchingEngineIndex(index_name=index_id)
-        # If using deployed endpoint:
-        if endpoint_id:
-            endpoint = aiplatform.MatchingEngineIndexEndpoint(index_endpoint_name=endpoint_id)
-            # Upsert via endpoint (streaming)
-            endpoint.upsert_datapoints(datapoints=datapoints)
-        else:
-            # Direct index upsert (if supported by index type)
-            # Note: some index types require endpoint; adjust based on your Vertex setup
-            print("VERTEX_INDEX_ENDPOINT_ID not set; assuming direct index upsert (may fail for some index types).", file=sys.stderr)
-            # Fallback: use index.update_embeddings or similar (check Vertex API for your index type)
-            # For now, raise an error and require endpoint_id
-            raise ValueError("VERTEX_INDEX_ENDPOINT_ID required for upsert. Set it in env.")
-        
+        # CrowdingTag in API is { "crowdingAttribute": string }; use crowding_attribute for SDK.
+        for dp in datapoints:
+            tag = dp.get("crowding_tag")
+            if isinstance(tag, str):
+                dp["crowding_tag"] = {"crowding_attribute": tag}
+        index.upsert_datapoints(datapoints=datapoints)
         print(f"Upserted {len(datapoints)} vectors to Vertex.", flush=True)
         return len(datapoints)
     except Exception as e:
@@ -310,14 +300,15 @@ def main() -> int:
         # 2. Write metadata to Chat Postgres
         postgres_rows_written = _write_postgres_metadata(rows, chat_db_url)
         
-        # 3. Write vectors to Vertex (streaming upsert or batch update)
-        vertex_mode = os.environ.get("VERTEX_INDEX_MODE", "streaming").lower()
+        # 3. Write vectors to Vertex (batch update only; index does not support stream update)
         gcs_bucket = os.environ.get("GCS_BUCKET")
         gcs_prefix = os.environ.get("GCS_PREFIX", "chat_rag_index")
-        if vertex_mode == "batch" and gcs_bucket:
-            vector_rows_upserted = _update_vertex_batch_index(rows, vertex_project, vertex_region, vertex_index_id, gcs_bucket, gcs_prefix)
-        else:
-            vector_rows_upserted = _upsert_vertex_vectors(rows, vertex_project, vertex_region, vertex_index_id, vertex_endpoint_id)
+        if not gcs_bucket:
+            raise ValueError(
+                "GCS_BUCKET is required for Vertex sync. Set GCS_BUCKET (and optionally GCS_PREFIX) in env. "
+                "This index uses batch update only (no stream update)."
+            )
+        vector_rows_upserted = _update_vertex_batch_index(rows, vertex_project, vertex_region, vertex_index_id, gcs_bucket, gcs_prefix)
         
         status = "success"
         print(f"Sync complete: {mart_rows_read} rows read, {postgres_rows_written} to Postgres, {vector_rows_upserted} to Vertex.", flush=True)

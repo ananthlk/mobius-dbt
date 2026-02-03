@@ -31,7 +31,8 @@ dbt-managed BigQuery datalake for MOBIUS. Phase 1: consume RAG published embeddi
    dbt --version
    ```
    Or manually: `python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt`  
-   If you hit SSL errors with pip, try: `pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt`
+   If you hit SSL errors with pip, try: `pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt`  
+   If you see **"bad interpreter: ... no such file or directory"** (e.g. after moving the repo or path/case change), the venv points at an old path. Remove and recreate: `rm -rf .venv && python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt`
 3. **BigQuery:** Set `BQ_PROJECT` (GCP project) and optionally `BQ_DATASET` (default dataset for dbt models). For sources, the landing table must exist in dataset **`landing_rag`** (or override in `models/sources/_sources.yml`). Authenticate via `gcloud auth application-default login` or `GOOGLE_APPLICATION_CREDENTIALS`.
 4. **Landing table:** Create it once (BigQuery Console: run **`scripts/create_landing_table.sql`**). Then run **`./scripts/land_and_dbt_run.sh`** (set `POSTGRES_HOST`, `POSTGRES_PASSWORD`) to ingest from RAG Postgres and run dbt. See [docs/LANDING_SCHEMA_AND_INGESTION.md](docs/LANDING_SCHEMA_AND_INGESTION.md) for env vars and scheduling.
 
@@ -55,6 +56,31 @@ dbt-managed BigQuery datalake for MOBIUS. Phase 1: consume RAG published embeddi
 
 ---
 
+## Job UI
+
+A simple web interface to trigger the transformation (RAG → Chat), view run status, and follow progress.
+
+1. **Activate the virtualenv** (required so `pip` and `uvicorn` are available):
+   ```bash
+   source .venv/bin/activate   # macOS/Linux
+   # Windows: .venv\Scripts\activate
+   ```
+   If you don't have a venv yet: `python3 -m venv .venv` then activate, then `pip install -r requirements.txt`.
+2. **Run the server** (from repo root, with `.env` set for origin/destination):
+   ```bash
+   pip install -r requirements.txt   # if you haven't already
+   uvicorn app.main:app --reload --host 0.0.0.0 --port 6500
+   ```
+   Or without activating venv: `./.venv/bin/python -m uvicorn app.main:app --reload --port 6500`
+3. **Open the page:** http://localhost:6500/
+4. **Run now:** Click "Run now" to start the pipeline (ingest → dbt run → dbt test → sync). The run appears in the table with status and stage.
+5. **Status:** The runs table lists recent runs (started, status, stage, finished, error). It auto-refreshes every 5s while a run is in progress. Use "View" to see full run detail (counts, error message).
+6. **Origin and destination:** Use the dropdowns to choose **Origin** (Dev / Prod) and **Destination** (Dev / Prod). Dev uses unprefixed vars from `.env` (e.g. `POSTGRES_HOST`, `BQ_DATASET`, `CHAT_DATABASE_URL`). For prod, set prefixed vars: `ORIGIN_PROD_POSTGRES_HOST`, `ORIGIN_PROD_POSTGRES_PASSWORD`, etc., and `DEST_PROD_BQ_DATASET`, `DEST_PROD_CHAT_DATABASE_URL`, `DEST_PROD_VERTEX_INDEX_ID`, etc. See `.env.example` for the full list.
+
+Run metadata is stored in `data/jobs.db` (SQLite; `data/` is gitignored).
+
+---
+
 ## CI
 
 Recommended CI steps:
@@ -72,6 +98,15 @@ Or use a single command: **`dbt build`** (runs models and tests).
 
 ```
 MOBIUS-DBT/
+├── app/                         # Job UI (FastAPI + runner + static)
+│   ├── main.py                  # API: POST/GET /runs, GET /runs/{id}
+│   ├── runner.py                # Pipeline: ingest → dbt → sync
+│   ├── store.py                 # SQLite runs store
+│   └── static/
+│       ├── index.html           # Single-page UI
+│       ├── app.js
+│       └── style.css
+├── data/                        # SQLite jobs.db (gitignored)
 ├── dbt_project.yml
 ├── profiles.yml
 ├── README.md

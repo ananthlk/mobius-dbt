@@ -14,3 +14,7 @@ __pycache__/
 # Env
 .env
 .env.local
+
+# Job UI SQLite DB
+data/
+*.db
