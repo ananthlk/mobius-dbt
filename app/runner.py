@@ -1,6 +1,7 @@
 """
 Pipeline runner: ingest → dbt run + test → sync. Runs in background; updates SQLite store.
-Supports origin (dev/prod) and destination (dev/prod); runs each step in subprocess with env from config.
+Supports origin (dev/prod) and destination (dev/prod/staging); runs each step in subprocess with env from config.
+Uses dbt's programmatic API (dbtRunner) so dbt runs without needing the 'dbt' CLI binary (works in Docker/Cloud Run).
 """
 import os
 import subprocess
@@ -19,7 +20,7 @@ except ImportError:
     pass
 
 Origin = Literal["dev", "prod"]
-Destination = Literal["dev", "prod"]
+Destination = Literal["dev", "prod", "staging"]
 
 
 def run_pipeline(run_id: str, origin: Origin = "dev", destination: Destination = "dev") -> None:
@@ -59,31 +60,53 @@ def run_pipeline(run_id: str, origin: Origin = "dev", destination: Destination =
             )
             return
 
-        # 2. dbt run + dbt test
+        # 2. dbt run + dbt test (use dbtRunner so no 'dbt' CLI binary needed; works in Docker/Cloud Run)
         store.update_run(run_id, stage="dbt")
-        for cmd in ["dbt run", "dbt test"]:
-            result = subprocess.run(
-                cmd,
-                shell=True,
-                cwd=PROJECT_ROOT,
-                env=env,
-                capture_output=True,
-                text=True,
+        try:
+            from dbt.cli.main import dbtRunner
+        except ImportError:
+            store.update_run(
+                run_id,
+                status="failure",
+                finished_at=datetime.now(timezone.utc).isoformat(),
+                error_message="dbt not installed (pip install dbt-bigquery)",
             )
-            if result.returncode != 0:
-                store.update_run(
-                    run_id,
-                    status="failure",
-                    finished_at=datetime.now(timezone.utc).isoformat(),
-                    error_message=f"{cmd} failed: {result.stderr or result.stdout or 'no output'}",
-                )
-                return
+            return
+        # dbt reads BQ_PROJECT, BQ_DATASET, BQ_LANDING_DATASET from env (profiles.yml)
+        prev_env = dict(os.environ)
+        try:
+            os.environ.clear()
+            os.environ.update(prev_env)
+            os.environ.update(env)
+            project_dir = str(PROJECT_ROOT)
+            dbt = dbtRunner()
+            for dbt_cmd in ["run", "test"]:
+                res = dbt.invoke([dbt_cmd, "--project-dir", project_dir])
+                if not res.success:
+                    msg = (res.exception and str(res.exception)) or (getattr(res, "result", None) and str(res.result)) or f"dbt {dbt_cmd} failed"
+                    # Cap length for DB/store
+                    if len(msg) > 2000:
+                        msg = msg[:1997] + "..."
+                    store.update_run(
+                        run_id,
+                        status="failure",
+                        finished_at=datetime.now(timezone.utc).isoformat(),
+                        error_message=msg,
+                    )
+                    return
+        finally:
+            os.environ.clear()
+            os.environ.update(prev_env)
 
         # 3. Sync mart → Chat (Postgres + Vertex)
+        # For staging: use --dest staging --postgres-only (Vertex index is shared)
         store.update_run(run_id, stage="sync")
         sync_script = PROJECT_ROOT / "scripts" / "sync_mart_to_chat.py"
+        sync_cmd = [sys.executable, str(sync_script)]
+        if destination == "staging":
+            sync_cmd.extend(["--dest", "staging", "--postgres-only"])
         result = subprocess.run(
-            [sys.executable, str(sync_script)],
+            sync_cmd,
             cwd=PROJECT_ROOT,
             env=env,
             capture_output=True,

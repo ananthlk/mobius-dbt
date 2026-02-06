@@ -1,5 +1,6 @@
 # MOBIUS-DBT BigQuery profile
-# Project: mobiusos-new. Set BQ_PROJECT / BQ_DATASET or use defaults below.
+# Project-based isolation: each project (dev/staging/prod) has same dataset names (landing_rag, mobius_rag).
+# Set BQ_PROJECT per env. BQ_DATASET and BQ_LANDING_DATASET are always landing_rag and mobius_rag.
 # Auth: gcloud auth application-default login or GOOGLE_APPLICATION_CREDENTIALS
 
 mobius_dbt:
@@ -8,8 +9,15 @@ mobius_dbt:
     dev:
       type: bigquery
       method: oauth
-      project: "{{ env_var('BQ_PROJECT', 'mobiusos-new') }}"
-      dataset: "{{ env_var('BQ_DATASET', 'mobius_rag_dev') }}"
+      project: "{{ env_var('BQ_PROJECT', 'mobius-os-dev') }}"
+      dataset: "{{ env_var('BQ_DATASET', 'mobius_rag') }}"
+      threads: 4
+      timeout_seconds: 300
+    staging:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('BQ_PROJECT', 'mobius-staging-mobius') }}"
+      dataset: "{{ env_var('BQ_DATASET', 'mobius_rag') }}"
       threads: 4
       timeout_seconds: 300
     prod:

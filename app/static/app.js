@@ -29,10 +29,15 @@
     return runId.slice(0, 8) + '…';
   }
 
+  function formatCount(n) {
+    if (n === null || n === undefined) return '—';
+    return Number(n).toLocaleString();
+  }
+
   function renderRuns(runs) {
     if (!RUNS_TBODY) return;
     RUNS_TBODY.innerHTML = runs.length === 0
-      ? '<tr><td colspan="9">No runs yet.</td></tr>'
+      ? '<tr><td colspan="12">No runs yet.</td></tr>'
       : runs.map(function (r) {
           const statusClass = r.status === 'running' ? 'status-running' : r.status === 'success' ? 'status-success' : 'status-failure';
           return (
@@ -43,6 +48,9 @@
             '<td>' + formatDate(r.started_at) + '</td>' +
             '<td class="' + statusClass + '">' + (r.status || '—') + '</td>' +
             '<td>' + (r.stage || '—') + '</td>' +
+            '<td class="count-cell">' + formatCount(r.mart_rows_read) + '</td>' +
+            '<td class="count-cell">' + formatCount(r.postgres_rows_written) + '</td>' +
+            '<td class="count-cell">' + formatCount(r.vector_rows_upserted) + '</td>' +
             '<td>' + formatDate(r.finished_at) + '</td>' +
             '<td class="error-cell" title="' + (r.error_message || '').replace(/"/g, '&quot;') + '">' + (r.error_message ? r.error_message.slice(0, 40) + (r.error_message.length > 40 ? '…' : '') : '—') + '</td>' +
             '<td><button type="button" class="view-detail" data-run-id="' + r.run_id + '">View</button></td>' +
@@ -65,7 +73,7 @@
       .then(function (data) { renderRuns(data.runs || []); })
       .catch(function (err) {
         console.error('Failed to fetch runs', err);
-        if (RUNS_TBODY) RUNS_TBODY.innerHTML = '<tr><td colspan="9">Failed to load runs.</td></tr>';
+        if (RUNS_TBODY) RUNS_TBODY.innerHTML = '<tr><td colspan="12">Failed to load runs.</td></tr>';
       });
   }
 
@@ -76,10 +84,23 @@
         return res.json();
       })
       .then(function (run) {
+        var countsEl = document.getElementById('detail-counts');
+        if (countsEl) {
+          var m = run.mart_rows_read;
+          var p = run.postgres_rows_written;
+          var v = run.vector_rows_upserted;
+          var hasCounts = m != null || p != null || v != null;
+          countsEl.innerHTML = hasCounts
+            ? '<p class="detail-counts-line"><strong>Mart read:</strong> ' + formatCount(m) + ' &nbsp;|&nbsp; <strong>Postgres written:</strong> ' + formatCount(p) + ' &nbsp;|&nbsp; <strong>Vectors upserted:</strong> ' + formatCount(v) + '</p>'
+            : '';
+          countsEl.style.display = hasCounts ? 'block' : 'none';
+        }
         DETAIL_BODY.textContent = JSON.stringify(run, null, 2);
         DETAIL_SECTION.hidden = false;
       })
       .catch(function (err) {
+        var countsEl = document.getElementById('detail-counts');
+        if (countsEl) { countsEl.innerHTML = ''; countsEl.style.display = 'none'; }
         DETAIL_BODY.textContent = 'Error: ' + err.message;
         DETAIL_SECTION.hidden = false;
       });

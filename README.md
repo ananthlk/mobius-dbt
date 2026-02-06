@@ -47,6 +47,8 @@ dbt-managed BigQuery datalake for MOBIUS. Phase 1: consume RAG published embeddi
   `python scripts/ingest_rag_to_landing.py` (requires `POSTGRES_HOST`, `POSTGRES_PASSWORD`)
 - **Sync only (mart → Chat Postgres + Vertex):**  
   `python scripts/sync_mart_to_chat.py` (requires `BQ_PROJECT`, `BQ_DATASET`, `CHAT_DATABASE_URL`, `VERTEX_PROJECT`, `VERTEX_REGION`, `VERTEX_INDEX_ID`)
+- **Sync to staging (Postgres only):**  
+  `./scripts/sync_to_staging.sh "DB_PASSWORD"` — syncs mart to staging Cloud SQL. Requires Cloud SQL Proxy running. See [docs/SYNC_TO_STAGING.md](docs/SYNC_TO_STAGING.md).
 - **Install dbt deps (if using packages):** `dbt deps`
 - **Run models:** `dbt run`
 - **Run tests:** `dbt test`
@@ -75,7 +77,7 @@ A simple web interface to trigger the transformation (RAG → Chat), view run st
 3. **Open the page:** http://localhost:6500/
 4. **Run now:** Click "Run now" to start the pipeline (ingest → dbt run → dbt test → sync). The run appears in the table with status and stage.
 5. **Status:** The runs table lists recent runs (started, status, stage, finished, error). It auto-refreshes every 5s while a run is in progress. Use "View" to see full run detail (counts, error message).
-6. **Origin and destination:** Use the dropdowns to choose **Origin** (Dev / Prod) and **Destination** (Dev / Prod). Dev uses unprefixed vars from `.env` (e.g. `POSTGRES_HOST`, `BQ_DATASET`, `CHAT_DATABASE_URL`). For prod, set prefixed vars: `ORIGIN_PROD_POSTGRES_HOST`, `ORIGIN_PROD_POSTGRES_PASSWORD`, etc., and `DEST_PROD_BQ_DATASET`, `DEST_PROD_CHAT_DATABASE_URL`, `DEST_PROD_VERTEX_INDEX_ID`, etc. See `.env.example` for the full list.
+6. **Origin and destination:** Use the dropdowns to choose **Origin** (Dev / Prod) and **Destination** (Dev / Prod / Staging). Dev uses unprefixed vars from `.env` (e.g. `POSTGRES_HOST`, `BQ_DATASET`, `CHAT_DATABASE_URL`). For prod/staging, set prefixed vars: `DEST_PROD_*` or `DEST_STAGING_*`. See `.env.example` for the full list. For staging, also see [docs/SYNC_TO_STAGING.md](docs/SYNC_TO_STAGING.md).
 
 Run metadata is stored in `data/jobs.db` (SQLite; `data/` is gitignored).
 

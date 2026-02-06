@@ -15,7 +15,7 @@
   <main>
     <section class="transformation-card">
       <h2>RAG → Chat</h2>
-      <p>Origin: RAG (PostgreSQL). Destination: Chat (Postgres + Vertex). Set .env with ORIGIN_DEV_*, ORIGIN_PROD_*, DEST_DEV_*, DEST_PROD_* (or unprefixed for dev).</p>
+      <p>Origin: RAG (PostgreSQL). Destination: Chat (Postgres + Vertex). Set .env with ORIGIN_DEV_*, ORIGIN_PROD_*, DEST_DEV_*, DEST_PROD_*, DEST_STAGING_* (or unprefixed for dev). <strong>Staging</strong> syncs Postgres only (Vertex index is shared).</p>
       <div class="select-row">
         <label for="origin">Origin</label>
         <select id="origin">
@@ -26,6 +26,7 @@
         <select id="destination">
           <option value="dev">Dev</option>
           <option value="prod">Prod</option>
+          <option value="staging">Staging</option>
         </select>
       </div>
       <button id="run-now" type="button">Run now</button>
@@ -39,10 +40,13 @@
           <tr>
             <th>Run ID</th>
             <th>Origin</th>
-            <th>Destination</th>
+            <th>Dest</th>
             <th>Started</th>
             <th>Status</th>
             <th>Stage</th>
+            <th title="Mart rows read">Mart</th>
+            <th title="Postgres rows written">PG</th>
+            <th title="Vector rows upserted">Vec</th>
             <th>Finished</th>
             <th>Error</th>
             <th></th>
@@ -53,6 +57,7 @@
     </section>
     <section id="detail-section" class="detail-section" hidden>
       <h2>Run detail</h2>
+      <div id="detail-counts" class="detail-counts"></div>
       <pre id="detail-body"></pre>
       <button id="detail-close" type="button">Close</button>
     </section>

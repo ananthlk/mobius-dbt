@@ -6,9 +6,9 @@ version: 2
 
 sources:
   - name: landing_rag
-    description: "BigQuery landing layer for RAG published output. Data is ingested from Mobius-RAG PostgreSQL table rag_published_embeddings. Schema matches CONTRACT_DBT_RAG.md Section 3."
+    description: "BigQuery landing layer for RAG published output. Data is ingested from Mobius-RAG PostgreSQL table rag_published_embeddings. Schema matches CONTRACT_DBT_RAG.md Section 3. Use BQ_LANDING_DATASET=landing_rag_dev|landing_rag_staging|landing_rag_prod per env."
     database: "{{ target.project }}"
-    schema: landing_rag
+    schema: "{{ env_var('BQ_LANDING_DATASET', 'landing_rag') }}"
     tables:
       - name: rag_published_embeddings
         description: "One row per published embedding (chunk or fact). Replica of RAG PostgreSQL table rag_published_embeddings. Grain: one row per id (chunk_embedding.id)."

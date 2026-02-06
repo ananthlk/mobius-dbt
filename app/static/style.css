@@ -138,6 +138,11 @@ header h1,
   background: #f5f5f5;
 }
 
+#runs-table td.count-cell {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
 #runs-table td.error-cell {
   max-width: 200px;
   overflow: hidden;
@@ -169,6 +174,18 @@ header h1,
 .detail-section h2 {
   margin: 0 0 0.75rem;
   font-size: 1.15rem;
+}
+
+.detail-counts {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background: #e3f2fd;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.detail-counts-line {
+  margin: 0;
 }
 
 #detail-body {

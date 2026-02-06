@@ -26,7 +26,7 @@ STATIC_DIR = Path(__file__).resolve().parent / "static"
 
 class RunRequest(BaseModel):
     origin: Optional[Literal["dev", "prod"]] = "dev"
-    destination: Optional[Literal["dev", "prod"]] = "dev"
+    destination: Optional[Literal["dev", "prod", "staging"]] = "dev"
 
 
 @app.get("/config")

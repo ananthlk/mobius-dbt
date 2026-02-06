@@ -1,6 +1,6 @@
 """
-Origin (dev/prod) and destination (dev/prod) env presets.
-Reads from .env with prefixed vars (ORIGIN_DEV_*, ORIGIN_PROD_*, DEST_DEV_*, DEST_PROD_*)
+Origin (dev/prod) and destination (dev/prod/staging) env presets.
+Reads from .env with prefixed vars (ORIGIN_DEV_*, ORIGIN_PROD_*, DEST_DEV_*, DEST_PROD_*, DEST_STAGING_*)
 and falls back to unprefixed vars for backward compatibility (dev = unprefixed).
 """
 import os
@@ -16,7 +16,7 @@ except ImportError:
     pass
 
 Origin = Literal["dev", "prod"]
-Destination = Literal["dev", "prod"]
+Destination = Literal["dev", "prod", "staging"]
 
 # Env keys used by ingest (RAG Postgres)
 ORIGIN_KEYS = ["POSTGRES_HOST", "POSTGRES_PORT", "POSTGRES_DB", "POSTGRES_USER", "POSTGRES_PASSWORD"]
@@ -110,5 +110,9 @@ def get_available_origins() -> list:
 
 
 def get_available_destinations() -> list:
-    """Return list of destination labels (dev, prod) that have at least BQ_DATASET or CHAT_DATABASE_URL set."""
-    return ["dev", "prod"]
+    """Return list of destination labels (dev, prod, staging) that have config set."""
+    destinations = ["dev", "prod"]
+    # Add staging if DEST_STAGING_CHAT_DATABASE_URL is set
+    if os.environ.get("DEST_STAGING_CHAT_DATABASE_URL"):
+        destinations.append("staging")
+    return destinations

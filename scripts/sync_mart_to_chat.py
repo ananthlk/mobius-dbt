@@ -15,8 +15,16 @@ Env (optional):
   GCS_PREFIX (default: chat_rag_index): prefix under GCS_BUCKET for export.
   BQ_SYNC_RUNS_TABLE (default: <BQ_DATASET>.sync_runs for run output)
 
+Destination environments:
+  --dest staging  Use DEST_STAGING_* env vars (staging Cloud SQL via proxy)
+  --dest prod     Use DEST_PROD_* env vars
+  (default)       Use unprefixed env vars (CHAT_DATABASE_URL, VERTEX_*, etc.)
+
 Usage:
-  python scripts/sync_mart_to_chat.py
+  python scripts/sync_mart_to_chat.py                    # default destination
+  python scripts/sync_mart_to_chat.py --dest staging     # sync to staging
+  python scripts/sync_mart_to_chat.py --dest prod        # sync to prod
+  python scripts/sync_mart_to_chat.py --postgres-only    # skip Vertex update (metadata only)
   # or from pipeline: ./scripts/land_and_dbt_run.sh (includes this step)
 """
 
@@ -59,13 +67,56 @@ except ImportError:
     storage = None  # only needed for batch mode
 
 
-def _read_mart(bq_client: bigquery.Client, project: str, dataset: str) -> List[Dict[str, Any]]:
-    """Read all rows from BigQuery mart published_rag_embeddings."""
+def _read_watermark(bq_client: bigquery.Client, project: str, dataset: str) -> Optional[datetime]:
+    """Return last_synced updated_at from sync_watermark, or None if first run."""
+    table_id = f"{project}.{dataset}.sync_watermark"
+    try:
+        query = f"SELECT last_updated_at FROM `{table_id}` LIMIT 1"
+        for row in bq_client.query(query).result():
+            val = row.get("last_updated_at")
+            if val is not None:
+                return val if isinstance(val, datetime) else datetime.fromisoformat(str(val).replace("Z", "+00:00"))
+        return None
+    except Exception:
+        return None
+
+
+def _write_watermark(bq_client: bigquery.Client, project: str, dataset: str, last_updated_at: datetime) -> None:
+    """Set sync_watermark.last_updated_at (single row, id=1). Insert or update."""
+    table_id = f"{project}.{dataset}.sync_watermark"
+    ts = last_updated_at.isoformat()
+    job_config = bigquery.QueryJobConfig(
+        query_parameters=[bigquery.ScalarQueryParameter("ts", "TIMESTAMP", ts)]
+    )
+    query = f"""
+    MERGE `{table_id}` AS t
+    USING (SELECT 1 AS id, @ts AS last_updated_at) AS s
+    ON t.id = s.id
+    WHEN MATCHED THEN UPDATE SET last_updated_at = s.last_updated_at
+    WHEN NOT MATCHED THEN INSERT (id, last_updated_at) VALUES (s.id, s.last_updated_at)
+    """
+    bq_client.query(query, job_config=job_config).result()
+    print(f"Updated sync watermark to {ts}", flush=True)
+
+
+def _read_mart(
+    bq_client: bigquery.Client, project: str, dataset: str, since_updated_at: Optional[datetime] = None
+) -> List[Dict[str, Any]]:
+    """Read rows from BigQuery mart. If since_updated_at set, only rows with updated_at > since (incremental)."""
     table_id = f"{project}.{dataset}.published_rag_embeddings"
-    print(f"Reading BigQuery mart: {table_id}...", flush=True)
-    query = f"SELECT * FROM `{table_id}`"
+    if since_updated_at:
+        job_config = bigquery.QueryJobConfig(
+            query_parameters=[bigquery.ScalarQueryParameter("since", "TIMESTAMP", since_updated_at.isoformat())]
+        )
+        query = f"SELECT * FROM `{table_id}` WHERE updated_at > @since"
+        print(f"Reading BigQuery mart (incremental since {since_updated_at.isoformat()}): {table_id}...", flush=True)
+        job = bq_client.query(query, job_config=job_config)
+    else:
+        query = f"SELECT * FROM `{table_id}`"
+        print(f"Reading BigQuery mart (full): {table_id}...", flush=True)
+        job = bq_client.query(query)
     rows = []
-    for row in bq_client.query(query).result():
+    for row in job.result():
         rows.append(dict(row))
     print(f"Read {len(rows)} rows from mart.", flush=True)
     return rows
@@ -151,15 +202,49 @@ def _upsert_vertex_vectors(rows: List[Dict[str, Any]], project: str, region: str
     # The endpoint is for queries (find_neighbors); upsert is on the Index resource.
     
     try:
+        from google.cloud.aiplatform_v1.types import index as index_types
+
+        def _to_dp(d: Dict[str, Any]) -> index_types.IndexDatapoint:
+            rid = str(d.get("datapoint_id") or "")
+            vec = d.get("feature_vector") or []
+            # Convert restricts dicts to proto Restrictions
+            restr = []
+            for r in (d.get("restricts") or []):
+                if not isinstance(r, dict):
+                    continue
+                ns = str(r.get("namespace") or "").strip()
+                allow = r.get("allow_list") or r.get("allow") or []
+                deny = r.get("deny_list") or r.get("deny") or []
+                if not ns:
+                    continue
+                restr.append(index_types.IndexDatapoint.Restriction(
+                    namespace=ns,
+                    allow_list=[str(x) for x in allow if x is not None and str(x) != ""],
+                    deny_list=[str(x) for x in deny if x is not None and str(x) != ""],
+                ))
+            tag = d.get("crowding_tag")
+            crowd = None
+            if isinstance(tag, str) and tag.strip():
+                crowd = index_types.IndexDatapoint.CrowdingTag(crowding_attribute=tag.strip())
+            return index_types.IndexDatapoint(
+                datapoint_id=rid,
+                feature_vector=[float(x) for x in vec],
+                restricts=restr,
+                crowding_tag=crowd,
+            )
+
         index = aiplatform.MatchingEngineIndex(index_name=index_id)
-        # CrowdingTag in API is { "crowdingAttribute": string }; use crowding_attribute for SDK.
-        for dp in datapoints:
-            tag = dp.get("crowding_tag")
-            if isinstance(tag, str):
-                dp["crowding_tag"] = {"crowding_attribute": tag}
-        index.upsert_datapoints(datapoints=datapoints)
-        print(f"Upserted {len(datapoints)} vectors to Vertex.", flush=True)
-        return len(datapoints)
+        # Upsert in chunks to avoid request size limits
+        batch_size = int(os.environ.get("VERTEX_UPSERT_BATCH_SIZE", "500"))
+        total = 0
+        for i in range(0, len(datapoints), batch_size):
+            batch = datapoints[i : i + batch_size]
+            proto_batch = [_to_dp(d) for d in batch]
+            index.upsert_datapoints(datapoints=proto_batch)
+            total += len(proto_batch)
+            print(f"  upserted {total}/{len(datapoints)}", flush=True)
+        print(f"Upserted {total} vectors to Vertex.", flush=True)
+        return total
     except Exception as e:
         print(f"Vertex upsert failed: {e}", file=sys.stderr)
         raise
@@ -264,17 +349,59 @@ def _write_sync_run_output(
             print(f"Failed to write run output to Chat Postgres: {e}", file=sys.stderr)
 
 
+def _get_dest_env(dest: str, key: str, fallback_key: str | None = None) -> str | None:
+    """Get env var for destination. If dest is set, try DEST_{DEST}_{KEY} first, then fallback."""
+    if dest:
+        prefixed = f"DEST_{dest.upper()}_{key}"
+        val = os.environ.get(prefixed)
+        if val:
+            return val
+    # Fallback to unprefixed or provided fallback key
+    return os.environ.get(fallback_key or key)
+
+
 def main() -> int:
+    import argparse
+    parser = argparse.ArgumentParser(description="Sync BigQuery mart to Chat Postgres + Vertex")
+    parser.add_argument("--dest", choices=["staging", "prod"], default=None,
+                        help="Destination environment (uses DEST_STAGING_* or DEST_PROD_* env vars)")
+    parser.add_argument("--postgres-only", action="store_true",
+                        help="Only sync to Postgres, skip Vertex index update")
+    args = parser.parse_args()
+    
+    dest = args.dest
+    postgres_only = args.postgres_only
+    
+    # BigQuery source (always unprefixed)
     bq_project = os.environ.get("BQ_PROJECT")
     bq_dataset = os.environ.get("BQ_DATASET")
-    chat_db_url = os.environ.get("CHAT_DATABASE_URL")
-    vertex_project = os.environ.get("VERTEX_PROJECT")
-    vertex_region = os.environ.get("VERTEX_REGION")
-    vertex_index_id = os.environ.get("VERTEX_INDEX_ID")
-    vertex_endpoint_id = os.environ.get("VERTEX_INDEX_ENDPOINT_ID")
     
-    if not all([bq_project, bq_dataset, chat_db_url, vertex_project, vertex_region, vertex_index_id]):
-        print("Set: BQ_PROJECT, BQ_DATASET, CHAT_DATABASE_URL, VERTEX_PROJECT, VERTEX_REGION, VERTEX_INDEX_ID", file=sys.stderr)
+    # Destination config (prefixed if --dest is set)
+    chat_db_url = _get_dest_env(dest, "CHAT_DATABASE_URL")
+    vertex_project = _get_dest_env(dest, "VERTEX_PROJECT")
+    vertex_region = _get_dest_env(dest, "VERTEX_REGION")
+    vertex_index_id = _get_dest_env(dest, "VERTEX_INDEX_ID")
+    vertex_endpoint_id = _get_dest_env(dest, "VERTEX_INDEX_ENDPOINT_ID")
+    vertex_index_mode = (_get_dest_env(dest, "VERTEX_INDEX_MODE") or os.environ.get("VERTEX_INDEX_MODE") or "batch").strip().lower()
+    
+    dest_label = f" (dest={dest})" if dest else ""
+    print(f"Sync target{dest_label}: Postgres={bool(chat_db_url)} Vertex={bool(vertex_index_id) and not postgres_only}", flush=True)
+    
+    required = [bq_project, bq_dataset, chat_db_url]
+    if not postgres_only:
+        required.extend([vertex_project, vertex_region, vertex_index_id])
+    
+    if not all(required):
+        missing = []
+        if not bq_project: missing.append("BQ_PROJECT")
+        if not bq_dataset: missing.append("BQ_DATASET")
+        prefix = f"DEST_{dest.upper()}_" if dest else ""
+        if not chat_db_url: missing.append(f"{prefix}CHAT_DATABASE_URL")
+        if not postgres_only:
+            if not vertex_project: missing.append(f"{prefix}VERTEX_PROJECT")
+            if not vertex_region: missing.append(f"{prefix}VERTEX_REGION")
+            if not vertex_index_id: missing.append(f"{prefix}VERTEX_INDEX_ID")
+        print(f"Missing env vars: {', '.join(missing)}", file=sys.stderr)
         return 1
     
     run_id = str(uuid.uuid4())
@@ -288,29 +415,58 @@ def main() -> int:
     bq_client = bigquery.Client(project=bq_project)
     
     try:
-        # 1. Read mart
-        rows = _read_mart(bq_client, bq_project, bq_dataset)
+        # 1. Read watermark (incremental: only rows with updated_at > last_synced)
+        since = _read_watermark(bq_client, bq_project, bq_dataset)
+        if since:
+            print(f"Incremental sync since {since.isoformat()}", flush=True)
+        else:
+            print("Full sync (no watermark yet)", flush=True)
+
+        # 2. Read mart (full or delta)
+        rows = _read_mart(bq_client, bq_project, bq_dataset, since_updated_at=since)
         mart_rows_read = len(rows)
-        
+
         if not rows:
-            print("No rows in mart; skipping sync.", flush=True)
+            print("No new/updated rows to sync.", flush=True)
             status = "success"
             return 0
-        
-        # 2. Write metadata to Chat Postgres
+
+        # 3. Write metadata to Chat Postgres
         postgres_rows_written = _write_postgres_metadata(rows, chat_db_url)
-        
-        # 3. Write vectors to Vertex (batch update only; index does not support stream update)
-        gcs_bucket = os.environ.get("GCS_BUCKET")
-        gcs_prefix = os.environ.get("GCS_PREFIX", "chat_rag_index")
-        if not gcs_bucket:
-            raise ValueError(
-                "GCS_BUCKET is required for Vertex sync. Set GCS_BUCKET (and optionally GCS_PREFIX) in env. "
-                "This index uses batch update only (no stream update)."
-            )
-        vector_rows_upserted = _update_vertex_batch_index(rows, vertex_project, vertex_region, vertex_index_id, gcs_bucket, gcs_prefix)
-        
+
+        # 4. Write vectors to Vertex (streaming upsert or batch update)
+        if not postgres_only:
+            if vertex_index_mode.startswith("stream"):
+                vector_rows_upserted = _upsert_vertex_vectors(rows, vertex_project, vertex_region, vertex_index_id, vertex_endpoint_id)
+            else:
+                gcs_bucket = os.environ.get("GCS_BUCKET")
+                gcs_prefix = os.environ.get("GCS_PREFIX", "chat_rag_index")
+                if not gcs_bucket:
+                    raise ValueError(
+                        "GCS_BUCKET is required for batch Vertex sync. Set GCS_BUCKET (and optionally GCS_PREFIX) in env. "
+                        "Set VERTEX_INDEX_MODE=streaming to use streaming upserts instead."
+                    )
+                vector_rows_upserted = _update_vertex_batch_index(rows, vertex_project, vertex_region, vertex_index_id, gcs_bucket, gcs_prefix)
+        else:
+            print("Skipping Vertex update (--postgres-only)", flush=True)
+
         status = "success"
+        # Update watermark so next run is incremental
+        max_updated = None
+        for row in rows:
+            u = row.get("updated_at")
+            if u is not None:
+                if isinstance(u, datetime):
+                    max_updated = u if max_updated is None else max(u, max_updated)
+                else:
+                    try:
+                        dt = datetime.fromisoformat(str(u).replace("Z", "+00:00"))
+                        max_updated = dt if max_updated is None else max(dt, max_updated)
+                    except (TypeError, ValueError):
+                        pass
+        if max_updated is not None:
+            _write_watermark(bq_client, bq_project, bq_dataset, max_updated)
+
         print(f"Sync complete: {mart_rows_read} rows read, {postgres_rows_written} to Postgres, {vector_rows_upserted} to Vertex.", flush=True)
         return 0
     
