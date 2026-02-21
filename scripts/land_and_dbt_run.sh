@@ -41,6 +41,12 @@ if [[ -n "$CHAT_DATABASE_URL" ]] && [[ -n "$VERTEX_INDEX_ID" ]]; then
   echo "=== 4. Sync mart → Chat (Postgres + Vertex) ==="
   python scripts/sync_mart_to_chat.py
   echo ""
+  # Step 5: Sync RAG lexicon + document_tags → Chat (J/P/D tagger support)
+  if [[ -n "$POSTGRES_HOST" ]] && [[ -n "$POSTGRES_PASSWORD" ]]; then
+    echo "=== 5. Sync RAG lexicon + document_tags → Chat ==="
+    python scripts/sync_rag_lexicon_to_chat.py
+    echo ""
+  fi
 else
   echo "=== 4. Sync mart → Chat: SKIPPED (set CHAT_DATABASE_URL, VERTEX_PROJECT, VERTEX_REGION, VERTEX_INDEX_ID to enable) ==="
   echo ""

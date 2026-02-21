@@ -30,7 +30,8 @@ from typing import Any, Dict, List, Optional
 _project_root = Path(__file__).resolve().parent.parent
 try:
     from dotenv import load_dotenv
-    load_dotenv(_project_root / ".env")
+    # override=True so mobius-dbt .env wins over mobius-config or shell
+    load_dotenv(_project_root / ".env", override=True)
 except ImportError:
     pass
 
@@ -152,17 +153,26 @@ def _upsert_vertex_vectors(rows: List[Dict[str, Any]], project: str, region: str
     if not datapoints:
         print("No valid datapoints to upsert.", flush=True)
         return 0
-    
+
+    # Vertex streaming upsert has a limit (typically 1000 datapoints per request).
+    BATCH_SIZE = 1000
+    total_upserted = 0
+
     try:
         index = aiplatform.MatchingEngineIndex(index_name=index_id)
         # endpoint_id is kept for backwards-compat/config validation (index must be deployed),
         # but the streaming upsert call is executed on the index object.
         if endpoint_id:
             _ = aiplatform.MatchingEngineIndexEndpoint(index_endpoint_name=endpoint_id)
-        index.upsert_datapoints(datapoints=datapoints)
-        
-        print(f"Upserted {len(datapoints)} vectors to Vertex.", flush=True)
-        return len(datapoints)
+
+        for i in range(0, len(datapoints), BATCH_SIZE):
+            batch = datapoints[i : i + BATCH_SIZE]
+            index.upsert_datapoints(datapoints=batch)
+            total_upserted += len(batch)
+            print(f"  Upserted batch {i // BATCH_SIZE + 1}/{(len(datapoints) + BATCH_SIZE - 1) // BATCH_SIZE} ({len(batch)} datapoints)...", flush=True)
+
+        print(f"Upserted {total_upserted} vectors to Vertex.", flush=True)
+        return total_upserted
     except Exception as e:
         print(f"Vertex upsert failed: {e}", file=sys.stderr)
         raise
