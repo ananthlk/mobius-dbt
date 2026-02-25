@@ -1,0 +1,157 @@
+# FL Medicaid NPI mart models
+version: 2
+
+models:
+  - name: nppes_providers
+    description: "NPPES provider data from bigquery-public-data.nppes.npi_optimized. No load; query directly."
+  - name: medicaid_provider_ids
+    description: "FL Medicaid provider IDs from PML (Provider Master List)."
+  - name: fl_medicaid_taxonomy
+    description: "FL Medicaid Taxonomy Master List. Valid taxonomy codes for claims."
+  - name: nucc_taxonomy
+    description: "National NUCC Healthcare Provider Taxonomy. Descriptions for any code. Inline starter; replace with stg_nucc_taxonomy when full NUCC CSV loaded from GCS."
+  - name: billing_servicing_pairs
+    description: "Billing → servicing pairs with HCPCS volume from DOGE. Source: landing medicaid-provider-spending."
+  - name: billing_patterns
+    description: "Billing patterns from DOGE Medicaid data (FL only)."
+  - name: organizations
+    description: "Organizations: distinct billing TINs with master org name. Step 1.1 of FL Medicaid NPI validation pipeline."
+  - name: provider_readiness
+    description: "Per (npi, billing_npi) readiness flags and reason codes. Point-in-time; use report_date var."
+  - name: provider_readiness_summary
+    description: "Provider readiness aggregated by billing_npi. Percentages for today and 3-month outlook."
+  - name: provider_readiness_report
+    description: "Report-ready view with NPI details, status_flag (G/Y/R from enrollment + B1/B3/C/D/F), readiness_score 0-100. B2 = info only. Feeds PDF, CSV, chat."
+  - name: nppes_fl
+    description: "NPPES restricted to Florida practice address. Foundation for FL-only analyses."
+  - name: nppes_taxonomies_unpivoted_fl
+    description: "Unpivoted NPPES taxonomies for FL cohort. One row per (npi, taxonomy_code) with taxonomy_slot and is_primary."
+  - name: billing_servicing_pairs_fl
+    description: "Billing-servicing pairs where both NPIs are in FL. No state bleed."
+  - name: taxonomy_prevalence_fl
+    description: "Analysis 1: Taxonomy prevalence in FL cohort. All 15 slots; pct and rank."
+  - name: taxonomy_combo_turf_fl
+    description: "Analysis 2: TURF-style taxonomy combos. T1 (primary) -> T2 -> T3 -> T4 -> T5; npi_count, pct_of_cohort."
+  - name: taxonomy_hcpcs_volume_fl
+    description: "Analysis 3: Taxonomy → HCPCS volume at TURF level. (primary_taxonomy, t2) + hcpcs → claim_count, total_paid, beneficiary_count."
+  - name: taxonomy_hcpcs_volume_indexed_fl
+    description: "Volume with utilization indexing. claims_index, spend_index; claims_z_score, spend_z_score; is_outlier (|z|>2)."
+  - name: npi_addresses_fl
+    description: "NPI addresses for FL cohort. Practice + mailing from NPPES; B1 address alignment (ZIP+9)."
+  - name: b3_taxonomy_alignment_fl
+    description: "B3 Taxonomy alignment: NPPES taxonomies vs FL allowed (TML). One row per NPI; at_least_one_viable_in_fl, no_viable_in_fl."
+  - name: b4_medicaid_id_roster_fl
+    description: "B4 Roster of all Medicaid IDs per NPI from PML (multiple IDs per NPI); one row per (npi, medicaid_provider_id); b4_permissible = contract valid."
+  - name: b4_npi_medicaid_status_fl
+    description: "B4 Per-NPI flags: b4_no_medicaid_id_in_pml, b4_has_permissible_id, b4_medicaid_id_count. NPPES match = info only (future)."
+  - name: address_validation_fl
+    description: "Address validation flags per (billing_npi, servicing_npi): B1, B2, B3."
+  - name: taxonomy_validation_fl
+    description: "Taxonomy validation: C1–C4, D (HCPCS outlier), F (entity type mismatch)."
+  - name: provider_taxonomy_coverage_fl
+    description: "Analysis 4: Taxonomy coverage score (0–100) vs cohort prevalence."
+  - name: provider_missed_opportunities_fl
+    description: "Analysis 5: Add taxonomy T to unlock high-volume HCPCS."
+  - name: provider_danger_opportunities_fl
+    description: "Analysis 6: HCPCS billing outlier for taxonomy — review risk."
+  - name: provider_readiness_executive_summary
+    description: "Executive summary: totals, status counts, issue counts."
+  - name: provider_propensity_score_fl
+    description: "Propensity score 0–100: enrollment + address + taxonomy + utilization. Validate range manually; BigQuery restricts tests that ref views with correlated subqueries."
+  - name: b0_facility_master_fl
+    description: "B0 Facility master list: entity type 2 or facility-related taxonomy. One row per facility NPI with address/ZIP+9."
+  - name: b0_sub_org_address_fl
+    description: "B0 Sub-org = one facility + one address. sub_org_id, org_id, address_normalized, zip5, zip9."
+  - name: b0_address_propensity_fl
+    description: "B0 (npi, sub_org_id) with match_type strong/partial. NPIs can be in multiple sub-orgs."
+  - name: b0_sub_org_members_fl
+    description: "B0 Sub-org members: (sub_org_id, org_id, npi, match_type). Strong and partial."
+  - name: b0_billing_npi_members_fl
+    description: "B0 Billing NPI → member (servicing) NPIs. One row per (billing_npi, member_npi)."
+  - name: b0_roster_list_fl
+    description: "B0 Roster list: union of address-based and billing-NPI-based. org_id, sub_org_id, npi, tin, associated_member_npis, source_type, billing_npi."
+  - name: b6_integrated_report_fl
+    description: "B6 Integrated report: single read head (table). Partitioned by report_date, clustered by org_id, npi, org_display_name, npi_provider_name. Query by org_id, npi, site_id, org name, or provider name; always filter by report_date = (SELECT MAX(report_date)...) for latest. Front end and chat use only this."
+
+  # Run staging: unified landing filtered by state_code and product. See docs/MEDICAID_NPI_UNIFIED_LANDING.md.
+  - name: stg_pml_run
+    description: "PML for current run: stg_pml filtered by program_state = var('state_code'), product = var('product')."
+  - name: stg_tml_run
+    description: "TML for current run: stg_tml filtered by program_state = var('state_code'), product = var('product')."
+  - name: stg_ppl_run
+    description: "PPL for current run: stg_ppl filtered by program_state = var('state_code'), product = var('product')."
+
+  - name: step1a
+    description: "Step 1a: Organizations (billing NPI, org name, address, spend)."
+  - name: step1b
+    description: "Step 1b: Billing–servicing pairs (state-scoped)."
+  - name: step1c
+    description: "Step 1c: Facility master list."
+  - name: step1d
+    description: "Step 1d: Sub-org addresses (sites)."
+  - name: step1e
+    description: "Step 1e: NPI ↔ sub-org address propensity."
+  - name: step1f
+    description: "Step 1f: Sub-org members."
+  - name: step1g
+    description: "Step 1g: Billing NPI → member NPIs."
+  - name: step1
+    description: "Step 1: Roster list (org_id, site_id, npi, …)."
+  - name: step2a
+    description: "Step 2a: Site/location list (sub-org addresses)."
+  - name: step2
+    description: "Step 2: Location validation (address/site-level checks)."
+  - name: step3a
+    description: "Step 3a: NPPES state cohort."
+  - name: step3
+    description: "Step 3: NPI validation (in_nppes, enrollment-related flags)."
+  - name: step4a
+    description: "Step 4a: NPI addresses (practice/mailing, B1 fields)."
+  - name: step4b
+    description: "Step 4b: Address validation (B1/B2/B3 flags)."
+  - name: step4
+    description: "Step 4: Address validation output."
+  - name: step5a
+    description: "Step 5a: Medicaid ID roster per NPI."
+  - name: step5b
+    description: "Step 5b: Per-NPI Medicaid ID status."
+  - name: step5
+    description: "Step 5: Medicaid ID validation (main)."
+  - name: step6a
+    description: "Step 6a: State Medicaid taxonomy (TML)."
+  - name: step6b
+    description: "Step 6b: NPPES vs TML alignment (B3)."
+  - name: step6c
+    description: "Step 6c: Taxonomy validation (C1–C4, D, F)."
+  - name: step6
+    description: "Step 6: Taxonomy validation output (main)."
+  - name: step7a
+    description: "Step 7a: Taxonomy → HCPCS volume."
+  - name: step7b
+    description: "Step 7b: Volume with indexing / outliers."
+  - name: step7c
+    description: "Step 7c: Danger opportunities (code unusual for taxonomy)."
+  - name: step7
+    description: "Step 7: Billing code validation (main)."
+  - name: step8
+    description: "Step 8: Comprehensive check (NPI + Medicaid ID + taxonomy + location). Single read head."
+  - name: step9a
+    description: "Step 9a: Provider readiness report (status, issues)."
+  - name: step9b
+    description: "Step 9b: Executive summary."
+  - name: step9
+    description: "Step 9: Error report with recommendations (main)."
+  - name: step10
+    description: "Step 10: Reserved (placeholder view)."
+  - name: step11
+    description: "Step 11: Billing rate validation (stub until rate data in landing)."
+  - name: step12a
+    description: "Step 12a: Missed opportunities (add taxonomy to unlock codes)."
+  - name: step12b
+    description: "Step 12b: Danger opportunities (review billing)."
+  - name: step12
+    description: "Step 12: Missed/billing opportunities (main)."
+  - name: step13a
+    description: "Step 13a: Propensity score."
+  - name: step13
+    description: "Step 13: Revenue enhancement report (summary)."

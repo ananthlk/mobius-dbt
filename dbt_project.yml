@@ -13,6 +13,11 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
+# Seeds used by medicaid_npi marts (e.g. b0_facility_taxonomy_codes) go to same dataset so ref() resolves.
+seeds:
+  mobius_dbt:
+    +schema: "{{ env_var('BQ_MARTS_MEDICAID_DATASET', 'mobius_medicaid_npi_dev') }}"
+
 target-path: "target"
 clean-targets:
   - "target"
@@ -21,6 +26,12 @@ clean-targets:
 vars:
   landing_dataset: "landing_rag"
   marts_dataset: "mobius_rag"
+  # Medicaid NPI unified landing run filter (see docs/MEDICAID_NPI_UNIFIED_LANDING.md)
+  state_code: "FL"
+  product: "medicaid"
+  # PML: use_pml_address true when stg_pml has address_line_1, zip, zip_plus_4
+  use_pml_address: true
+  use_pml_taxonomy: false
 
 models:
   mobius_dbt:
@@ -30,4 +41,6 @@ models:
       columns: true
     marts:
       chat_rag:
+        +materialized: table
+      medicaid_npi:
         +materialized: table

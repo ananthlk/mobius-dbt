@@ -1,0 +1,6 @@
+# Landing views: map raw tables to Mobius schema
+version: 2
+
+models:
+  - name: stg_doge
+    description: "DOGE Medicaid Provider Spending. View over medicaid-provider-spending with Mobius schema (npi, billing_npi, servicing_npi, hcpcs_code, etc.)."

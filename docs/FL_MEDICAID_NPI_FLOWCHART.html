@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FL Medicaid NPI: Landing → Report Flowchart</title>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'neutral', flowchart: { useMaxWidth: true, curve: 'basis' } });
+  </script>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 1rem; background: #fafafa; }
+    h1 { font-size: 1.25rem; }
+    .mermaid { background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+  </style>
+</head>
+<body>
+  <h1>FL Medicaid NPI: Landing → Report Flowchart</h1>
+  <pre class="mermaid">
+flowchart TB
+    subgraph LANDING [Landing Sources]
+        NPPES[nppes_public.npi_optimized]
+        PML[stg_pml]
+        TML[stg_tml]
+        PPL[stg_ppl]
+        DOGE[stg_doge / medicaid_provider_spending]
+        NUCC[stg_nucc_taxonomy]
+    end
+
+    subgraph FOUNDATION [Foundation]
+        nppes_providers[nppes_providers]
+        medicaid_provider_ids[medicaid_provider_ids]
+        fl_medicaid_taxonomy[fl_medicaid_taxonomy]
+        billing_servicing_pairs[billing_servicing_pairs]
+        billing_patterns[billing_patterns]
+        nucc_taxonomy[nucc_taxonomy]
+    end
+
+    subgraph FL [FL-Scoped]
+        nppes_fl[nppes_fl]
+        nppes_tax_unpiv[nppes_taxonomies_unpivoted_fl]
+        bsp_fl[billing_servicing_pairs_fl]
+        tax_prev[taxonomy_prevalence_fl]
+        tax_combo[taxonomy_combo_turf_fl]
+        tax_hcpcs[taxonomy_hcpcs_volume_fl]
+        tax_hcpcs_idx[taxonomy_hcpcs_volume_indexed_fl]
+        npi_addr[npi_addresses_fl]
+        addr_val[address_validation_fl]
+        tax_val[taxonomy_validation_fl]
+        orgs[organizations]
+        pr_read[provider_readiness]
+        pr_summary[provider_readiness_summary]
+    end
+
+    subgraph ANALYSIS [Analysis Marts]
+        cov[provider_taxonomy_coverage_fl]
+        missed[provider_missed_opportunities_fl]
+        danger[provider_danger_opportunities_fl]
+    end
+
+    subgraph FINAL [Final Report]
+        PRR[provider_readiness_report]
+        PRES[provider_readiness_executive_summary]
+        PPS[provider_propensity_score_fl]
+    end
+
+    NPPES --> nppes_providers
+    NPPES --> nppes_fl
+    PML --> medicaid_provider_ids
+    PML --> fl_medicaid_taxonomy
+    PML --> npi_addr
+    TML --> fl_medicaid_taxonomy
+    PPL --> pr_read
+    DOGE --> billing_servicing_pairs
+    NUCC --> nucc_taxonomy
+
+    nppes_providers --> nppes_fl
+    nppes_fl --> nppes_tax_unpiv
+    nppes_fl --> npi_addr
+    nppes_fl --> bsp_fl
+    billing_servicing_pairs --> bsp_fl
+    nppes_fl --> orgs
+    bsp_fl --> orgs
+
+    nppes_tax_unpiv --> tax_prev
+    nppes_tax_unpiv --> tax_combo
+    bsp_fl --> tax_hcpcs
+    nppes_tax_unpiv --> tax_hcpcs
+    tax_hcpcs --> tax_hcpcs_idx
+
+    npi_addr --> addr_val
+    bsp_fl --> addr_val
+    bsp_fl --> tax_val
+    fl_medicaid_taxonomy --> tax_val
+    nppes_tax_unpiv --> tax_val
+    nppes_fl --> tax_val
+    tax_hcpcs_idx --> tax_val
+    PML --> tax_val
+
+    bsp_fl --> pr_read
+    NPPES --> pr_read
+    PML --> pr_read
+    pr_read --> pr_summary
+
+    tax_prev --> cov
+    nppes_tax_unpiv --> cov
+    tax_prev --> missed
+    tax_hcpcs --> missed
+    nppes_tax_unpiv --> missed
+    tax_hcpcs_idx --> danger
+    nppes_tax_unpiv --> danger
+    bsp_fl --> danger
+
+    pr_read --> PRR
+    addr_val --> PRR
+    tax_val --> PRR
+    orgs --> PRR
+    NPPES --> PRR
+
+    PRR --> PRES
+    pr_summary --> PRES
+    PRR --> PPS
+  </pre>
+</body>
+</html>

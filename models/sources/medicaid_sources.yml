@@ -1,0 +1,68 @@
+# FL Medicaid NPI sources
+# - bigquery-public-data.nppes: NPI and taxonomy (no load needed)
+# - landing_medicaid_npi_*: PML, TML, PPL unified by program_state and product (loaded from GCS). See docs/MEDICAID_NPI_UNIFIED_LANDING.md.
+
+version: 2
+
+sources:
+  - name: nppes_public
+    description: "BigQuery public dataset: NPPES NPI and healthcare provider taxonomy. Tables: npi_optimized, npi_raw, healthcare_provider_taxonomy_code_set_*."
+    database: bigquery-public-data
+    schema: nppes
+    tables:
+      - name: npi_optimized
+        description: "Optimized NPI provider data. Use for provider lookup and NPI readiness checks."
+      - name: npi_raw
+        description: "Raw NPI data. Alternative to npi_optimized for full detail."
+
+  - name: landing_medicaid_npi
+    description: "Unified Medicaid NPI landing. PML, TML, PPL have program_state and product columns; pipeline uses stg_*_run models filtered by dbt vars state_code and product. Use BQ_LANDING_MEDICAID_DATASET."
+    database: "{{ target.project }}"
+    schema: "{{ env_var('BQ_LANDING_MEDICAID_DATASET', 'landing_medicaid_npi_dev') }}"
+    tables:
+      - name: stg_pml
+        description: "Provider Master List (unified). Enrolled Medicaid providers. Columns program_state, product; B1 uses address fields (state = service location state)."
+        columns:
+          - name: program_state
+            description: "State/program (e.g. FL). Filter run with dbt var state_code."
+          - name: product
+            description: "Product (e.g. medicaid). Filter run with dbt var product."
+          - name: npi
+            description: "NPI number. Required for enrollment check."
+          - name: contract_effective_date
+            description: "Contract effective date. Use for dates_overlap(ref_date)."
+          - name: contract_end_date
+            description: "Contract end date. NULL = no end. Use for dates_overlap(ref_date)."
+          - name: service_location_address_1
+            description: "Service Location Address 1 (AHCA). Map from PML CSV column if needed."
+          - name: service_location_address_zip
+            description: "Service Location Address ZIP or ZIP+4 (digits). B1 uses first 5 digits. AHCA CSV: 'Service Location Address ZIP+4'."
+          - name: state
+            description: "Address state (service location). Used by B1; may equal program_state for single-state loads."
+          - name: taxonomy_code
+            description: "Provider taxonomy on file. C2: compare with NPPES primary. AHCA PML Column F."
+      - name: stg_tml
+        description: "Taxonomy Master List (unified). Valid Medicaid taxonomy codes per program_state and product."
+        columns:
+          - name: program_state
+            description: "State/program (e.g. FL). Filter run with dbt var state_code."
+          - name: product
+            description: "Product (e.g. medicaid). Filter run with dbt var product."
+          - name: taxonomy_code
+            description: "Valid taxonomy code for claims."
+      - name: stg_ppl
+        description: "Pending Provider List (unified). Providers in enrollment pipeline per program_state and product."
+        columns:
+          - name: program_state
+            description: "State/program (e.g. FL). Filter run with dbt var state_code."
+          - name: product
+            description: "Product (e.g. medicaid). Filter run with dbt var product."
+          - name: npi
+            description: "NPI number. Presence indicates enrollment pending."
+      - name: stg_doge
+        description: "DOGE Medicaid Provider Spending. View over medicaid-provider-spending with Mobius schema."
+      - name: medicaid_provider_spending
+        identifier: "medicaid-provider-spending"
+        description: "Raw HHS Medicaid Provider Spending (direct load from Drive/Sheets). Columns: BILLING_PROVIDER_NPI_NUM, SERVICING_PROVIDER_NPI_NUM, HCPCS_CODE, etc."
+      - name: stg_nucc_taxonomy
+        description: "National NUCC taxonomy. Load via scripts/load_nucc_to_landing.py from seeds/nucc_taxonomy_seed.csv or full nucc_taxonomy_250.csv."

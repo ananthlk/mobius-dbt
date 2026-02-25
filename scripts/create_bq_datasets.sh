@@ -19,7 +19,11 @@ for env in dev staging prod; do
   bq mk --project_id="$BQ_PROJECT" --dataset --location="$BQ_LOCATION" "${BQ_PROJECT}:landing_rag_${env}" 2>/dev/null || true
   echo "  Creating mobius_rag_${env}..."
   bq mk --project_id="$BQ_PROJECT" --dataset --location="$BQ_LOCATION" "${BQ_PROJECT}:mobius_rag_${env}" 2>/dev/null || true
+  echo "  Creating landing_medicaid_npi_${env}..."
+  bq mk --project_id="$BQ_PROJECT" --dataset --location="$BQ_LOCATION" "${BQ_PROJECT}:landing_medicaid_npi_${env}" 2>/dev/null || true
+  echo "  Creating mobius_medicaid_npi_${env}..."
+  bq mk --project_id="$BQ_PROJECT" --dataset --location="$BQ_LOCATION" "${BQ_PROJECT}:mobius_medicaid_npi_${env}" 2>/dev/null || true
 done
 
-echo "Done. Next: ./scripts/create_env_tables.sh to create tables in each dataset."
+echo "Done. Next: ./scripts/create_env_tables.sh and ./scripts/create_medicaid_tables.sh"
 echo "Then: export BQ_PROJECT=$BQ_PROJECT BQ_DATASET=mobius_rag_dev BQ_LANDING_DATASET=landing_rag_dev && dbt run"
