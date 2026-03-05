@@ -1,0 +1,16 @@
+version: 2
+models:
+  - name: stg_bh_taxonomy_whitelist
+    description: "Behavioral Health taxonomy codes from NUCC. Used to filter BH orgs and for bh_grouping in narratives."
+  - name: nucc_lookup
+    description: "Full NUCC taxonomy lookup (code + classification). Used for org, site, and provider taxonomy details."
+  - name: bh_provider_locations
+    description: "Individual practitioners (entity_type=1) in FL with full NPPES practice/mailing address. Input to bh_roster."
+  - name: bh_roster
+    description: "B0 logic: union address-based (ZIP+9) + billing-NPI-based (DOGE). Org name, site, taxonomy, NPPES, PML, DOGE stats, confidence, roster_explanation. source_type: address | billing_npi."
+  - name: bh_roster_readiness
+    description: "Medicaid NPI initiative checks per roster row. Four checks with pass/fail and frontend-ready explanations: (1) NPI in PML, (2) ZIP+4 is 9 digits, (3) taxonomy on TML, (4) NPI+taxonomy+ZIP9 has valid Medicaid ID. readiness_status, readiness_summary. For Combo mismatch: pml_credentialed_combos, suggested_action, suggested_taxonomies (data-driven top 3-5 co-occurring taxonomies with pct confidence from FL PML)."
+  - name: taxonomy_cooccurrence_fl
+    description: "Taxonomy co-occurrence from FL PML: for each taxonomy T, % of providers with T who are also credentialed as T2. Data-driven recommendations (e.g. 30% of social workers are also LCSW)."
+  - name: ghost_billing_fl
+    description: "Ghost billing = servicing NPIs that bill under the org (DOGE) but have weak address/roster match (confidence_score < 40). Used by Provider Roster Credentialing report."
