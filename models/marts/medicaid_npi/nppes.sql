@@ -1,15 +1,16 @@
 {{
   config(
-    materialized='table',
+    materialized='view',
     schema=env_var('BQ_MARTS_MEDICAID_DATASET', 'mobius_medicaid_npi_dev'),
   )
 }}
 
--- NPPES restricted to Florida practice address. Foundation for FL-only analyses.
+-- NPPES with practice_state for state-scoped runs. No filter; use nppes_run for current state.
 -- Source: bigquery-public-data.nppes.npi_optimized.
 
 select
   cast(npi as string) as npi,
+  coalesce(trim(cast(provider_business_practice_location_address_state_name as string)), '') as practice_state,
   entity_type_code,
   provider_organization_name_legal_business_name,
   provider_last_name_legal_name,
@@ -39,7 +40,6 @@ select
   healthcare_provider_taxonomy_code_13,
   healthcare_provider_taxonomy_code_14,
   healthcare_provider_taxonomy_code_15,
-  cast(null as string) as provider_credential_text  -- set from npi_optimized.provider_credential_text when available
+  cast(null as string) as provider_credential_text
 from {{ source('nppes_public', 'npi_optimized') }}
-where provider_business_practice_location_address_state_name = 'FL'
-  and npi is not null
+where npi is not null

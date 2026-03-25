@@ -6,7 +6,7 @@
 }}
 
 -- Analysis 5: Missed opportunities. Provider lacks taxonomy T; T unlocks high-volume HCPCS.
--- "Add T to unlock X, Y." Scoped to taxonomies that appear in vol and to FL billing cohort to stay within BQ resource limits.
+-- "Add T to unlock X, Y." FL-only filter (from nppes_taxonomies_unpivoted_fl).
 
 with provider_tax as (
   select npi, taxonomy_code from {{ ref('nppes_taxonomies_unpivoted_fl') }}
@@ -30,14 +30,15 @@ unpiv as (
 primaries as (
   select npi, taxonomy_code as t1 from unpiv where is_primary
 ),
--- Restrict to NPIs that bill in FL; limit to 8k NPIs to stay within BQ on-demand CPU limit
-billing_npis as (
-  select npi from (select servicing_npi as npi, sum(claim_count) as c from {{ ref('billing_servicing_pairs_fl') }} group by 1 order by 2 desc limit 8000)
+-- All FL NPIs (from nppes_taxonomies_unpivoted_fl)
+fl_npis as (
+  select distinct npi from {{ ref('nppes_taxonomies_unpivoted_fl') }}
+  where npi is not null and trim(npi) != ''
 ),
 -- Provider lacks taxonomy T where T is in vol_tax; use anti-join
 provider_lacks as (
   select p.npi, t.taxonomy_code as suggested_taxonomy
-  from (select npi from billing_npis) p
+  from (select npi from fl_npis) p
   cross join vol_tax t
   left join provider_tax pt on pt.npi = p.npi and pt.taxonomy_code = t.taxonomy_code
   where pt.taxonomy_code is null

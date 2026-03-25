@@ -5,4 +5,4 @@
   )
 }}
 -- Step 1b: Billing–servicing pairs (state-scoped). See docs/FL_MEDICAID_NPI_STEP_NAMING.md.
-select * from {{ ref('billing_servicing_pairs_fl') }}
+select * from {{ ref('billing_servicing_pairs_run') }}

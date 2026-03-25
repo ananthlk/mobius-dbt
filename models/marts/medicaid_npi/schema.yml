@@ -17,17 +17,19 @@ models:
   - name: organizations
     description: "Organizations: distinct billing TINs with master org name. Step 1.1 of FL Medicaid NPI validation pipeline."
   - name: provider_readiness
-    description: "Per (npi, billing_npi) readiness flags and reason codes. Point-in-time; use report_date var."
+    description: "Per roster row (org_id, sub_org_id, npi) readiness flags and reason codes. Driven by master roster (b0_roster_list_fl); claim volume from pairs when match exists. Point-in-time; use report_date var."
   - name: provider_readiness_summary
     description: "Provider readiness aggregated by billing_npi. Percentages for today and 3-month outlook."
   - name: provider_readiness_report
     description: "Report-ready view with NPI details, status_flag (G/Y/R from enrollment + B1/B3/C/D/F), readiness_score 0-100. B2 = info only. Feeds PDF, CSV, chat."
-  - name: nppes_fl
-    description: "NPPES restricted to Florida practice address. Foundation for FL-only analyses."
+  - name: nppes
+    description: "NPPES with practice_state column. View over npi_optimized; use nppes_run for state-scoped cohort."
+  - name: nppes_run
+    description: "NPPES restricted to current run state (practice_state = var state_code). Foundation for state-scoped analyses."
   - name: nppes_taxonomies_unpivoted_fl
     description: "Unpivoted NPPES taxonomies for FL cohort. One row per (npi, taxonomy_code) with taxonomy_slot and is_primary."
-  - name: billing_servicing_pairs_fl
-    description: "Billing-servicing pairs where both NPIs are in FL. No state bleed."
+  - name: billing_servicing_pairs_run
+    description: "Billing-servicing pairs where both NPIs are in current run state. Use var('state_code') to switch state."
   - name: taxonomy_prevalence_fl
     description: "Analysis 1: Taxonomy prevalence in FL cohort. All 15 slots; pct and rank."
   - name: taxonomy_combo_turf_fl
@@ -45,7 +47,7 @@ models:
   - name: b4_npi_medicaid_status_fl
     description: "B4 Per-NPI flags: b4_no_medicaid_id_in_pml, b4_has_permissible_id, b4_medicaid_id_count. NPPES match = info only (future)."
   - name: address_validation_fl
-    description: "Address validation flags per (billing_npi, servicing_npi): B1, B2, B3."
+    description: "Address validation flags per (billing_npi, servicing_npi): B1, B2, B3. is_orphan = true when servicing NPI does not map to any site (no roster row with sub_org_id)."
   - name: taxonomy_validation_fl
     description: "Taxonomy validation: C1–C4, D (HCPCS outlier), F (entity type mismatch)."
   - name: provider_taxonomy_coverage_fl
@@ -70,6 +72,16 @@ models:
     description: "B0 Billing NPI → member (servicing) NPIs. One row per (billing_npi, member_npi)."
   - name: b0_roster_list_fl
     description: "B0 Roster list: union of address-based and billing-NPI-based. org_id, sub_org_id, npi, tin, associated_member_npis, source_type, billing_npi."
+  - name: roster_upload_cleaned
+    description: "Roster upload cleaned rows (from stg_roster_upload). Filter by var roster_upload_id."
+  - name: internal_roster
+    description: "Internal roster from upload: npi = coalesce(resolved_npi, npi_number). One row per (upload_id, org_name, npi)."
+  - name: roster_reconciliation_fl
+    description: "Reconciliation: in_both, external_only, internal_only. Requires var roster_upload_id, roster_org_id."
+  - name: roster_reconciliation_union_fl
+    description: "Union of all NPIs from reconciliation for PML/NPPES validation."
+  - name: roster_reconciliation_validation_fl
+    description: "Validation on union: NPPES check per NPI. in_nppes, reconciliation_status."
   - name: b6_integrated_report_fl
     description: "B6 Integrated report: single read head (table). Partitioned by report_date, clustered by org_id, npi, org_display_name, npi_provider_name. Query by org_id, npi, site_id, org name, or provider name; always filter by report_date = (SELECT MAX(report_date)...) for latest. Front end and chat use only this."
 
@@ -100,7 +112,7 @@ models:
   - name: step2a
     description: "Step 2a: Site/location list (sub-org addresses)."
   - name: step2
-    description: "Step 2: Location validation (address/site-level checks)."
+    description: "Step 2: Address validation report — one table for front end: billing org, NPI name/location, NPPES practice/mailing, PML service address, org typical address, issue flags (B1/B2/B3, orphan), reason and recommendation per issue."
   - name: step3a
     description: "Step 3a: NPPES state cohort."
   - name: step3

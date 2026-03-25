@@ -1,0 +1,40 @@
+{{
+  config(
+    materialized='table',
+  )
+}}
+
+-- Chat-server mart: LLM call analytics. Source: landing stg_llm_calls.
+select
+  call_id,
+  correlation_id,
+  thread_id,
+  ts,
+  config_sha,
+  model,
+  provider,
+  stage,
+  tier,
+  complexity,
+  is_ab_call,
+  ab_variant,
+  success,
+  is_rate_limit,
+  is_fallback,
+  fallback_from,
+  completion_valid,
+  error_type,
+  latency_ms,
+  input_tokens,
+  output_tokens,
+  total_tokens,
+  cost_usd,
+  quality_score,
+  quality_source,
+  phi_detected,
+  phi_scrubbed,
+  phi_types,
+  prompt_len_chars,
+  output_len_chars,
+  prompt_hash
+from {{ ref('stg_llm_calls') }}

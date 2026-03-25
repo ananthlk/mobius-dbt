@@ -9,7 +9,7 @@
 
 with pairs as (
   select billing_npi, servicing_npi as npi
-  from {{ ref('billing_servicing_pairs_fl') }}
+  from {{ ref('billing_servicing_pairs_run') }}
   group by 1, 2
 ),
 tml_codes as (
@@ -28,7 +28,7 @@ nppes_entity as (
       provider_organization_name_legal_business_name,
       concat(provider_last_name_legal_name, ', ', provider_first_name)
     ) as provider_name
-  from {{ ref('nppes_fl') }}
+  from {{ ref('nppes_run') }}
 ),
 -- C1: Primary taxonomy not in TML
 c1_flags as (
@@ -123,7 +123,7 @@ npi_t1_t2 as (
 ),
 npi_hcpcs as (
   select servicing_npi as npi, hcpcs_code
-  from {{ ref('billing_servicing_pairs_fl') }}
+  from {{ ref('billing_servicing_pairs_run') }}
   group by 1, 2
 ),
 indexed as (

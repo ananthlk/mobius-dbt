@@ -44,3 +44,74 @@ sources:
             description: "SHA-256 hex of canonical content (document_id + source_id + text). For change detection and idempotent sync."
           - name: updated_at
             description: "Last update time (publish time)."
+
+  - name: landing_llm
+    description: "BigQuery landing layer for LLM analytics and config versioning. Data ingested from mobius-chat PostgreSQL (llm_calls, llm_config_versions, phi_audit_log). Use BQ_LANDING_DATASET (e.g. landing_rag) per env."
+    database: "{{ target.project }}"
+    schema: "{{ env_var('BQ_LANDING_DATASET', 'landing_rag') }}"
+    tables:
+      - name: llm_calls
+        description: "One row per LLM call. Replica of mobius-chat PostgreSQL llm_calls."
+        identifier: llm_calls
+        columns:
+          - name: call_id
+          - name: correlation_id
+          - name: thread_id
+          - name: ts
+          - name: config_sha
+          - name: model
+          - name: provider
+          - name: stage
+          - name: tier
+          - name: complexity
+          - name: is_ab_call
+          - name: ab_variant
+          - name: success
+          - name: is_rate_limit
+          - name: is_fallback
+          - name: fallback_from
+          - name: completion_valid
+          - name: error_type
+          - name: latency_ms
+          - name: input_tokens
+          - name: output_tokens
+          - name: total_tokens
+          - name: cost_usd
+          - name: quality_score
+          - name: quality_source
+          - name: phi_detected
+          - name: phi_scrubbed
+          - name: phi_types
+          - name: prompt_len_chars
+          - name: output_len_chars
+          - name: prompt_hash
+          - name: synced_to_bq
+          - name: synced_at
+      - name: llm_config_versions
+        description: "One row per prompts+LLM config version. Replica of mobius-chat PostgreSQL llm_config_versions."
+        identifier: llm_config_versions
+        columns:
+          - name: config_sha
+          - name: config_json
+          - name: created_at
+          - name: created_by
+          - name: notes
+          - name: model
+          - name: provider
+          - name: prompt_count
+      - name: phi_audit_log
+        description: "HIPAA PHI audit trail. Replica of mobius-chat PostgreSQL phi_audit_log."
+        identifier: phi_audit_log
+        columns:
+          - name: event_id
+          - name: ts
+          - name: correlation_id
+          - name: thread_id
+          - name: event_type
+          - name: phi_types
+          - name: phi_count
+          - name: stage
+          - name: model_used
+          - name: action_taken
+          - name: hipaa_mode_active
+          - name: baa_available

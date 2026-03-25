@@ -14,7 +14,7 @@ with doge_billing as (
     sum(total_paid) as aggregate_spend_2024,
     sum(claim_count) as claim_count_2024,
     sum(beneficiary_count) as beneficiary_count_2024
-  from {{ ref('billing_servicing_pairs_fl') }}
+  from {{ ref('billing_servicing_pairs_run') }}
   where billing_npi is not null and trim(billing_npi) != ''
   group by 1
 ),

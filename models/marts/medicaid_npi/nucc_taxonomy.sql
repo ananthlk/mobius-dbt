@@ -6,11 +6,12 @@
 }}
 
 -- National NUCC Healthcare Provider Taxonomy code set.
--- Source: landing_medicaid_npi.stg_nucc_taxonomy. Load via scripts/load_nucc_to_landing.py
--- from seeds/nucc_taxonomy_seed.csv or full nucc_taxonomy_250.csv. NUCC publishes twice yearly (Jan, July).
-
+-- Source: landing_medicaid_npi.stg_nucc_taxonomy.
+-- If table has Code/Definition (full NUCC CSV): set var nucc_use_code_definition to true (default).
+-- If table has taxonomy_code/taxonomy_description (our seed): set nucc_use_code_definition to false.
 select
-  trim(cast(taxonomy_code as string)) as taxonomy_code,
-  trim(cast(taxonomy_description as string)) as taxonomy_description
+  trim(cast({% if var('nucc_use_code_definition', true) %}`Code`{% else %}taxonomy_code{% endif %} as string)) as taxonomy_code,
+  trim(cast({% if var('nucc_use_code_definition', true) %}`Definition`{% else %}taxonomy_description{% endif %} as string)) as taxonomy_description
 from {{ source('landing_medicaid_npi', 'stg_nucc_taxonomy') }}
-where taxonomy_code is not null and trim(cast(taxonomy_code as string)) != ''
+where {% if var('nucc_use_code_definition', true) %}`Code`{% else %}taxonomy_code{% endif %} is not null
+  and trim(cast({% if var('nucc_use_code_definition', true) %}`Code`{% else %}taxonomy_code{% endif %} as string)) != ''

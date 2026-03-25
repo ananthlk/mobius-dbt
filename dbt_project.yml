@@ -44,3 +44,7 @@ models:
         +materialized: table
       medicaid_npi:
         +materialized: table
+        +enabled: true  # Required for roster reconciliation (b0_roster_list_fl)
+      bh_roster:
+        +materialized: table
+        +schema: "{{ env_var('BQ_MARTS_MEDICAID_DATASET', 'mobius_medicaid_npi_dev') }}"

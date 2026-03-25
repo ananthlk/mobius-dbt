@@ -29,7 +29,7 @@ npi_t1_t2 as (
 ),
 billing as (
   select servicing_npi as npi, hcpcs_code, sum(claim_count) as claim_count, sum(total_paid) as total_paid
-  from {{ ref('billing_servicing_pairs_fl') }}
+  from {{ ref('billing_servicing_pairs_run') }}
   group by 1, 2
 )
 select

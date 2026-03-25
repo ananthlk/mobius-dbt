@@ -71,6 +71,6 @@ Requires `b6_integrated_report_fl` to exist (run `uv run dbt run --select +b6_in
 | Table | Source | Notes |
 |-------|--------|------|
 | `nppes_providers` | bigquery-public-data.nppes.npi_optimized | No load |
-| `medicaid_provider_ids` | landing stg_pml | Load from GCS raw/pml/ |
+| `medicaid_provider_ids` | landing stg_pml | **PML from FL AHCA** (portal.flmmis.com). Use `load_medicaid_landing.py --pml /path/to/pml.csv`. NPPES seeding removed. |
 | `fl_medicaid_taxonomy` | landing stg_tml | Load from GCS raw/tml/ |
 | `billing_patterns` | landing stg_doge | Load from GCS raw/doge/; filter FL |

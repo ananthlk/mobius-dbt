@@ -85,7 +85,7 @@ credential_by_t1 as (
     coalesce(nullif(trim(npp.provider_credential_text), ''), 'Unknown') as credential,
     count(distinct p.npi) as cred_npi_count
   from primaries p
-  inner join {{ ref('nppes_fl') }} npp on npp.npi = p.npi
+  inner join {{ ref('nppes_run') }} npp on npp.npi = p.npi
   group by 1, 2
 ),
 credential_ranked as (

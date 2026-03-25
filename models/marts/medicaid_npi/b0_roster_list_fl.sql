@@ -12,16 +12,23 @@
 with sub_org_members as (
   select sub_org_id, org_id, npi from {{ ref('b0_sub_org_members_fl') }}
 ),
--- Associated member NPIs per (sub_org_id, npi): all other NPIs in that sub-org
+-- Pre-aggregate: one row per (sub_org_id, org_id) with all NPIs. Avoids O(n²) self-join.
+sub_org_npis as (
+  select sub_org_id, org_id, array_agg(npi order by npi) as all_npis
+  from sub_org_members
+  group by sub_org_id, org_id
+),
 sub_org_with_assoc as (
   select
-    a.sub_org_id,
-    a.org_id,
-    a.npi,
-    array_agg(b.npi ignore nulls order by b.npi) as associated_member_npis
-  from sub_org_members a
-  left join sub_org_members b on b.sub_org_id = a.sub_org_id and b.npi != a.npi
-  group by a.sub_org_id, a.org_id, a.npi
+    m.sub_org_id,
+    m.org_id,
+    m.npi,
+    coalesce(
+      (select array_agg(x order by x) from unnest(a.all_npis) as x where x != m.npi),
+      []
+    ) as associated_member_npis
+  from sub_org_members m
+  inner join sub_org_npis a using (sub_org_id, org_id)
 ),
 -- Address-based roster rows
 address_based as (
@@ -35,19 +42,11 @@ address_based as (
     cast(null as string) as billing_npi
   from sub_org_with_assoc
 ),
--- Billing-NPI-based: one row per (billing_npi, member_npi) with list of all other member NPIs
+-- Billing-NPI-based: pre-aggregate member NPIs per billing_npi, then derive associated (others) per row.
 billing_member_list as (
   select billing_npi, array_agg(member_npi order by member_npi) as member_npis
   from {{ ref('b0_billing_npi_members_fl') }}
   group by billing_npi
-),
-billing_with_others as (
-  select b.billing_npi, p.member_npi, array_agg(om order by om) as associated_member_npis
-  from billing_member_list b
-  inner join {{ ref('b0_billing_npi_members_fl') }} p on p.billing_npi = b.billing_npi
-  cross join unnest(b.member_npis) as om
-  where om != p.member_npi
-  group by b.billing_npi, p.member_npi
 ),
 billing_based as (
   select
@@ -55,11 +54,14 @@ billing_based as (
     cast(null as string) as sub_org_id,
     p.member_npi as npi,
     cast(null as string) as tin,
-    coalesce(o.associated_member_npis, []) as associated_member_npis,
+    coalesce(
+      (select array_agg(x order by x) from unnest(b.member_npis) as x where x != p.member_npi),
+      []
+    ) as associated_member_npis,
     'billing_npi' as source_type,
     p.billing_npi as billing_npi
   from {{ ref('b0_billing_npi_members_fl') }} p
-  left join billing_with_others o on o.billing_npi = p.billing_npi and o.member_npi = p.member_npi
+  inner join billing_member_list b on b.billing_npi = p.billing_npi
 )
 select org_id, sub_org_id, npi, tin, associated_member_npis, source_type, billing_npi from address_based
 union all

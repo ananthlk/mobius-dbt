@@ -2,11 +2,52 @@
 
 Project: **mobiusos-new**
 
-## Parallel env layout (dev / staging / prod)
+---
+
+## Medicaid NPI: two datasets (canonical)
+
+Use **one landing** and **one transformation** dataset for the Medicaid NPI pipeline. All dbt medicaid_npi models and scripts read/write only these.
+
+| Role | Dataset | Env var | Contents |
+|------|---------|--------|----------|
+| **Landing / staging** | `landing_medicaid_npi_dev` | `BQ_LANDING_MEDICAID_DATASET` | Raw/staged: `stg_pml`, `stg_tml`, `stg_ppl`, `stg_doge`, `stg_nucc_taxonomy` (load from GCS/scripts). |
+| **Transformation / marts** | `mobius_medicaid_npi_dev` | `BQ_MARTS_MEDICAID_DATASET` | dbt marts: `organizations`, `nppes_run`, `billing_servicing_pairs_run`, `step1a`…`step8`, `b6_integrated_report_fl`, etc. |
+
+Set once (e.g. in `mobius-config/.env` or `mobius-dbt/.env`):
+
+```bash
+export BQ_LANDING_MEDICAID_DATASET=landing_medicaid_npi_dev
+export BQ_MARTS_MEDICAID_DATASET=mobius_medicaid_npi_dev
+```
+
+**If the landing dataset is missing**, create both datasets (and optionally tables):
+
+```bash
+cd mobius-dbt
+BQ_PROJECT=mobius-os-dev ./scripts/ensure_medicaid_datasets.sh
+# Then create tables: python scripts/create_medicaid_infra.py
+```
+
+For other envs: `landing_medicaid_npi_staging` / `mobius_medicaid_npi_staging` (and prod) if you create them via `scripts/create_bq_datasets.sh`.
+
+### Cleanup: remove duplicate or legacy datasets
+
+If you see datasets like **`mobius_rag_landing_medicaid_npi_dev`** or **`mobius_rag_mobius_medicaid_npi_dev`**, they are **not** used by the codebase. Remove them with:
+
+```bash
+# From mobius-dbt; uses BQ_PROJECT (default mobiusos-new)
+BQ_PROJECT=your-gcp-project ./scripts/remove_legacy_medicaid_datasets.sh
+```
+
+Keep only **`landing_medicaid_npi_dev`** and **`mobius_medicaid_npi_dev`** for Medicaid NPI.
+
+---
+
+## RAG: parallel env layout (dev / staging / prod)
 
 | Dataset | Purpose |
 |---------|--------|
-| **landing_rag_dev** | Landing for dev. Table: `rag_published_embeddings`. Ingest writes here when `BQ_LANDING_DATASET=landing_rag_dev`. |
+| **landing_rag_dev** | RAG landing for dev. Table: `rag_published_embeddings`. Ingest writes here when `BQ_LANDING_DATASET=landing_rag_dev`. |
 | **landing_rag_staging** | Landing for staging. Same table. |
 | **landing_rag_prod** | Landing for prod. Same table. |
 | **mobius_rag_dev** | Mart for dev. Tables: `published_rag_embeddings` (dbt), `sync_runs` (sync script). |

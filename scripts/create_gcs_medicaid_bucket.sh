@@ -16,11 +16,12 @@ gsutil mb -p "$GCP_PROJECT" -l "$LOCATION" "gs://${BUCKET_NAME}" 2>/dev/null || 
 gsutil ls "gs://${BUCKET_NAME}/" >/dev/null 2>&1 || true
 
 echo "Creating folder structure (placeholder objects)..."
-for folder in raw/pml raw/ppl raw/tml raw/nppes raw/doge; do
+for folder in raw/pml raw/ppl raw/tml raw/nppes raw/doge raw/roster_uploads cleansed/roster_uploads; do
   echo "  gs://${BUCKET_NAME}/${folder}/"
   echo "" | gsutil cp - "gs://${BUCKET_NAME}/${folder}/.keep" 2>/dev/null || true
 done
 
 echo "Done. Bucket: gs://${BUCKET_NAME}"
-echo "  Folders: raw/pml/, raw/ppl/, raw/tml/, raw/nppes/, raw/doge/"
+echo "  Folders: raw/pml/, raw/ppl/, raw/tml/, raw/nppes/, raw/doge/, raw/roster_uploads/, cleansed/roster_uploads/"
 echo "  Extract jobs: download from sources → upload to gs://${BUCKET_NAME}/raw/{source}/{YYYY-MM-DD}/"
+echo "  Roster uploads: raw/roster_uploads/{upload_id}/, cleansed/roster_uploads/{upload_id}/"

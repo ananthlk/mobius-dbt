@@ -5,10 +5,11 @@
   )
 }}
 
--- Billing-servicing pairs where both NPIs are in FL (in nppes_fl). No state bleed.
+-- Billing-servicing pairs where both NPIs are in current run state (nppes_run). No state bleed.
+-- Replaces billing_servicing_pairs_fl; use var('state_code') to switch state.
 
-with fl_npis as (
-  select npi from {{ ref('nppes_fl') }}
+with state_npis as (
+  select npi from {{ ref('nppes_run') }}
 )
 select
   p.billing_npi,
@@ -18,7 +19,7 @@ select
   p.beneficiary_count,
   p.hcpcs_code
 from {{ ref('billing_servicing_pairs') }} p
-inner join fl_npis b on b.npi = p.billing_npi
-inner join fl_npis s on s.npi = p.servicing_npi
+inner join state_npis b on b.npi = p.billing_npi
+inner join state_npis s on s.npi = p.servicing_npi
 where p.billing_npi is not null and trim(p.billing_npi) != ''
   and p.servicing_npi is not null and trim(p.servicing_npi) != ''

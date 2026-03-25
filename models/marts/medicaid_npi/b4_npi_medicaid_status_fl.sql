@@ -22,5 +22,5 @@ select
   coalesce(r.b4_medicaid_id_count, 0) as b4_medicaid_id_count,
   coalesce(r.b4_has_permissible_id, false) as b4_has_permissible_id,
   (coalesce(r.b4_medicaid_id_count, 0) = 0) as b4_no_medicaid_id_in_pml
-from {{ ref('nppes_fl') }} n
+from {{ ref('nppes_run') }} n
 left join roster_agg r on r.npi = cast(n.npi as string)

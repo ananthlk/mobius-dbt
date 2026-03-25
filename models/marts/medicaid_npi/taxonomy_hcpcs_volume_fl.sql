@@ -33,7 +33,7 @@ billing as (
     sum(claim_count) as claim_count,
     sum(total_paid) as total_paid,
     sum(beneficiary_count) as beneficiary_count
-  from {{ ref('billing_servicing_pairs_fl') }}
+  from {{ ref('billing_servicing_pairs_run') }}
   group by 1, 2
 ),
 

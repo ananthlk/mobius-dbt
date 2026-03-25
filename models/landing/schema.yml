@@ -1,6 +1,11 @@
-# Landing views: map raw tables to Mobius schema
+# Landing staging views: cast from source to BQ types. Same dataset as source (BQ_LANDING_DATASET).
+
 version: 2
 
 models:
-  - name: stg_doge
-    description: "DOGE Medicaid Provider Spending. View over medicaid-provider-spending with Mobius schema (npi, billing_npi, servicing_npi, hcpcs_code, etc.)."
+  - name: stg_llm_calls
+    description: "Staging view for llm_calls. Select from landing_llm.llm_calls; omit synced_to_bq/synced_at."
+  - name: stg_llm_config_versions
+    description: "Staging view for llm_config_versions. Select from landing_llm.llm_config_versions."
+  - name: stg_phi_audit_log
+    description: "Staging view for phi_audit_log. Select from landing_llm.phi_audit_log."

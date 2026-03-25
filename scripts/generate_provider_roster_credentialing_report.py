@@ -82,6 +82,15 @@ def _fixture_report(org_name: str) -> dict:
     }
 
 
+def _org_folder_name(org_name: str) -> str:
+    """Sanitize org name for use as folder name (e.g. 'Aspire Health' -> 'Aspire_Health')."""
+    import re
+    s = org_name.strip()
+    s = re.sub(r'[^\w\s-]', '', s)
+    s = re.sub(r'[\s-]+', '_', s)
+    return s or "org"
+
+
 def _load_json_path(path: str | None) -> dict | list | None:
     if not path or not path.strip():
         return None
@@ -146,11 +155,13 @@ def main() -> int:
     )
     parser.add_argument("--org-name", required=True, help='Organization name (e.g. "David Lawrence")')
     parser.add_argument("--locations", default=None, help="Optional JSON file: list of location_id to include, or dict with location_ids key")
+    parser.add_argument("--locations-override", default=None, help="Optional JSON file: L2 user-validated locations. List of {site_address_line_1, site_city, site_state, site_zip} or dict with locations_override key. Replaces system-imputed locations (universal truth).")
     parser.add_argument("--npi-overrides", default=None, help="Optional JSON file: dict location_id -> { add: [npi,...], remove: [npi,...] }")
     parser.add_argument("--output-dir", default=None, help="Output directory (default: mobius-dbt/reports)")
+    parser.add_argument("--state", default="FL", help="Filter locations to this state (default: FL). Avoids name collision (e.g. Henderson FL vs Henderson NV).")
     parser.add_argument("--enhance", action="store_true", help="Use LLM to generate white-paper-style report. Uses VERTEX_PROJECT_ID or CHAT_VERTEX_PROJECT_ID (same as other modules) or OPENAI_API_KEY / GEMINI_API_KEY.")
     parser.add_argument("--no-pipeline", action="store_true", help="With --enhance: skip Validator/Critic/Composer pipeline (single Drafter only). Default: use full pipeline.")
-    parser.add_argument("--pdf", action="store_true", help="With --enhance: also generate PDF from the markdown report.")
+    parser.add_argument("--no-pdf", action="store_true", help="With --enhance: skip PDF generation (PDF is default for shareable reports).")
     parser.add_argument("--llm-provider", choices=("openai", "gemini"), default=None, help="LLM provider when using --enhance.")
     parser.add_argument("--llm-model", default=None, help="Model when using --enhance (e.g. gpt-4o, gemini-1.5-pro).")
     args = parser.parse_args()
@@ -170,8 +181,12 @@ def main() -> int:
     project = os.environ.get("BQ_PROJECT", "mobius-os-dev")
     marts_dataset = os.environ.get("BQ_MARTS_MEDICAID_DATASET", "mobius_medicaid_npi_dev")
     landing_dataset = os.environ.get("BQ_LANDING_MEDICAID_DATASET", "landing_medicaid_npi_dev")
-    output_dir = Path(args.output_dir) if args.output_dir else Path(__file__).resolve().parents[1] / "reports"
+    base_reports = Path(args.output_dir) if args.output_dir else Path(__file__).resolve().parents[1] / "reports"
+    ts = datetime.now().strftime("%Y%m%d_%H%M")
+    org_folder = _org_folder_name(args.org_name.strip())
+    output_dir = base_reports / org_folder / ts
     output_dir.mkdir(parents=True, exist_ok=True)
+    print(f"Output: {output_dir}")
 
     location_ids = None
     loc_json = _load_json_path(args.locations)
@@ -180,6 +195,16 @@ def main() -> int:
             location_ids = [str(x) for x in loc_json]
         elif isinstance(loc_json, dict) and "location_ids" in loc_json:
             location_ids = [str(x) for x in loc_json["location_ids"]]
+
+    locations_override = None
+    loc_override_json = _load_json_path(getattr(args, "locations_override", None))
+    if loc_override_json is not None:
+        if isinstance(loc_override_json, list):
+            locations_override = loc_override_json
+        elif isinstance(loc_override_json, dict) and "locations_override" in loc_override_json:
+            locations_override = loc_override_json["locations_override"]
+        if locations_override:
+            print(f"  Using {len(locations_override)} user-validated locations (L2 override)")
 
     npi_overrides = None
     npi_json = _load_json_path(args.npi_overrides)
@@ -198,6 +223,8 @@ def main() -> int:
             landing_dataset=landing_dataset,
             location_ids=location_ids,
             npi_overrides=npi_overrides,
+            locations_override=locations_override,
+            state_filter=getattr(args, "state", "FL") or "FL",
         )
     except Exception as e:
         err_str = str(e).lower()
@@ -219,7 +246,6 @@ def main() -> int:
         _write_md(output_dir / "provider_roster_credentialing_report.md", report)
         return 1
 
-    ts = datetime.now().strftime("%Y%m%d_%H%M")
     prefix = f"provider_roster_credentialing_{ts}"
 
     # npis_per_location: flatten for CSV
@@ -228,7 +254,15 @@ def main() -> int:
         for n in nlist:
             npi_rows.append({"location_id": loc_id, **n})
 
-    # Write CSVs and metrics.json first (needed for pipeline; always useful)
+    # Primary report first (simple sheet: locations, distinct NPIs + why, taxonomies, billing)
+    primary = report.get("primary_report") or {}
+    _write_csv(output_dir / f"{prefix}_primary_locations.csv", primary.get("locations") or [])
+    _write_csv(output_dir / f"{prefix}_primary_distinct_npis.csv", primary.get("distinct_npis") or [])
+    _write_csv(output_dir / f"{prefix}_primary_taxonomies_covered.csv", primary.get("taxonomies_covered") or [])
+    _write_csv(output_dir / f"{prefix}_primary_billing_activity.csv", primary.get("billing_activity") or [])
+    print(f"  Wrote primary report (locations, distinct NPIs, taxonomies, billing)")
+
+    # Rest of report
     _write_csv(output_dir / f"{prefix}_locations.csv", report.get("locations") or [])
     print(f"  Wrote {prefix}_locations.csv")
     _write_csv(output_dir / f"{prefix}_npis_per_location.csv", npi_rows)
@@ -240,6 +274,9 @@ def main() -> int:
     _write_csv(output_dir / f"{prefix}_combos.csv", report.get("combos") or [])
     print(f"  Wrote {prefix}_combos.csv")
 
+    _write_csv(output_dir / f"{prefix}_confidence_report.csv", report.get("confidence_report") or [])
+    print(f"  Wrote {prefix}_confidence_report.csv")
+
     _write_csv(output_dir / f"{prefix}_invalid_combos.csv", report.get("invalid_combos") or [])
     print(f"  Wrote {prefix}_invalid_combos.csv")
 
@@ -248,6 +285,12 @@ def main() -> int:
 
     _write_csv(output_dir / f"{prefix}_missed_opportunities.csv", report.get("missed_opportunities") or [])
     print(f"  Wrote {prefix}_missed_opportunities.csv")
+
+    _write_csv(output_dir / f"{prefix}_locations_match_report.csv", report.get("locations_match_report") or [])
+    print(f"  Wrote {prefix}_locations_match_report.csv")
+
+    _write_csv(output_dir / f"{prefix}_l1_not_in_l2.csv", report.get("l1_not_in_l2") or [])
+    print(f"  Wrote {prefix}_l1_not_in_l2.csv")
 
     # metrics.json for Data Validator (pipeline canonical metrics)
     ex = report.get("executive_summary") or {}
@@ -259,6 +302,9 @@ def main() -> int:
         "org_name": ex.get("org_name"),
         "location_count": ex.get("location_count", 0),
         "total_npis": ex.get("total_npis", 0),
+        "npis_with_readiness": ex.get("npis_with_readiness", 0),
+        "npis_no_readiness": ex.get("npis_no_readiness", 0),
+        "npis_org_misaligned": ex.get("npis_org_misaligned", 0),
         "npis_all_checks_pass": ex.get("npis_all_checks_pass", 0),
         "npis_at_least_one_fail": ex.get("npis_at_least_one_fail", 0),
         "invalid_combo_count": invalid_count,
@@ -266,6 +312,16 @@ def main() -> int:
         "total_combo_count": total_combo_count,
         "readiness_status_breakdown": status_breakdown,
         "revenue_at_risk_2024": ex.get("revenue_at_risk_2024"),
+        "revenue_at_risk_2024_low": ex.get("revenue_at_risk_2024_low"),
+        "revenue_at_risk_2024_high": ex.get("revenue_at_risk_2024_high"),
+        "deprecated_taxonomy_revenue": ex.get("deprecated_taxonomy_revenue"),
+        "revenue_by_location": ex.get("revenue_by_location") or [],
+        "revenue_by_taxonomy": ex.get("revenue_by_taxonomy") or [],
+        "revenue_assumptions": ex.get("revenue_assumptions") or {},
+        "top_recommendations_by_code": ex.get("top_recommendations_by_code") or [],
+        "recommendations_by_problem_type": ex.get("recommendations_by_problem_type") or [],
+        "opportunity_confidence_matrix": ex.get("opportunity_confidence_matrix") or [],
+        "confidence_definitions": ex.get("confidence_definitions") or {},
         "revenue_at_risk_2024_by_status": ex.get("revenue_at_risk_2024_by_status") or {},
         "revenue_at_risk_2024_by_confidence": ex.get("revenue_at_risk_2024_by_confidence") or {},
         "confidence_breakdown": ex.get("confidence_breakdown") or {"high": 0, "medium": 0, "low": 0},
@@ -316,7 +372,8 @@ def main() -> int:
             print("Generating white-paper via pipeline (Drafter → Validator + Critic → Composer)...")
             csv_names = [
                 "locations.csv", "npis_per_location.csv", "per_npi_validation.csv",
-                "combos.csv", "invalid_combos.csv", "ghost_billing.csv", "missed_opportunities.csv",
+                "combos.csv", "confidence_report.csv", "invalid_combos.csv",
+                "ghost_billing.csv", "missed_opportunities.csv",
             ]
             csv_contents = {}
             _max_csv_chars = 80000
@@ -344,7 +401,7 @@ def main() -> int:
             with open(output_dir / f"{prefix}.md", "w", encoding="utf-8") as f:
                 f.write(final_md)
             print(f"  Wrote {prefix}.md (white-paper)")
-            if getattr(args, "pdf", False):
+            if not getattr(args, "no_pdf", False):
                 try:
                     from app.report_pdf import markdown_to_pdf
                     pdf_path = output_dir / f"{prefix}.pdf"
@@ -370,7 +427,7 @@ def main() -> int:
             with open(output_dir / f"{prefix}.md", "w", encoding="utf-8") as f:
                 f.write(enhanced_md)
             print(f"  Wrote {prefix}.md (white-paper)")
-            if getattr(args, "pdf", False):
+            if not getattr(args, "no_pdf", False):
                 try:
                     from app.report_pdf import markdown_to_pdf
                     pdf_path = output_dir / f"{prefix}.pdf"
@@ -393,6 +450,8 @@ def main() -> int:
         wb.remove(wb.active)
         for sheet_name, rows in [
             ("Locations", report.get("locations") or []),
+            ("Locations_match_report", report.get("locations_match_report") or []),
+            ("L1_not_in_L2", report.get("l1_not_in_l2") or []),
             ("NPIs_per_location", npi_rows),
             ("Per_NPI_validation", report.get("per_npi_validation") or []),
             ("Combos", report.get("combos") or []),

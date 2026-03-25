@@ -12,18 +12,18 @@ mobius_dbt:
       project: "{{ env_var('BQ_PROJECT', 'mobius-os-dev') }}"
       dataset: "{{ env_var('BQ_DATASET', 'mobius_rag') }}"
       threads: 4
-      timeout_seconds: 1800
+      timeout_seconds: 7200
     staging:
       type: bigquery
       method: oauth
       project: "{{ env_var('BQ_PROJECT', 'mobius-staging-mobius') }}"
       dataset: "{{ env_var('BQ_DATASET', 'mobius_rag') }}"
       threads: 4
-      timeout_seconds: 1800
+      timeout_seconds: 7200
     prod:
       type: bigquery
       method: oauth
       project: "{{ env_var('BQ_PROJECT', 'mobiusos-new') }}"
       dataset: "{{ env_var('BQ_DATASET', 'mobius_rag') }}"
       threads: 4
-      timeout_seconds: 1800
+      timeout_seconds: 7200

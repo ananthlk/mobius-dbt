@@ -5,14 +5,30 @@
   )
 }}
 
--- Provider readiness: enrollment check. One row per (npi, billing_npi).
+-- Provider readiness: enrollment check. Driven by master roster (b0_roster_list_fl).
+-- One row per roster row (org_id, sub_org_id, npi). billing_npi = org for enrollment context.
 -- Flags: in_nppes, in_pml, in_ppl, eligible_today, eligible_3mo.
 -- Date logic: PML contract_effective_date, contract_end_date. Use report_date var for point-in-time.
--- PML/PPL schema: npi required; contract_effective_date, contract_end_date for PML (adjust if column names differ).
 
 with report_date_val as (
   select parse_date('%Y-%m-%d', '{{ var("report_date", "2026-02-01") }}') as rd
 ),
+-- Master roster: org_id, sub_org_id, npi, source_type, billing_npi (null for address-based)
+roster as (
+  select org_id, sub_org_id, npi, source_type, billing_npi
+  from {{ ref('b0_roster_list_fl') }}
+),
+-- Billing context: for enrollment check, use org_id (facility or billing NPI)
+roster_with_billing as (
+  select
+    org_id,
+    sub_org_id,
+    npi,
+    source_type,
+    coalesce(billing_npi, org_id) as billing_npi
+  from roster
+),
+-- Claim volume from pairs (when roster row matches a pair)
 pairs as (
   select
     billing_npi,
@@ -20,14 +36,14 @@ pairs as (
     sum(claim_count) as claim_count,
     sum(total_paid) as total_paid,
     sum(beneficiary_count) as beneficiary_count
-  from {{ ref('billing_servicing_pairs_fl') }}
+  from {{ ref('billing_servicing_pairs_run') }}
   group by 1, 2
 ),
 fl_npis as (
-  select distinct npi from {{ ref('nppes_fl') }}
+  select distinct npi from {{ ref('nppes_run') }}
 ),
 nppes_check as (
-  select npi, true as in_nppes from {{ ref('nppes_fl') }}
+  select npi, true as in_nppes from {{ ref('nppes_run') }}
 ),
 -- PML: expect npi, contract_effective_date, contract_end_date (adjust if AHCA uses different column names)
 pml_check as (
@@ -69,6 +85,9 @@ ppl_check as (
 with_flags as (
   select
     (select rd from report_date_val) as report_date,
+    p.org_id,
+    p.sub_org_id,
+    p.source_type,
     p.billing_npi,
     p.npi,
     (fb.npi is not null) as fl_billing_npi,
@@ -77,12 +96,13 @@ with_flags as (
     (pp.npi is not null) as in_ppl,
     (pns.npi is not null) as pml_contract_not_started,
     (pce.npi is not null) as pml_contract_ended,
-    p.claim_count,
-    p.total_paid,
-    p.beneficiary_count,
+    coalesce(pr.claim_count, 0) as claim_count,
+    coalesce(pr.total_paid, 0) as total_paid,
+    coalesce(pr.beneficiary_count, 0) as beneficiary_count,
     (nc.npi is not null and po.npi is not null) as eligible_today,
     (nc.npi is not null and (po3.npi is not null or pp.npi is not null)) as eligible_3mo
-  from pairs p
+  from roster_with_billing p
+  left join pairs pr on pr.billing_npi = p.billing_npi and pr.npi = p.npi
   left join fl_npis fb on fb.npi = p.billing_npi
   left join nppes_check nc on nc.npi = p.npi
   left join pml_in_table pit on pit.npi = p.npi
@@ -94,6 +114,9 @@ with_flags as (
 )
 select
   report_date,
+  org_id,
+  sub_org_id,
+  source_type,
   billing_npi,
   npi,
   fl_billing_npi,

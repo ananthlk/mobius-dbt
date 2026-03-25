@@ -7,7 +7,7 @@
 
 -- B0 Address propensity: (npi, sub_org_id) with match_type = strong | partial.
 -- Strong: same practice_normalized, same mailing_normalized, or same ZIP+9. Partial: same ZIP5, same street, same city+state.
--- NPIs can appear in multiple sub-orgs. See B0 plan.
+-- NPIs can appear in multiple sub-orgs. FL-only filter (from npi_addresses_fl / nppes_fl). See B0 plan.
 
 with sub_org as (
   select sub_org_id, org_id, address_normalized, zip5, zip9, address_line_1, city, state
@@ -15,16 +15,16 @@ with sub_org as (
 ),
 npi_addr as (
   select
-    cast(npi as string) as npi,
-    practice_normalized,
-    mailing_normalized,
-    b1_nppes_zip9 as npi_zip9,
-    case when b1_nppes_zip9 is not null and length(b1_nppes_zip9) >= 5 then substr(b1_nppes_zip9, 1, 5) else null end as npi_zip5,
-    upper(trim(regexp_replace(coalesce(practice_line_1, ''), r'\s+', ' '))) as practice_street_norm,
-    upper(trim(coalesce(practice_city, ''))) as practice_city_norm,
-    upper(trim(coalesce(practice_state, ''))) as practice_state_norm
-  from {{ ref('npi_addresses_fl') }}
-  where npi is not null
+    cast(a.npi as string) as npi,
+    a.practice_normalized,
+    a.mailing_normalized,
+    a.b1_nppes_zip9 as npi_zip9,
+    case when a.b1_nppes_zip9 is not null and length(a.b1_nppes_zip9) >= 5 then substr(a.b1_nppes_zip9, 1, 5) else null end as npi_zip5,
+    upper(trim(regexp_replace(coalesce(a.practice_line_1, ''), r'\s+', ' '))) as practice_street_norm,
+    upper(trim(coalesce(a.practice_city, ''))) as practice_city_norm,
+    upper(trim(coalesce(a.practice_state, ''))) as practice_state_norm
+  from {{ ref('npi_addresses_fl') }} a
+  where a.npi is not null
 ),
 -- Cartesian avoided: join on zip5 first to reduce pair count, then classify match.
 -- Fallback: for NPIs with null zip5, restrict to same-state sub_orgs (smaller set).

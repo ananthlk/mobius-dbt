@@ -128,3 +128,161 @@ models:
           column_name: content_sha
       - not_null:
           column_name: updated_at
+
+  - name: llm_calls
+    description: "One row per LLM call. Source: stg_llm_calls. For per-call analytics and quality-by-config-version."
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: call_id
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: correlation_id
+        data_type: string
+      - name: thread_id
+        data_type: string
+      - name: ts
+        data_type: timestamp
+        constraints: [{ type: not_null }]
+      - name: config_sha
+        data_type: string
+      - name: model
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: provider
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: stage
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: tier
+        data_type: string
+      - name: complexity
+        data_type: string
+      - name: is_ab_call
+        data_type: boolean
+      - name: ab_variant
+        data_type: string
+      - name: success
+        data_type: boolean
+        constraints: [{ type: not_null }]
+      - name: is_rate_limit
+        data_type: boolean
+      - name: is_fallback
+        data_type: boolean
+      - name: fallback_from
+        data_type: string
+      - name: completion_valid
+        data_type: boolean
+      - name: error_type
+        data_type: string
+      - name: latency_ms
+        data_type: int64
+      - name: input_tokens
+        data_type: int64
+      - name: output_tokens
+        data_type: int64
+      - name: total_tokens
+        data_type: int64
+      - name: cost_usd
+        data_type: float64
+      - name: quality_score
+        data_type: float64
+      - name: quality_source
+        data_type: string
+      - name: phi_detected
+        data_type: boolean
+      - name: phi_scrubbed
+        data_type: boolean
+      - name: phi_types
+        data_type: string
+      - name: prompt_len_chars
+        data_type: int64
+      - name: output_len_chars
+        data_type: int64
+      - name: prompt_hash
+        data_type: string
+    tests:
+      - unique: { column_name: call_id }
+      - not_null: { column_name: call_id }
+      - not_null: { column_name: ts }
+      - not_null: { column_name: model }
+      - not_null: { column_name: provider }
+      - not_null: { column_name: stage }
+      - accepted_values:
+          column_name: stage
+          values: ['planner', 'parser', 'responder', 'tool_agent', 'other']
+      - accepted_values:
+          column_name: provider
+          values: ['vertex', 'ollama']
+
+  - name: llm_config_versions
+    description: "One row per prompts+LLM config version. Source: stg_llm_config_versions."
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: config_sha
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: config_json
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: created_at
+        data_type: timestamp
+        constraints: [{ type: not_null }]
+      - name: created_by
+        data_type: string
+      - name: notes
+        data_type: string
+      - name: model
+        data_type: string
+      - name: provider
+        data_type: string
+      - name: prompt_count
+        data_type: int64
+    tests:
+      - unique: { column_name: config_sha }
+      - not_null: { column_name: config_sha }
+      - not_null: { column_name: created_at }
+
+  - name: phi_audit_log
+    description: "HIPAA PHI audit trail. Source: stg_phi_audit_log."
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: event_id
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: ts
+        data_type: timestamp
+        constraints: [{ type: not_null }]
+      - name: correlation_id
+        data_type: string
+      - name: thread_id
+        data_type: string
+      - name: event_type
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: phi_types
+        data_type: string
+      - name: phi_count
+        data_type: int64
+      - name: stage
+        data_type: string
+      - name: model_used
+        data_type: string
+      - name: action_taken
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: hipaa_mode_active
+        data_type: boolean
+      - name: baa_available
+        data_type: boolean
+    tests:
+      - unique: { column_name: event_id }
+      - not_null: { column_name: event_id }
+      - not_null: { column_name: ts }
+      - not_null: { column_name: action_taken }

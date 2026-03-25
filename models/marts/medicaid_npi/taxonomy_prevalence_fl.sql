@@ -14,7 +14,7 @@ with nppes_tax as (
 ),
 cohort_size as (
   select count(distinct npi) as n
-  from {{ ref('nppes_fl') }}
+  from {{ ref('nppes_run') }}
 ),
 prevalence as (
   select
@@ -29,7 +29,7 @@ credential_by_tax as (
     coalesce(nullif(trim(npp.provider_credential_text), ''), 'Unknown') as credential,
     count(distinct t.npi) as cred_npi_count
   from nppes_tax t
-  inner join {{ ref('nppes_fl') }} npp on npp.npi = t.npi
+  inner join {{ ref('nppes_run') }} npp on npp.npi = t.npi
   group by 1, 2
 ),
 credential_ranked as (

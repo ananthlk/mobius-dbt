@@ -11,5 +11,5 @@
 select
   billing_npi,
   servicing_npi as member_npi
-from {{ ref('billing_servicing_pairs_fl') }}
+from {{ ref('billing_servicing_pairs_run') }}
 group by billing_npi, servicing_npi

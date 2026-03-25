@@ -66,3 +66,11 @@ sources:
         description: "Raw HHS Medicaid Provider Spending (direct load from Drive/Sheets). Columns: BILLING_PROVIDER_NPI_NUM, SERVICING_PROVIDER_NPI_NUM, HCPCS_CODE, etc."
       - name: stg_nucc_taxonomy
         description: "National NUCC taxonomy. Load via scripts/load_nucc_to_landing.py from seeds/nucc_taxonomy_seed.csv or full nucc_taxonomy_250.csv."
+      - name: stg_roster_upload
+        description: "Roster upload (cleansed). Per-upload provider list for reconciliation. Load from GCS cleansed/roster_uploads/{upload_id}/roster_resolved.csv."
+        columns:
+          - name: upload_id
+          - name: org_name
+          - name: npi_number
+          - name: resolved_npi
+          - name: provider_name

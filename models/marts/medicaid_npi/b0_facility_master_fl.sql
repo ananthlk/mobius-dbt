@@ -26,7 +26,7 @@ nppes_entity as (
     provider_business_mailing_address_city_name as mailing_city,
     provider_business_mailing_address_state_name as mailing_state,
     provider_business_mailing_address_postal_code as mailing_zip
-  from {{ ref('nppes_fl') }}
+  from {{ ref('nppes_run') }}
   where npi is not null
 ),
 nppes_has_facility_tax as (

@@ -5,4 +5,4 @@
   )
 }}
 -- Step 3a: NPPES state cohort. See docs/FL_MEDICAID_NPI_STEP_NAMING.md.
-select * from {{ ref('nppes_fl') }}
+select * from {{ ref('nppes_run') }}

@@ -25,7 +25,7 @@ with nppes as (
     healthcare_provider_taxonomy_code_13 as code_13,
     healthcare_provider_taxonomy_code_14 as code_14,
     healthcare_provider_taxonomy_code_15 as code_15
-  from {{ ref('nppes_fl') }}
+  from {{ ref('nppes_run') }}
 ),
 unpiv as (
   select npi, 1 as taxonomy_slot, trim(cast(code_1 as string)) as taxonomy_code, true as is_primary from nppes where code_1 is not null and trim(cast(code_1 as string)) != ''
