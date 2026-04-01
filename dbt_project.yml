@@ -48,3 +48,6 @@ models:
       bh_roster:
         +materialized: table
         +schema: "{{ env_var('BQ_MARTS_MEDICAID_DATASET', 'mobius_medicaid_npi_dev') }}"
+      financial_benchmarking:
+        +materialized: table
+        +schema: "{{ env_var('BQ_MARTS_FINANCIAL_DATASET', 'mobius_financial_dev') }}"

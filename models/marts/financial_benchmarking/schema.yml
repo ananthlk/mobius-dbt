@@ -1,0 +1,561 @@
+# Financial benchmarking mart — dbt contract definitions.
+# contract: enforced: true means dbt will validate column names + types at run time.
+# API skill reads these tables; never writes back to BQ.
+#
+# Model hierarchy:
+#   stg_doge (source view)
+#     └─ npi_kpis_monthly          — individual provider KPIs per month
+#     │   └─ peer_distributions    — NPI-level peer stats (solo provider benchmarking)
+#     └─ billing_npi_profiles      — billing NPI enrichment from NPPES
+#         └─ org_entities          — deduplicated org sites by (norm_name, state, zip5)
+#             └─ org_kpis          — org-level KPIs per year
+#                 └─ org_peer_distributions — org-to-org peer stats (primary comparison)
+
+version: 2
+
+models:
+  - name: npi_kpis_monthly
+    description: >
+      NPI-level KPIs per period_month. One row per servicing_npi × period_month.
+      Enriched with primary taxonomy code, state, and ZIP from NPPES.
+      Used for individual provider comparisons and HCPCS trend analysis.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: servicing_npi
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: period_month
+        data_type: string
+        description: "period_month from stg_doge — format YYYY-MM (e.g. 2024-01)."
+        constraints: [{ type: not_null }]
+      - name: primary_taxonomy_code
+        data_type: string
+        description: "NPPES healthcare_provider_taxonomy_code_1. Empty string if NPI not in NPPES."
+        constraints: [{ type: not_null }]
+      - name: provider_state
+        data_type: string
+        description: "NPPES practice location state. Empty string if NPI not in NPPES."
+        constraints: [{ type: not_null }]
+      - name: provider_zip5
+        data_type: string
+        description: "5-digit ZIP from NPPES practice location postal code. Empty string if unknown."
+        constraints: [{ type: not_null }]
+      - name: panel_size
+        data_type: int64
+        description: "Total beneficiary encounters by this NPI in the period."
+        constraints: [{ type: not_null }]
+      - name: total_claims
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_paid
+        data_type: float64
+        constraints: [{ type: not_null }]
+      - name: claims_per_beneficiary
+        data_type: float64
+        description: "total_claims / panel_size. NULL if panel_size = 0 (SAFE_DIVIDE)."
+      - name: payment_per_claim
+        data_type: float64
+        description: "total_paid / total_claims. NULL if total_claims = 0 (SAFE_DIVIDE)."
+    tests:
+      - unique:
+          column_name: "concat(servicing_npi, '|', cast(period_month as string))"
+      - not_null: { column_name: servicing_npi }
+      - not_null: { column_name: period_month }
+
+  - name: peer_distributions
+    description: >
+      Individual NPI-level peer distribution statistics.
+      One row per taxonomy_code × geo_level × geo_id × period_month.
+      Used for solo provider or single-NPI benchmarking. For org-level comparison,
+      use org_peer_distributions.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: primary_taxonomy_code
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: geo_level
+        data_type: string
+        description: "'national' | 'state' | 'zip'"
+        constraints: [{ type: not_null }]
+      - name: geo_id
+        data_type: string
+        description: "'US' for national, state abbreviation for state, 5-digit ZIP for zip."
+        constraints: [{ type: not_null }]
+      - name: period_month
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: n
+        data_type: int64
+        description: "Peer count (distinct NPIs). Always >= 5."
+        constraints: [{ type: not_null }]
+      - name: mean_panel_size
+        data_type: float64
+      - name: p25_panel_size
+        data_type: float64
+      - name: p50_panel_size
+        data_type: float64
+      - name: p75_panel_size
+        data_type: float64
+      - name: std_panel_size
+        data_type: float64
+      - name: mean_claims_per_bene
+        data_type: float64
+      - name: p25_claims_per_bene
+        data_type: float64
+      - name: p50_claims_per_bene
+        data_type: float64
+      - name: p75_claims_per_bene
+        data_type: float64
+      - name: std_claims_per_bene
+        data_type: float64
+      - name: mean_payment_per_claim
+        data_type: float64
+      - name: p25_payment_per_claim
+        data_type: float64
+      - name: p50_payment_per_claim
+        data_type: float64
+      - name: p75_payment_per_claim
+        data_type: float64
+      - name: std_payment_per_claim
+        data_type: float64
+    tests:
+      - not_null: { column_name: primary_taxonomy_code }
+      - not_null: { column_name: geo_level }
+      - not_null: { column_name: geo_id }
+      - not_null: { column_name: period_month }
+      - accepted_values:
+          column_name: geo_level
+          values: ['national', 'state', 'zip']
+
+  - name: hcpcs_trend
+    description: >
+      HCPCS code payment trend: payment_per_claim, volume, and provider count
+      per hcpcs_code × geo_level × geo_id × period_month.
+      Used to render trend lines comparing an org's procedure-level payment rate to geo peers.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: hcpcs_code
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: geo_level
+        data_type: string
+        description: "'national' | 'state'"
+        constraints: [{ type: not_null }]
+      - name: geo_id
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: period_month
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: provider_count
+        data_type: int64
+        description: "Distinct NPIs billing this HCPCS in this geo/period."
+        constraints: [{ type: not_null }]
+      - name: total_claims
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_paid
+        data_type: float64
+        constraints: [{ type: not_null }]
+      - name: payment_per_claim
+        data_type: float64
+        description: "total_paid / total_claims. NULL if no claims (SAFE_DIVIDE)."
+    tests:
+      - not_null: { column_name: hcpcs_code }
+      - not_null: { column_name: geo_level }
+      - accepted_values:
+          column_name: geo_level
+          values: ['national', 'state']
+
+  - name: market_archetype_inputs
+    description: >
+      Provider density and KPI aggregates per geo_level × geo_id × taxonomy × period_month.
+      The API reads these inputs and applies the 4-dimension archetype scoring framework
+      in Python. Only geo buckets with >= 3 providers are included.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: geo_level
+        data_type: string
+        description: "'state' | 'zip'"
+        constraints: [{ type: not_null }]
+      - name: geo_id
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: primary_taxonomy_code
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: period_month
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: provider_count
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_beneficiaries
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: avg_panel_size
+        data_type: float64
+      - name: avg_claims_per_bene
+        data_type: float64
+      - name: avg_payment_per_claim
+        data_type: float64
+      - name: p25_panel_size
+        data_type: float64
+      - name: p75_panel_size
+        data_type: float64
+      - name: p25_claims_per_bene
+        data_type: float64
+      - name: p75_claims_per_bene
+        data_type: float64
+      - name: p25_payment_per_claim
+        data_type: float64
+      - name: p75_payment_per_claim
+        data_type: float64
+    tests:
+      - not_null: { column_name: geo_level }
+      - not_null: { column_name: geo_id }
+      - accepted_values:
+          column_name: geo_level
+          values: ['state', 'zip']
+
+  - name: billing_npi_profiles
+    description: >
+      All distinct billing NPIs found in DOGE, enriched with NPPES name, address,
+      and taxonomy. Includes a normalized org name for deduplication grouping.
+      Foundation for org_entities and org_kpis.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: billing_npi
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: entity_type_code
+        data_type: string
+        description: "'1' = individual, '2' = organization. Empty string if not in NPPES."
+        constraints: [{ type: not_null }]
+      - name: raw_org_name
+        data_type: string
+        description: "Raw NPPES org name. Empty string if not in NPPES."
+        constraints: [{ type: not_null }]
+      - name: norm_org_name
+        data_type: string
+        description: "Lowercased, punctuation-stripped, legal-suffix-removed name for grouping."
+        constraints: [{ type: not_null }]
+      - name: org_state
+        data_type: string
+        description: "NPPES practice state. Empty string if not in NPPES."
+        constraints: [{ type: not_null }]
+      - name: org_zip5
+        data_type: string
+        description: "5-digit ZIP. Empty string if not in NPPES."
+        constraints: [{ type: not_null }]
+      - name: org_city
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: primary_taxonomy_code
+        data_type: string
+        constraints: [{ type: not_null }]
+    tests:
+      - unique: { column_name: billing_npi }
+      - not_null: { column_name: billing_npi }
+
+  - name: org_entities
+    description: >
+      Deduplicated organization entities with org type classification and market tier.
+      Billing NPIs grouped by (norm_org_name, org_state, org_zip5).
+      org_entity_id is a stable MD5 hash of the grouping key.
+      One row per unique org site.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: org_entity_id
+        data_type: string
+        description: "TO_HEX(MD5(norm_org_name|org_state|org_zip5)). Stable across runs."
+        constraints: [{ type: not_null }]
+      - name: org_name
+        data_type: string
+        description: "Canonical (most-frequent) raw org name within the group."
+        constraints: [{ type: not_null }]
+      - name: norm_org_name
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_state
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_zip5
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_city
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: primary_taxonomy_code
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_type
+        data_type: string
+        description: "Org classification: CMHC | FQHC | RHC | SUD | RESIDENTIAL_BH | COMMUNITY_BH | BH_SPECIALTY | OTHER"
+        constraints: [{ type: not_null }]
+      - name: billing_npi_count
+        data_type: int64
+        description: "Number of billing NPIs that map to this org entity."
+        constraints: [{ type: not_null }]
+      - name: orgs_in_market
+        data_type: int64
+        description: "Count of org entities of same org_type in same state+zip5 market."
+        constraints: [{ type: not_null }]
+      - name: market_tier
+        data_type: string
+        description: "sparse (<3 peers in zip) | moderate (3-9) | dense (>=10)"
+        constraints: [{ type: not_null }]
+    tests:
+      - unique: { column_name: org_entity_id }
+      - not_null: { column_name: org_entity_id }
+      - accepted_values:
+          column_name: org_type
+          values: ['CMHC', 'FQHC', 'RHC', 'SUD', 'RESIDENTIAL_BH', 'COMMUNITY_BH', 'BH_SPECIALTY', 'OTHER']
+      - accepted_values:
+          column_name: market_tier
+          values: ['sparse', 'moderate', 'dense']
+
+  - name: org_kpis
+    description: >
+      Organization-level KPIs aggregated from DOGE billing NPI claims.
+      One row per org_entity × period_year (annual grain).
+      Panel size, claims, and payment are summed across all billing NPIs in the org
+      and all their associated servicing NPIs.
+      Primary comparison surface for org financial benchmarking.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: org_entity_id
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_name
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: norm_org_name
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_state
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_zip5
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_city
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: primary_taxonomy_code
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: billing_npi_count
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: period_year
+        data_type: string
+        description: "4-digit year string (e.g. '2024')."
+        constraints: [{ type: not_null }]
+      - name: servicing_npi_count
+        data_type: int64
+        description: "Distinct servicing NPIs active under this org in this year."
+        constraints: [{ type: not_null }]
+      - name: panel_size
+        data_type: int64
+        description: "Sum of beneficiary encounters from billing NPI perspective."
+        constraints: [{ type: not_null }]
+      - name: total_claims
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_paid
+        data_type: float64
+        constraints: [{ type: not_null }]
+      - name: org_type
+        data_type: string
+        description: "Org classification carried from org_entities."
+        constraints: [{ type: not_null }]
+      - name: market_tier
+        data_type: string
+        description: "sparse | moderate | dense — carried from org_entities."
+        constraints: [{ type: not_null }]
+      - name: panel_per_clinician
+        data_type: float64
+        description: "panel_size / servicing_npi_count. Primary panel benchmark — normalizes for org size."
+      - name: size_band
+        data_type: string
+        description: "small (<100 pts/clin) | medium (100-499) | large (>=500)"
+      - name: claims_per_beneficiary
+        data_type: float64
+      - name: payment_per_claim
+        data_type: float64
+      - name: psychiatry_count
+        data_type: int64
+        description: "Servicing NPIs with psychiatry taxonomy (MD/DO + psychiatric NPs)."
+      - name: counselor_count
+        data_type: int64
+        description: "Licensed counselors (LPC, LMHC, addiction counselors)."
+      - name: social_worker_count
+        data_type: int64
+        description: "LCSW / clinical social workers."
+      - name: mft_count
+        data_type: int64
+        description: "Marriage & family therapists."
+      - name: psychologist_count
+        data_type: int64
+        description: "Doctoral-level psychologists."
+      - name: aprn_count
+        data_type: int64
+        description: "Advanced practice registered nurses (psychiatric NPs, non-MD prescribers)."
+      - name: other_clinician_count
+        data_type: int64
+        description: "Servicing NPIs not matched to any of the above buckets."
+      - name: psychiatry_pct
+        data_type: float64
+        description: "psychiatry_count / servicing_npi_count. Fraction 0–1."
+      - name: counselor_pct
+        data_type: float64
+      - name: social_worker_pct
+        data_type: float64
+      - name: mft_pct
+        data_type: float64
+      - name: psychologist_pct
+        data_type: float64
+      - name: aprn_pct
+        data_type: float64
+    tests:
+      - unique:
+          column_name: "concat(org_entity_id, '|', period_year)"
+      - not_null: { column_name: org_entity_id }
+      - not_null: { column_name: period_year }
+
+  - name: org_peer_distributions
+    description: >
+      Organization-to-organization peer distribution statistics.
+      One row per org_type × peer_group × size_band × market_tier × geo_level × geo_id × period_year.
+      Use this (not peer_distributions) for org-level benchmarking.
+      Minimum peer group size = 3 orgs.
+
+      peer_group values:
+        'type_only'        — org_type match only (widest cut, highest n)
+        'type_size'        — org_type + size_band
+        'type_market'      — org_type + market_tier
+        'type_size_market' — org_type + size_band + market_tier (tightest, most comparable)
+
+      size_band and market_tier are NULL when they are not part of the peer_group filter.
+      The API selects the tightest peer_group with n >= 3, falling back to wider groups.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: org_type
+        data_type: string
+        description: "CMHC | FQHC | RHC | SUD | RESIDENTIAL_BH | COMMUNITY_BH | BH_SPECIALTY"
+        constraints: [{ type: not_null }]
+      - name: peer_group
+        data_type: string
+        description: "'type_only' | 'type_size' | 'type_market' | 'type_size_market'"
+        constraints: [{ type: not_null }]
+      - name: size_band
+        data_type: string
+        description: "NULL unless peer_group includes size. 'small' | 'medium' | 'large'"
+      - name: market_tier
+        data_type: string
+        description: "NULL unless peer_group includes market. 'sparse' | 'moderate' | 'dense'"
+      - name: geo_level
+        data_type: string
+        description: "'national' | 'state' | 'zip'"
+        constraints: [{ type: not_null }]
+      - name: geo_id
+        data_type: string
+        description: "'US' for national, state abbreviation for state, 5-digit ZIP for zip."
+        constraints: [{ type: not_null }]
+      - name: period_year
+        data_type: string
+        description: "4-digit year string (e.g. '2024')."
+        constraints: [{ type: not_null }]
+      - name: n
+        data_type: int64
+        description: "Peer org count. Always >= 3."
+        constraints: [{ type: not_null }]
+      - name: mean_panel_per_clin
+        data_type: float64
+        description: "Mean panel_per_clinician (patients per clinician) across peer orgs."
+      - name: p25_panel_per_clin
+        data_type: float64
+        description: "25th percentile of panel_per_clinician."
+      - name: p50_panel_per_clin
+        data_type: float64
+        description: "Median panel_per_clinician."
+      - name: p75_panel_per_clin
+        data_type: float64
+        description: "75th percentile of panel_per_clinician."
+      - name: std_panel_per_clin
+        data_type: float64
+        description: "Std dev of panel_per_clinician."
+      - name: mean_clinician_count
+        data_type: float64
+        description: "Mean servicing_npi_count (rostered clinicians) across peer orgs."
+      - name: p25_clinician_count
+        data_type: int64
+        description: "25th percentile of servicing_npi_count."
+      - name: p50_clinician_count
+        data_type: int64
+        description: "Median servicing_npi_count."
+      - name: p75_clinician_count
+        data_type: int64
+        description: "75th percentile of servicing_npi_count."
+      - name: mean_claims_per_bene
+        data_type: float64
+      - name: p25_claims_per_bene
+        data_type: float64
+      - name: p50_claims_per_bene
+        data_type: float64
+      - name: p75_claims_per_bene
+        data_type: float64
+      - name: std_claims_per_bene
+        data_type: float64
+      - name: mean_payment_per_claim
+        data_type: float64
+      - name: p25_payment_per_claim
+        data_type: float64
+      - name: p50_payment_per_claim
+        data_type: float64
+      - name: p75_payment_per_claim
+        data_type: float64
+      - name: std_payment_per_claim
+        data_type: float64
+      - name: avg_psychiatry_pct
+        data_type: float64
+        description: "Mean psychiatry_pct across peer orgs — explains payment_per_claim variance."
+      - name: avg_counselor_pct
+        data_type: float64
+      - name: avg_social_worker_pct
+        data_type: float64
+      - name: avg_mft_pct
+        data_type: float64
+      - name: avg_psychologist_pct
+        data_type: float64
+      - name: avg_aprn_pct
+        data_type: float64
+    tests:
+      - not_null: { column_name: org_type }
+      - not_null: { column_name: peer_group }
+      - not_null: { column_name: geo_level }
+      - not_null: { column_name: geo_id }
+      - not_null: { column_name: period_year }
+      - accepted_values:
+          column_name: geo_level
+          values: ['national', 'state', 'zip']
+      - accepted_values:
+          column_name: peer_group
+          values: ['type_only', 'type_size', 'type_market', 'type_size_market']
