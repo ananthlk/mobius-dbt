@@ -559,3 +559,285 @@ models:
       - accepted_values:
           column_name: peer_group
           values: ['type_only', 'type_size', 'type_market', 'type_size_market']
+
+  - name: org_service_line_kpis
+    description: >
+      Organization-level KPIs aggregated by service line from DOGE billing NPI claims.
+      One row per org_entity × period_year × service_line.
+
+      Service lines are bucketed from HCPCS codes:
+        outpatient_therapy  — direct clinical care (90xxx psychotherapy, H0035, T1015, H0004)
+        medication_mgmt     — psychiatric med management (90863, M0064, E&M codes)
+        act                 — Assertive Community Treatment (H0039-H0040; team billing)
+        case_management     — targeted case mgmt, CPST (T1017, H0036-H0037, H0043)
+        residential         — residential treatment (H0017-H0019, H0010-H0011)
+        crisis              — crisis intervention (H2011, S9484, H0023)
+        community_support   — peer support, supported housing (H0038, T1016, H2015-H2016)
+        other               — remaining HCPCS codes
+
+      Key use: compare org's outpatient_therapy arm against peers' outpatient_therapy arm.
+      Org-level panel_per_clinician conflates ACT (team billing) and case_management
+      (caseload-based) with direct therapy — service line separation fixes this.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: org_entity_id
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_name
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: norm_org_name
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_state
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_zip5
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_city
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: primary_taxonomy_code
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_type
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: market_tier
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: billing_npi_count
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: period_year
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: service_line
+        data_type: string
+        description: "outpatient_therapy | medication_mgmt | act | case_management | residential | crisis | community_support | other"
+        constraints: [{ type: not_null }]
+      - name: servicing_npi_count
+        data_type: int64
+        description: "Distinct servicing NPIs billing for this service line."
+        constraints: [{ type: not_null }]
+      - name: panel_size
+        data_type: int64
+        description: "Distinct beneficiaries served in this service line."
+        constraints: [{ type: not_null }]
+      - name: total_claims
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_paid
+        data_type: float64
+        constraints: [{ type: not_null }]
+      - name: panel_per_clinician
+        data_type: float64
+        description: "panel_size / servicing_npi_count for this service line only."
+      - name: size_band
+        data_type: string
+        description: "small | medium | large derived from service-line panel_per_clinician."
+      - name: claims_per_beneficiary
+        data_type: float64
+      - name: payment_per_claim
+        data_type: float64
+    tests:
+      - unique:
+          column_name: "concat(org_entity_id, '|', period_year, '|', service_line)"
+      - not_null: { column_name: org_entity_id }
+      - not_null: { column_name: period_year }
+      - not_null: { column_name: service_line }
+      - accepted_values:
+          column_name: service_line
+          values: ['outpatient_therapy', 'medication_mgmt', 'act', 'case_management',
+                   'residential', 'crisis', 'community_support', 'other']
+
+  - name: org_service_line_peer_distributions
+    description: >
+      Service-line-aware org peer distribution statistics.
+      One row per org_type × service_line × peer_group × size_band × market_tier × geo_level × geo_id × period_year.
+
+      Extends org_peer_distributions with a service_line dimension.
+      Enables fair benchmarking: compare an org's outpatient_therapy arm against
+      peers' outpatient_therapy arms — not their ACT or residential arms.
+
+      peer_group values (same logic as org_peer_distributions):
+        'type_only'        — org_type + service_line
+        'type_size'        — org_type + service_line + size_band
+        'type_size_market' — org_type + service_line + size_band + market_tier (tightest)
+
+      Geo levels: national and state only (zip omitted — too sparse with service_line added).
+      Minimum n = 3.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: org_type
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: service_line
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: peer_group
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: size_band
+        data_type: string
+        description: "NULL unless peer_group includes size."
+      - name: market_tier
+        data_type: string
+        description: "NULL unless peer_group includes market."
+      - name: geo_level
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: geo_id
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: period_year
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: n
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: mean_panel_per_clin
+        data_type: float64
+      - name: p25_panel_per_clin
+        data_type: float64
+      - name: p50_panel_per_clin
+        data_type: float64
+      - name: p75_panel_per_clin
+        data_type: float64
+      - name: std_panel_per_clin
+        data_type: float64
+      - name: mean_clinician_count
+        data_type: float64
+      - name: p25_clinician_count
+        data_type: int64
+      - name: p50_clinician_count
+        data_type: int64
+      - name: p75_clinician_count
+        data_type: int64
+      - name: mean_claims_per_bene
+        data_type: float64
+      - name: p25_claims_per_bene
+        data_type: float64
+      - name: p50_claims_per_bene
+        data_type: float64
+      - name: p75_claims_per_bene
+        data_type: float64
+      - name: std_claims_per_bene
+        data_type: float64
+      - name: mean_payment_per_claim
+        data_type: float64
+      - name: p25_payment_per_claim
+        data_type: float64
+      - name: p50_payment_per_claim
+        data_type: float64
+      - name: p75_payment_per_claim
+        data_type: float64
+      - name: std_payment_per_claim
+        data_type: float64
+    tests:
+      - not_null: { column_name: org_type }
+      - not_null: { column_name: service_line }
+      - not_null: { column_name: peer_group }
+      - not_null: { column_name: geo_level }
+      - not_null: { column_name: geo_id }
+      - not_null: { column_name: period_year }
+      - accepted_values:
+          column_name: geo_level
+          values: ['national', 'state']
+      - accepted_values:
+          column_name: peer_group
+          values: ['type_only', 'type_size', 'type_size_market']
+      - accepted_values:
+          column_name: service_line
+          values: ['outpatient_therapy', 'medication_mgmt', 'act', 'case_management',
+                   'residential', 'crisis', 'community_support', 'other']
+
+  - name: hcpcs_rate_benchmarks
+    description: >
+      HCPCS-level payment_per_claim benchmarks (P25/P50/P75) for FL Medicaid,
+      org-level aggregation. Professional servicing NPIs only. Segmented by
+      PARALLEL single-dimension cuts to preserve N for credible benchmarking.
+      Axes: all_fl, by_entity, by_org_type, by_size, by_market, by_taxonomy.
+      Each axis independent — use for radar chart peer comparison.
+      Minimum 3 orgs per cell. Periodic refresh only.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: hcpcs_code
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: service_line
+        data_type: string
+        description: "outpatient_therapy | medication_mgmt | act | case_management | residential | crisis | community_support | other"
+        constraints: [{ type: not_null }]
+      - name: peer_group
+        data_type: string
+        description: "Dimension axis: all_fl | by_entity | by_org_type | by_size | by_market | by_taxonomy"
+        constraints: [{ type: not_null }]
+      - name: dimension_value
+        data_type: string
+        description: "Value within axis (e.g. CMHC, large, sparse, 101YM0800X). NULL for all_fl."
+      - name: geo_level
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: geo_id
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: period_year
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_count
+        data_type: int64
+        description: "Distinct billing orgs in this cell. Always >= 3."
+        constraints: [{ type: not_null }]
+      - name: svc_npi_count
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_claims
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_paid
+        data_type: float64
+        constraints: [{ type: not_null }]
+      - name: total_beneficiaries
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: p25_payment_per_claim
+        data_type: float64
+      - name: p50_payment_per_claim
+        data_type: float64
+      - name: p75_payment_per_claim
+        data_type: float64
+      - name: p25_revenue_per_bene
+        data_type: float64
+      - name: p50_revenue_per_bene
+        data_type: float64
+      - name: p75_revenue_per_bene
+        data_type: float64
+      - name: p25_claims_per_bene
+        data_type: float64
+      - name: p50_claims_per_bene
+        data_type: float64
+      - name: p75_claims_per_bene
+        data_type: float64
+      - name: p25_bene_per_clinician
+        data_type: float64
+      - name: p50_bene_per_clinician
+        data_type: float64
+      - name: p75_bene_per_clinician
+        data_type: float64
+    tests:
+      - not_null: { column_name: hcpcs_code }
+      - not_null: { column_name: peer_group }
+      - accepted_values:
+          column_name: peer_group
+          values: ['all_fl', 'by_entity', 'by_org_type', 'by_size', 'by_market', 'by_taxonomy']
+      - accepted_values:
+          column_name: geo_level
+          values: ['state']
