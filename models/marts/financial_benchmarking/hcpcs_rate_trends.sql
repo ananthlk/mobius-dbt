@@ -11,18 +11,26 @@
 -- Same methodology as hcpcs_rate_benchmarks but at monthly grain.
 -- Org-level aggregation, professional servicing NPIs only.
 --
+-- Service line classification driven by fl_bh_code_reference (AHCA categories).
+-- Only BH codes (those in the reference table) are included — 'other' excluded
+-- to manage table size.
+--
 -- Parallel dimension cuts: all_fl, by_entity, by_org_type, by_size, by_market, by_taxonomy
 -- 4 KPIs: payment_per_claim, revenue_per_beneficiary, claims_per_beneficiary, beneficiaries_per_clinician
--- P25/P50/P75 per (hcpcs_code, period_month, dimension_axis, dimension_value)
---
--- BH service line codes only (outpatient_therapy, medication_mgmt, act, case_management,
--- residential, crisis, community_support). Excludes 'other' to manage table size.
+-- P50 per (hcpcs_code, period_month, dimension_axis, dimension_value)
 --
 -- Minimum 3 orgs per cell.
 -- Note: org_type/size_band/market_tier are based on 2024 org_entities/org_kpis
 -- (point-in-time snapshot applied to all historical months).
 
-with nppes_fl_professional as (
+with bh_codes as (
+    select
+        hcpcs_code,
+        ahca_category
+    from {{ source('financial_reference', 'fl_bh_code_reference') }}
+),
+
+nppes_fl_professional as (
     select cast(npi as string) as npi
     from {{ source('nppes_public', 'npi_optimized') }}
     where npi is not null
@@ -40,48 +48,7 @@ doge_fl as (
         safe_cast(CLAIM_FROM_MONTH     as string)  as period_month,
         cast(TOTAL_CLAIMS              as int64)   as claim_count,
         cast(TOTAL_PAID                as float64) as total_paid,
-        cast(TOTAL_UNIQUE_BENEFICIARIES as int64)  as beneficiary_count,
-        case
-            -- Outpatient therapy (psychotherapy CPT + CBH therapy codes)
-            when trim(cast(HCPCS_CODE as string)) in (
-                '90791','90792','90832','90834','90837','90839','90840',
-                '90846','90847','90849','90851','90853',
-                'H0035','T1015','H0004',
-                'H2019','H2010','H2012'
-            ) then 'outpatient_therapy'
-            -- Medication management + E&M
-            when trim(cast(HCPCS_CODE as string)) in (
-                '90863','90833','90836','90838','M0064',
-                '99212','99213','99214','99215','99202','99203','99204','99205'
-            ) then 'medication_mgmt'
-            -- Assessment & evaluation
-            when trim(cast(HCPCS_CODE as string)) in (
-                'H2000','H0031','H0001','H0032','T1007'
-            ) then 'assessment'
-            -- ACT
-            when trim(cast(HCPCS_CODE as string)) in ('H0039','H0040') then 'act'
-            -- Case management
-            when trim(cast(HCPCS_CODE as string)) in ('T1017','H0036','H0037','H0043') then 'case_management'
-            -- Psychosocial rehab & day services
-            when trim(cast(HCPCS_CODE as string)) in (
-                'H2017','H2030','H0046'
-            ) then 'psychosocial_rehab'
-            -- Residential treatment
-            when trim(cast(HCPCS_CODE as string)) in ('H0017','H0018','H0019','H0010','H0011') then 'residential'
-            -- Crisis intervention
-            when trim(cast(HCPCS_CODE as string)) in ('H2011','S9484','S9485','H0023','S9083') then 'crisis'
-            -- Community support
-            when trim(cast(HCPCS_CODE as string)) in ('H0038','T1016','H2015','H2016','H2023','H0025') then 'community_support'
-            -- Medical & MAT
-            when trim(cast(HCPCS_CODE as string)) in (
-                'T1023','H0020','H0047','H0048'
-            ) then 'medical_bh'
-            -- BH overlay & other CBH
-            when trim(cast(HCPCS_CODE as string)) in (
-                'H2020','H2034'
-            ) then 'bh_other'
-            else null  -- exclude non-BH codes for trend table
-        end as service_line
+        cast(TOTAL_UNIQUE_BENEFICIARIES as int64)  as beneficiary_count
     from {{ source('landing_medicaid_npi', 'medicaid_provider_spending') }}
     where SERVICING_PROVIDER_NPI_NUM is not null
       and HCPCS_CODE                 is not null
@@ -90,12 +57,14 @@ doge_fl as (
       and CLAIM_FROM_MONTH          >= '2019-01'
 ),
 
--- Keep only BH service line codes
+-- Keep only BH codes (INNER JOIN to reference table)
 doge_fl_bh as (
-    select d.*
+    select
+        d.*,
+        bh.ahca_category as service_line
     from doge_fl d
     inner join nppes_fl_professional n on n.npi = d.servicing_npi
-    where d.service_line is not null
+    inner join bh_codes bh on bh.hcpcs_code = d.hcpcs_code
 ),
 
 -- Org context (2024 snapshot applied to all months)

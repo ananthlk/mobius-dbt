@@ -24,8 +24,16 @@ if [[ -z "$POSTGRES_HOST" ]] || [[ -z "$POSTGRES_PASSWORD" ]]; then
   exit 1
 fi
 
-echo "=== 1. Ingest RAG PostgreSQL → BigQuery landing ==="
+echo "=== 1a. Ingest RAG PostgreSQL → BigQuery landing ==="
 python scripts/ingest_rag_to_landing.py
+echo ""
+
+echo "=== 1b. Sync org_profile → BigQuery landing ==="
+if python scripts/sync_org_profile_to_bq.py; then
+  echo "  org_profile sync complete."
+else
+  echo "  WARNING: org_profile sync failed (org_npi_map model will use stale data)."
+fi
 echo ""
 
 echo "=== 2. dbt run (build mart from landing) ==="

@@ -74,3 +74,66 @@ sources:
           - name: npi_number
           - name: resolved_npi
           - name: provider_name
+
+  - name: landing_org_profile
+    description: "Org identity synced from Chat PostgreSQL (org_profile table). Run scripts/sync_org_profile_to_bq.py before dbt run."
+    database: "{{ target.project }}"
+    schema: "{{ env_var('BQ_LANDING_MEDICAID_DATASET', 'landing_medicaid_npi_dev') }}"
+    tables:
+      - name: org_profile_landing
+        description: "One row per org. Synced from Postgres org_profile (credentialing pipeline output)."
+        columns:
+          - name: org_slug
+            description: "Unique org identifier (e.g. david-lawrence-center). Matches Postgres org_profile.org_slug."
+          - name: org_name
+            description: "Canonical display name."
+          - name: org_name_aliases
+            description: "JSON array of alternative names/DBA variants."
+          - name: npi_count
+            description: "Count of confirmed NPIs for this org."
+          - name: confirmed_at
+            description: "When org was first confirmed in credentialing pipeline."
+          - name: confirmed_by
+            description: "Who confirmed (system, user, batch-doge-discovery)."
+          - name: last_refreshed_at
+            description: "Last NPI refresh timestamp."
+          - name: active_skills
+            description: "JSON object of skill enablement status."
+          - name: synced_at
+            description: "When this row was synced to BQ."
+      - name: org_npi_map_landing
+        description: "One row per org × NPI. Flattened from org_profile.confirmed_npis JSONB."
+        columns:
+          - name: org_slug
+            description: "Org identifier — join key to org_profile_landing."
+          - name: org_name
+            description: "Canonical org name (denormalized for convenience)."
+          - name: npi
+            description: "NPI number (string). Join to billing_npi_profiles.billing_npi or NPPES."
+          - name: npi_name
+            description: "Name associated with this NPI in NPPES at discovery time."
+          - name: entity_type
+            description: "organization or individual."
+          - name: taxonomy_code
+            description: "Primary taxonomy at discovery time."
+          - name: source
+            description: "How NPI was discovered: nppes, credentialing_run, manual."
+          - name: npi_confirmed_at
+            description: "When this NPI was confirmed for the org."
+          - name: synced_at
+            description: "When this row was synced to BQ."
+
+  - name: financial_reference
+    description: "Financial benchmarking reference tables loaded directly to BQ. AHCA-classified BH code reference for FL Medicaid."
+    database: "{{ target.project }}"
+    schema: "{{ env_var('BQ_MARTS_FINANCIAL_DATASET', 'mobius_financial_dev') }}"
+    tables:
+      - name: fl_bh_code_reference
+        description: "AHCA-classified FL Medicaid behavioral health HCPCS codes. 70 codes across 15 categories. Excludes personal care/HCBS (T1019/T1025) and behavior analysis (97151-97158). Source of truth for BH service line classification."
+        columns:
+          - name: ahca_category
+            description: "AHCA service category: Assessment, Community Support, Crisis/Screening, FACT, MH Rehab/Day Treatment, Medical/Psychiatric, Other BH Support, Practitioner Therapy, Psych Testing, Psychiatric Evaluation, Psychosocial Rehab (TBOS), Substance Use Disorder, Targeted Case Management, Telehealth MH, Treatment Planning"
+          - name: hcpcs_code
+            description: "HCPCS/CPT procedure code"
+          - name: description
+            description: "Human-readable code description"

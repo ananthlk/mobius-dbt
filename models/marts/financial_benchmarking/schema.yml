@@ -617,7 +617,7 @@ models:
         constraints: [{ type: not_null }]
       - name: service_line
         data_type: string
-        description: "outpatient_therapy | medication_mgmt | act | case_management | residential | crisis | community_support | other"
+        description: "AHCA category from fl_bh_code_reference, or 'other' for non-BH codes"
         constraints: [{ type: not_null }]
       - name: servicing_npi_count
         data_type: int64
@@ -651,8 +651,11 @@ models:
       - not_null: { column_name: service_line }
       - accepted_values:
           column_name: service_line
-          values: ['outpatient_therapy', 'medication_mgmt', 'act', 'case_management',
-                   'residential', 'crisis', 'community_support', 'other']
+          values: ['Assessment', 'Community Support', 'Crisis/Screening', 'FACT',
+                   'MH Rehab/Day Treatment', 'Medical/Psychiatric', 'Other BH Support',
+                   'Practitioner Therapy', 'Psych Testing', 'Psychiatric Evaluation',
+                   'Psychosocial Rehab (TBOS)', 'Substance Use Disorder',
+                   'Targeted Case Management', 'Telehealth MH', 'Treatment Planning', 'other']
 
   - name: org_service_line_peer_distributions
     description: >
@@ -754,8 +757,88 @@ models:
           values: ['type_only', 'type_size', 'type_size_market']
       - accepted_values:
           column_name: service_line
-          values: ['outpatient_therapy', 'medication_mgmt', 'act', 'case_management',
-                   'residential', 'crisis', 'community_support', 'other']
+          values: ['Assessment', 'Community Support', 'Crisis/Screening', 'FACT',
+                   'MH Rehab/Day Treatment', 'Medical/Psychiatric', 'Other BH Support',
+                   'Practitioner Therapy', 'Psych Testing', 'Psychiatric Evaluation',
+                   'Psychosocial Rehab (TBOS)', 'Substance Use Disorder',
+                   'Targeted Case Management', 'Telehealth MH', 'Treatment Planning', 'other']
+
+  - name: org_npi_map
+    description: >
+      Bridge table mapping org_slug (from credentialing-deduped org_profile) to billing NPIs.
+      Source of truth is Postgres org_profile.confirmed_npis, synced via sync_org_profile_to_bq.py.
+      Enriched with NPPES/DOGE billing data from billing_npi_profiles.
+      Derives org_type using taxonomy priority logic.
+      One row per org_slug × billing_npi.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: org_slug
+        data_type: string
+        description: "Unique org identifier from credentialing pipeline (e.g. david-lawrence-center)."
+        constraints: [{ type: not_null }]
+      - name: org_name
+        data_type: string
+        description: "Canonical org display name from org_profile."
+        constraints: [{ type: not_null }]
+      - name: billing_npi
+        data_type: string
+        description: "Billing NPI confirmed for this org."
+        constraints: [{ type: not_null }]
+      - name: entity_type_code
+        data_type: string
+        description: "'1' = individual, '2' = organization. NULL if NPI not in DOGE/NPPES."
+      - name: raw_org_name
+        data_type: string
+        description: "Raw NPPES org name for this billing NPI. NULL if not in DOGE."
+      - name: norm_org_name
+        data_type: string
+        description: "Normalized org name from billing_npi_profiles. NULL if not in DOGE."
+      - name: org_state
+        data_type: string
+        description: "NPPES practice state for this NPI."
+        constraints: [{ type: not_null }]
+      - name: org_zip5
+        data_type: string
+        description: "5-digit ZIP for this NPI."
+        constraints: [{ type: not_null }]
+      - name: org_city
+        data_type: string
+        description: "NPPES practice city for this NPI."
+        constraints: [{ type: not_null }]
+      - name: primary_taxonomy_code
+        data_type: string
+        description: "Primary taxonomy (from NPPES if in DOGE, else from discovery)."
+        constraints: [{ type: not_null }]
+      - name: discovery_source
+        data_type: string
+        description: "How NPI was discovered: nppes, credentialing_run, manual."
+      - name: org_type
+        data_type: string
+        description: "Org classification derived from best taxonomy across all NPIs: CMHC | FQHC | RHC | SUD | RESIDENTIAL_BH | COMMUNITY_BH | BH_SPECIALTY | OTHER"
+        constraints: [{ type: not_null }]
+      - name: org_primary_state
+        data_type: string
+        description: "Most-frequent state across billing NPIs (org-level primary location)."
+        constraints: [{ type: not_null }]
+      - name: org_primary_zip5
+        data_type: string
+        description: "Most-frequent ZIP5 across billing NPIs (org-level primary location)."
+        constraints: [{ type: not_null }]
+      - name: org_primary_city
+        data_type: string
+        description: "City of org primary location."
+        constraints: [{ type: not_null }]
+      - name: in_doge
+        data_type: bool
+        description: "True if this billing NPI appears in DOGE spending data."
+        constraints: [{ type: not_null }]
+    tests:
+      - unique:
+          column_name: "concat(org_slug, '|', billing_npi)"
+      - not_null: { column_name: org_slug }
+      - not_null: { column_name: billing_npi }
 
   - name: hcpcs_rate_benchmarks
     description: >
@@ -764,6 +847,8 @@ models:
       PARALLEL single-dimension cuts to preserve N for credible benchmarking.
       Axes: all_fl, by_entity, by_org_type, by_size, by_market, by_taxonomy.
       Each axis independent — use for radar chart peer comparison.
+      Service line driven by fl_bh_code_reference AHCA categories (70 BH codes,
+      15 categories). Non-BH codes classified as 'other'.
       Minimum 3 orgs per cell. Periodic refresh only.
     config:
       contract:
@@ -774,7 +859,7 @@ models:
         constraints: [{ type: not_null }]
       - name: service_line
         data_type: string
-        description: "outpatient_therapy | medication_mgmt | act | case_management | residential | crisis | community_support | other"
+        description: "AHCA category from fl_bh_code_reference, or 'other' for non-BH codes"
         constraints: [{ type: not_null }]
       - name: peer_group
         data_type: string
@@ -837,7 +922,290 @@ models:
       - not_null: { column_name: peer_group }
       - accepted_values:
           column_name: peer_group
-          values: ['all_fl', 'by_entity', 'by_org_type', 'by_size', 'by_market', 'by_taxonomy']
+          values: ['all_fl', 'by_entity', 'by_org_type', 'by_size', 'by_market', 'by_taxonomy', 'rest_of_fl_excl']
       - accepted_values:
           column_name: geo_level
           values: ['state']
+
+  - name: org_kpis_v2
+    description: >
+      Organization-level KPIs using credentialing-deduped org identity (org_npi_map).
+      Replaces org_kpis which uses site-level dedup (org_entities, 571K fragments).
+      Grain: one row per org_slug × period_year.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: org_slug
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_name
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_state
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_zip5
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_city
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: primary_taxonomy_code
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: billing_npi_count
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: org_type
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: market_tier
+        data_type: string
+      - name: period_year
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: servicing_npi_count
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: panel_size
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_claims
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_paid
+        data_type: float64
+        constraints: [{ type: not_null }]
+      - name: panel_per_clinician
+        data_type: float64
+      - name: size_band
+        data_type: string
+      - name: claims_per_beneficiary
+        data_type: float64
+      - name: payment_per_claim
+        data_type: float64
+      - name: psychiatry_count
+        data_type: int64
+      - name: counselor_count
+        data_type: int64
+      - name: social_worker_count
+        data_type: int64
+      - name: mft_count
+        data_type: int64
+      - name: psychologist_count
+        data_type: int64
+      - name: aprn_count
+        data_type: int64
+      - name: other_clinician_count
+        data_type: int64
+      - name: psychiatry_pct
+        data_type: float64
+      - name: counselor_pct
+        data_type: float64
+      - name: social_worker_pct
+        data_type: float64
+      - name: mft_pct
+        data_type: float64
+      - name: psychologist_pct
+        data_type: float64
+      - name: aprn_pct
+        data_type: float64
+    tests:
+      - unique:
+          column_name: "concat(org_slug, '|', period_year)"
+      - not_null: { column_name: org_slug }
+      - not_null: { column_name: period_year }
+
+  - name: hcpcs_rate_benchmarks_v2
+    description: >
+      HCPCS-level payment benchmarks (P25/P50/P75) for FL Medicaid — v2.
+      Uses credentialing-deduped org identity (org_npi_map, 1,474 orgs).
+      MONTHLY grain: each org × code × month is one observation for percentiles.
+      This fixes RPB (benes are unique per month, can't sum across months)
+      and gives more N for tighter distributions.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: hcpcs_code
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: service_line
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: peer_group
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: dimension_value
+        data_type: string
+      - name: geo_level
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: geo_id
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: period_year
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: n_org_months
+        data_type: int64
+        description: "Number of org-month observations used for percentile computation."
+        constraints: [{ type: not_null }]
+      - name: org_count
+        data_type: int64
+        description: "Distinct orgs contributing to this cell."
+        constraints: [{ type: not_null }]
+      - name: svc_npi_count
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_claims
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_paid
+        data_type: float64
+        constraints: [{ type: not_null }]
+      - name: total_beneficiaries
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: p25_payment_per_claim
+        data_type: float64
+      - name: p50_payment_per_claim
+        data_type: float64
+      - name: p75_payment_per_claim
+        data_type: float64
+      - name: p25_revenue_per_bene
+        data_type: float64
+      - name: p50_revenue_per_bene
+        data_type: float64
+      - name: p75_revenue_per_bene
+        data_type: float64
+      - name: p25_claims_per_bene
+        data_type: float64
+      - name: p50_claims_per_bene
+        data_type: float64
+      - name: p75_claims_per_bene
+        data_type: float64
+      - name: p25_bene_per_clinician
+        data_type: float64
+      - name: p50_bene_per_clinician
+        data_type: float64
+      - name: p75_bene_per_clinician
+        data_type: float64
+    tests:
+      - not_null: { column_name: hcpcs_code }
+      - not_null: { column_name: peer_group }
+      - accepted_values:
+          column_name: peer_group
+          values: ['all_fl', 'by_entity', 'by_org_type', 'by_size', 'by_market', 'by_taxonomy', 'rest_of_fl_excl']
+      - accepted_values:
+          column_name: geo_level
+          values: ['state']
+
+  - name: hcpcs_benchmark_assessment
+    description: >
+      Assessed HCPCS benchmark table — one row per BH code × peer_group × dimension_value.
+      Joins fl_bh_code_reference with hcpcs_rate_benchmarks_v2 (monthly grain),
+      applies assessment rules to classify benchmark quality for every dimension cut.
+      All logic in SQL — consumers just SELECT with WHERE peer_group/dimension_value filters.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: hcpcs_code
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: description
+        data_type: string
+      - name: ahca_category
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: primary_metric
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: peer_group
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: dimension_value
+        data_type: string
+      - name: unit
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: benchmark_status
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: confidence
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: n_org_months
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: n_orgs
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_paid
+        data_type: float64
+        constraints: [{ type: not_null }]
+      - name: p25
+        data_type: float64
+      - name: p50
+        data_type: float64
+      - name: p75
+        data_type: float64
+      - name: iqr
+        data_type: float64
+      - name: iqr_p50_ratio
+        data_type: float64
+      - name: recommendation
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: p25_payment_per_claim
+        data_type: float64
+      - name: p50_payment_per_claim
+        data_type: float64
+      - name: p75_payment_per_claim
+        data_type: float64
+      - name: p25_revenue_per_bene
+        data_type: float64
+      - name: p50_revenue_per_bene
+        data_type: float64
+      - name: p75_revenue_per_bene
+        data_type: float64
+      - name: p25_claims_per_bene
+        data_type: float64
+      - name: p50_claims_per_bene
+        data_type: float64
+      - name: p75_claims_per_bene
+        data_type: float64
+      - name: p25_bene_per_clinician
+        data_type: float64
+      - name: p50_bene_per_clinician
+        data_type: float64
+      - name: p75_bene_per_clinician
+        data_type: float64
+      - name: code_flag
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: is_bimodal
+        data_type: bool
+        constraints: [{ type: not_null }]
+      - name: svc_npi_count
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_claims
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_beneficiaries
+        data_type: int64
+        constraints: [{ type: not_null }]
+    tests:
+      - unique:
+          column_name: "hcpcs_code || '|' || peer_group || '|' || coalesce(dimension_value, '__null__')"
+      - not_null: { column_name: hcpcs_code }
+      - not_null: { column_name: peer_group }
+      - accepted_values:
+          column_name: benchmark_status
+          values: ['usable', 'usable_bimodal', 'usable_wide', 'add_on', 'add_on_thin', 'thin', 'unusable', 'no_data']
+      - accepted_values:
+          column_name: confidence
+          values: ['high', 'moderate', 'low', 'none']
