@@ -816,7 +816,7 @@ models:
         description: "How NPI was discovered: nppes, credentialing_run, manual."
       - name: org_type
         data_type: string
-        description: "Org classification derived from best taxonomy across all NPIs: CMHC | FQHC | RHC | SUD | RESIDENTIAL_BH | COMMUNITY_BH | BH_SPECIALTY | OTHER"
+        description: "Org classification derived from best taxonomy across all NPIs: CMHC | FQHC | RHC | SUD | RESIDENTIAL_BH | COMMUNITY_BH | BH_SPECIALTY | HOSPITAL | PCP | OTHER"
         constraints: [{ type: not_null }]
       - name: org_primary_state
         data_type: string
@@ -833,6 +833,17 @@ models:
       - name: in_doge
         data_type: bool
         description: "True if this billing NPI appears in DOGE spending data."
+        constraints: [{ type: not_null }]
+      - name: cmhc_tier
+        data_type: string
+        description: "CMHC classification: tier1_bhpf (BHPF client), tier2_fbha (FBHA member), tier3_lookalike (NPPES CMHC taxonomy but not on roster). NULL if not a CMHC."
+      - name: is_bhpf_client
+        data_type: bool
+        description: "True if org is a confirmed BHPF client from org_cmhc_universe seed."
+        constraints: [{ type: not_null }]
+      - name: is_fbha_member
+        data_type: bool
+        description: "True if org is a confirmed FBHA member from org_cmhc_universe seed."
         constraints: [{ type: not_null }]
     tests:
       - unique:
@@ -960,6 +971,9 @@ models:
       - name: org_type
         data_type: string
         constraints: [{ type: not_null }]
+      - name: cmhc_tier
+        data_type: string
+        description: "CMHC tier from org_npi_map: tier1_bhpf, tier2_fbha, tier3_lookalike, or NULL."
       - name: market_tier
         data_type: string
       - name: period_year
@@ -1011,6 +1025,362 @@ models:
         data_type: float64
       - name: aprn_pct
         data_type: float64
+      - name: market_share_pct
+        data_type: float64
+        description: "Org's total_paid as % of all BH spending in same ZIP + year (local catchment)"
+      - name: intake_paid
+        data_type: float64
+        description: "Total paid for Intake tier services (assessments, screening, psych testing, evaluations, treatment planning)"
+      - name: high_acuity_paid
+        data_type: float64
+        description: "Total paid for High Acuity tier services (FACT, crisis residential, detox, partial hosp, methadone)"
+      - name: ongoing_paid
+        data_type: float64
+        description: "Total paid for Ongoing Treatment tier services (therapy, rehab, community support, case mgmt)"
+      - name: intake_claims
+        data_type: int64
+        description: "Claim count for Intake tier"
+      - name: high_acuity_claims
+        data_type: int64
+        description: "Claim count for High Acuity tier"
+      - name: ongoing_claims
+        data_type: int64
+        description: "Claim count for Ongoing Treatment tier"
+      - name: intake_benes
+        data_type: int64
+        description: "Beneficiary count for Intake tier"
+      - name: high_acuity_benes
+        data_type: int64
+        description: "Beneficiary count for High Acuity tier"
+      - name: ongoing_benes
+        data_type: int64
+        description: "Beneficiary count for Ongoing Treatment tier"
+      - name: intake_market_share
+        data_type: float64
+        description: "Org's intake_paid as % of all Intake spending in same ZIP + year"
+      - name: high_acuity_market_share
+        data_type: float64
+        description: "Org's high_acuity_paid as % of all High Acuity spending in same ZIP + year"
+      - name: ongoing_market_share
+        data_type: float64
+        description: "Org's ongoing_paid as % of all Ongoing Treatment spending in same ZIP + year"
+      - name: intake_revenue_pct
+        data_type: float64
+        description: "Share of org's own revenue from Intake tier"
+      - name: high_acuity_revenue_pct
+        data_type: float64
+        description: "Share of org's own revenue from High Acuity tier"
+      - name: ongoing_revenue_pct
+        data_type: float64
+        description: "Share of org's own revenue from Ongoing Treatment tier"
+      - name: intake_bene_pct
+        data_type: float64
+        description: "Share of org's beneficiaries in Intake tier"
+      - name: high_acuity_bene_pct
+        data_type: float64
+        description: "Share of org's beneficiaries in High Acuity tier"
+      - name: ongoing_bene_pct
+        data_type: float64
+        description: "Share of org's beneficiaries in Ongoing Treatment tier"
+    tests:
+      - unique:
+          column_name: "concat(org_slug, '|', period_year)"
+      - not_null: { column_name: org_slug }
+      - not_null: { column_name: period_year }
+
+  - name: org_service_line_profile_v2
+    description: >
+      Enriched service line profile: raw + ratios + decomposed (share of org, YoY growth)
+      + benchmarked (peer P50, rate/util/panel index, rate gap in dollars).
+      Grain: one row per org_slug × service_line × period_year.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: org_slug
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_name
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_state
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_zip5
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_city
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_type
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: market_tier
+        data_type: string
+      - name: period_year
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: service_line
+        data_type: string
+        constraints: [{ type: not_null }]
+      # L1: Raw
+      - name: servicing_npi_count
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: panel_size
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_claims
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_paid
+        data_type: float64
+        constraints: [{ type: not_null }]
+      # L2: Ratios
+      - name: panel_per_clinician
+        data_type: float64
+      - name: claims_per_beneficiary
+        data_type: float64
+      - name: payment_per_claim
+        data_type: float64
+      - name: revenue_per_bene
+        data_type: float64
+      # L3: Decomposed — share of org
+      - name: revenue_share_of_org
+        data_type: float64
+        description: "This service line's paid / org total_paid"
+      - name: bene_share_of_org
+        data_type: float64
+        description: "This service line's benes / org total_benes"
+      - name: claims_share_of_org
+        data_type: float64
+        description: "This service line's claims / org total_claims"
+      # L3: Decomposed — growth
+      - name: svc_growth_trajectory
+        data_type: string
+        description: "YoY revenue change: new | growing | stable | declining"
+      - name: svc_revenue_growth_pct
+        data_type: float64
+      - name: svc_bene_growth_pct
+        data_type: float64
+      # L4: Benchmarked — peer context
+      - name: peer_n
+        data_type: int64
+        description: "Number of peer orgs with this service line"
+      - name: peer_p50_rate
+        data_type: float64
+      - name: peer_p50_util
+        data_type: float64
+      - name: peer_p50_panel
+        data_type: float64
+      # L4: Benchmarked — indexes
+      - name: rate_index
+        data_type: float64
+        description: "org rate / peer P50 rate. >1 = above market."
+      - name: util_index
+        data_type: float64
+        description: "org util / peer P50 util. >1 = higher frequency."
+      - name: panel_index
+        data_type: float64
+        description: "org panel / peer P50 panel. >1 = leaner."
+      - name: rate_gap_dollars
+        data_type: float64
+        description: "(org_rate - peer_P50) × total_claims. Positive = earning above market."
+    tests:
+      - unique:
+          column_name: "concat(org_slug, '|', service_line, '|', period_year)"
+      - not_null: { column_name: org_slug }
+      - not_null: { column_name: service_line }
+      - not_null: { column_name: period_year }
+
+  - name: org_profile_v2
+    description: >
+      Consolidated org profile: everything about an org in one row.
+      Joins org_kpis_v2 + org_leakage_v2 + peer P50 benchmarks.
+      Adds derived flags: new entrant, growth trajectory, care focus, rate position, panel efficiency.
+      Grain: one row per org_slug × period_year.
+    config:
+      contract:
+        enforced: true
+    columns:
+      # ── Identity ──
+      - name: org_slug
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_name
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_state
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_zip5
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: org_city
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: primary_taxonomy_code
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: billing_npi_count
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: org_type
+        data_type: string
+        constraints: [{ type: not_null }]
+      - name: cmhc_tier
+        data_type: string
+        description: "CMHC tier: tier1_bhpf, tier2_fbha, tier3_lookalike, or NULL."
+      - name: market_tier
+        data_type: string
+      - name: size_band
+        data_type: string
+      - name: period_year
+        data_type: string
+        constraints: [{ type: not_null }]
+      # ── Flags ──
+      - name: first_claim_year
+        data_type: string
+        description: "Earliest period_year this org appears in DOGE data"
+      - name: is_new_entrant
+        data_type: bool
+        description: "True if org first appeared in data >= 2022"
+      - name: care_focus
+        data_type: string
+        description: "Dominant care tier: intake_heavy | acute_heavy | ongoing_only | balanced"
+      - name: growth_trajectory
+        data_type: string
+        description: "YoY revenue change: new | growing (>10%) | stable (±10%) | declining (<-10%)"
+      - name: revenue_growth_pct
+        data_type: float64
+        description: "YoY total_paid change as decimal (0.15 = +15%)"
+      - name: bene_growth_pct
+        data_type: float64
+        description: "YoY panel_size change as decimal"
+      - name: rate_position
+        data_type: string
+        description: "Org payment_per_claim vs peer type P50: above_p50 | below_p50"
+      - name: panel_efficiency
+        data_type: string
+        description: "Org panel_per_clinician vs peer type P50: lean (above) | heavy (below)"
+      # ── Scale ──
+      - name: servicing_npi_count
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: panel_size
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_claims
+        data_type: int64
+        constraints: [{ type: not_null }]
+      - name: total_paid
+        data_type: float64
+        constraints: [{ type: not_null }]
+      # ── Unit Economics ──
+      - name: panel_per_clinician
+        data_type: float64
+      - name: claims_per_beneficiary
+        data_type: float64
+      - name: payment_per_claim
+        data_type: float64
+      - name: revenue_per_bene
+        data_type: float64
+        description: "Total paid / panel size — average revenue per beneficiary"
+      - name: peer_p50_panel_per_clin
+        data_type: float64
+      - name: peer_p50_claims_per_bene
+        data_type: float64
+      - name: peer_p50_payment_per_claim
+        data_type: float64
+      # ── Clinician Mix ──
+      - name: psychiatry_count
+        data_type: int64
+      - name: counselor_count
+        data_type: int64
+      - name: social_worker_count
+        data_type: int64
+      - name: mft_count
+        data_type: int64
+      - name: psychologist_count
+        data_type: int64
+      - name: aprn_count
+        data_type: int64
+      - name: other_clinician_count
+        data_type: int64
+      - name: psychiatry_pct
+        data_type: float64
+      - name: counselor_pct
+        data_type: float64
+      - name: social_worker_pct
+        data_type: float64
+      - name: mft_pct
+        data_type: float64
+      - name: psychologist_pct
+        data_type: float64
+      - name: aprn_pct
+        data_type: float64
+      # ── Care Spectrum ──
+      - name: intake_paid
+        data_type: float64
+      - name: high_acuity_paid
+        data_type: float64
+      - name: ongoing_paid
+        data_type: float64
+      - name: intake_claims
+        data_type: int64
+      - name: high_acuity_claims
+        data_type: int64
+      - name: ongoing_claims
+        data_type: int64
+      - name: intake_benes
+        data_type: int64
+      - name: high_acuity_benes
+        data_type: int64
+      - name: ongoing_benes
+        data_type: int64
+      - name: market_share_pct
+        data_type: float64
+      - name: intake_market_share
+        data_type: float64
+      - name: high_acuity_market_share
+        data_type: float64
+      - name: ongoing_market_share
+        data_type: float64
+      - name: intake_revenue_pct
+        data_type: float64
+      - name: high_acuity_revenue_pct
+        data_type: float64
+      - name: ongoing_revenue_pct
+        data_type: float64
+      - name: intake_bene_pct
+        data_type: float64
+      - name: high_acuity_bene_pct
+        data_type: float64
+      - name: ongoing_bene_pct
+        data_type: float64
+      # ── Catchment / Leakage ──
+      - name: catchment_zip_count
+        data_type: int64
+      - name: catchment_org_paid
+        data_type: float64
+      - name: catchment_total_paid
+        data_type: float64
+      - name: catchment_market_share_paid
+        data_type: float64
+      - name: catchment_leakage_paid
+        data_type: float64
+      - name: catchment_org_benes
+        data_type: int64
+      - name: catchment_total_benes
+        data_type: int64
+      - name: catchment_market_share_claims
+        data_type: float64
+      - name: catchment_leakage_claims
+        data_type: float64
+      - name: catchment_total_npis
+        data_type: int64
+      - name: org_npis_in_catchment
+        data_type: int64
     tests:
       - unique:
           column_name: "concat(org_slug, '|', period_year)"
@@ -1209,3 +1579,179 @@ models:
       - accepted_values:
           column_name: confidence
           values: ['high', 'moderate', 'low', 'none']
+
+  - name: fl_bh_code_reference_enriched
+    description: >
+      Thin enrichment over BQ source `fl_bh_code_reference`. Adds a
+      `care_stage` column (intake / high_acuity / ongoing_treatment) so
+      downstream marts can join to a single source of truth instead of
+      re-inlining the CASE statement. Grain: one row per hcpcs_code.
+    columns:
+      - name: hcpcs_code
+        description: HCPCS/CPT procedure code
+      - name: description
+        description: Human-readable description
+      - name: ahca_category
+        description: AHCA service category from source
+      - name: service_line
+        description: Alias for ahca_category, used by benchmarking marts
+      - name: care_stage
+        description: "Clinical journey stage: intake, high_acuity, or ongoing_treatment"
+    tests:
+      - unique: { column_name: hcpcs_code }
+      - not_null: { column_name: hcpcs_code }
+      - not_null: { column_name: care_stage }
+      - accepted_values:
+          column_name: care_stage
+          values: ['intake', 'high_acuity', 'ongoing_treatment']
+
+  - name: org_care_stage_profile_v2
+    description: >
+      Long-format care-stage profile per org-year. Unpivots the
+      intake_/high_acuity_/ongoing_ columns from org_kpis_v2 into one row
+      per (org_slug, period_year, care_stage). Enables endpoints to filter
+      by care_stage instead of picking specific columns.
+    columns:
+      - name: org_slug
+        description: Credentialing-deduped org identity
+      - name: period_year
+        description: "Year string (e.g. '2024')"
+      - name: care_stage
+        description: "intake / high_acuity / ongoing_treatment"
+      - name: total_paid
+        description: Dollars attributed to this care_stage for this org-year
+      - name: total_claims
+        description: Claim count for this care_stage
+      - name: total_benes
+        description: Unique beneficiary count for this care_stage
+      - name: revenue_pct
+        description: Share of this org-year's paid in this stage (0..1)
+      - name: bene_pct
+        description: Share of this org-year's benes in this stage (0..1)
+      - name: local_market_share
+        description: Org's stage_paid / total stage_paid in same ZIP
+      - name: payment_per_claim
+        description: Pooled Σpaid/Σclaims at (org, stage, year)
+      - name: claims_per_bene
+        description: Pooled Σclaims/Σbenes at (org, stage, year)
+      - name: revenue_per_bene
+        description: Pooled Σpaid/Σbenes at (org, stage, year)
+      - name: org_type
+        description: Classification (CMHC, FQHC, SUD, etc.) carried from org_kpis_v2
+      - name: size_band
+      - name: market_tier
+      - name: panel_size
+      - name: total_paid_all_stages
+        description: Org-year total across all stages (for share math)
+    tests:
+      - unique:
+          column_name: "org_slug || '|' || period_year || '|' || care_stage"
+      - not_null: { column_name: org_slug }
+      - not_null: { column_name: period_year }
+      - not_null: { column_name: care_stage }
+      - accepted_values:
+          column_name: care_stage
+          values: ['intake', 'high_acuity', 'ongoing_treatment']
+
+  - name: care_stage_rate_benchmarks
+    description: >
+      Care-stage-level rate benchmarks (P25/P50/P75) for FL Medicaid, 2024.
+      One org contributes one rate per stage (pooled across all codes in the
+      stage). Percentiles computed across orgs within each peer group.
+      Parallel peer groups: all_fl, by_entity, by_org_type, by_size, by_market,
+      by_taxonomy, rest_of_fl_excl. 4 KPIs: payment_per_claim,
+      revenue_per_bene, claims_per_bene, bene_per_clinician.
+    columns:
+      - name: care_stage
+      - name: peer_group
+      - name: dimension_value
+        description: Value within the peer_group axis (e.g. 'CMHC' for by_org_type)
+      - name: geo_level
+      - name: geo_id
+      - name: period_year
+      - name: org_count
+      - name: svc_npi_count
+      - name: total_claims
+      - name: total_paid
+      - name: total_beneficiaries
+      - name: p25_payment_per_claim
+      - name: p50_payment_per_claim
+      - name: p75_payment_per_claim
+      - name: p25_revenue_per_bene
+      - name: p50_revenue_per_bene
+      - name: p75_revenue_per_bene
+      - name: p25_claims_per_bene
+      - name: p50_claims_per_bene
+      - name: p75_claims_per_bene
+      - name: p25_bene_per_clinician
+      - name: p50_bene_per_clinician
+      - name: p75_bene_per_clinician
+    tests:
+      - unique:
+          column_name: "care_stage || '|' || peer_group || '|' || coalesce(dimension_value, '__null__') || '|' || period_year"
+      - not_null: { column_name: care_stage }
+      - not_null: { column_name: peer_group }
+      - accepted_values:
+          column_name: care_stage
+          values: ['intake', 'high_acuity', 'ongoing_treatment']
+      - accepted_values:
+          column_name: peer_group
+          values: ['all_fl', 'by_entity', 'by_org_type', 'by_size', 'by_market', 'by_taxonomy', 'rest_of_fl_excl']
+
+  - name: care_stage_rate_trends
+    description: >
+      Monthly care-stage KPI trends (2019–2024) for FL Medicaid. P50 only.
+      Same peer-group taxonomy as care_stage_rate_benchmarks plus
+      rest_of_fl_excl for sector comparisons. Grain: care_stage ×
+      period_month × peer_group × dimension_value.
+    columns:
+      - name: care_stage
+      - name: period_month
+      - name: peer_group
+      - name: dimension_value
+      - name: org_count
+      - name: svc_npi_count
+      - name: total_claims
+      - name: total_paid
+      - name: total_beneficiaries
+      - name: p50_payment_per_claim
+      - name: p50_revenue_per_bene
+      - name: p50_claims_per_bene
+      - name: p50_bene_per_clinician
+    tests:
+      - unique:
+          column_name: "care_stage || '|' || period_month || '|' || peer_group || '|' || coalesce(dimension_value, '__null__')"
+      - not_null: { column_name: care_stage }
+      - not_null: { column_name: period_month }
+      - not_null: { column_name: peer_group }
+      - accepted_values:
+          column_name: care_stage
+          values: ['intake', 'high_acuity', 'ongoing_treatment']
+      - accepted_values:
+          column_name: peer_group
+          values: ['all_fl', 'by_entity', 'by_org_type', 'by_size', 'by_market', 'by_taxonomy', 'rest_of_fl_excl']
+
+  - name: entity_panel_commitment
+    description: >
+      Panel commitment index by entity type × year.
+      Measures how consistently clinicians bill Medicaid month-over-month
+      vs the FL BH market average. One stg_doge scan filtered to ~2,691
+      known billing NPIs. 48 rows total.
+    columns:
+      - name: entity_key
+        description: "bhpf | fbha | lookalike | fqhc | community_bh | bh_specialty | sud | community"
+      - name: period_year
+        description: "Calendar year (2019–2024)"
+      - name: retention_pct
+        description: "Avg % of entity clinicians billing Medicaid in month m+1 given they billed in m"
+      - name: avg_npis
+        description: "Average active servicing NPIs per month for this entity"
+      - name: mkt_retention_pct
+        description: "Same retention metric across all FL BH entities (market baseline)"
+      - name: commitment_index
+        description: "retention_pct / mkt_retention_pct. >1 = more Medicaid-committed than market"
+    tests:
+      - unique:
+          column_name: "entity_key || '|' || cast(period_year as string)"
+      - not_null: { column_name: entity_key }
+      - not_null: { column_name: period_year }
