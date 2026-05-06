@@ -123,17 +123,6 @@ sources:
           - name: synced_at
             description: "When this row was synced to BQ."
 
-  - name: financial_reference
-    description: "Financial benchmarking reference tables loaded directly to BQ. AHCA-classified BH code reference for FL Medicaid."
-    database: "{{ target.project }}"
-    schema: "{{ env_var('BQ_MARTS_FINANCIAL_DATASET', 'mobius_financial_dev') }}"
-    tables:
-      - name: fl_bh_code_reference
-        description: "AHCA-classified FL Medicaid behavioral health HCPCS codes. 70 codes across 15 categories. Excludes personal care/HCBS (T1019/T1025) and behavior analysis (97151-97158). Source of truth for BH service line classification."
-        columns:
-          - name: ahca_category
-            description: "AHCA service category: Assessment, Community Support, Crisis/Screening, FACT, MH Rehab/Day Treatment, Medical/Psychiatric, Other BH Support, Practitioner Therapy, Psych Testing, Psychiatric Evaluation, Psychosocial Rehab (TBOS), Substance Use Disorder, Targeted Case Management, Telehealth MH, Treatment Planning"
-          - name: hcpcs_code
-            description: "HCPCS/CPT procedure code"
-          - name: description
-            description: "Human-readable code description"
+  # DEPRECATED: fl_bh_code_reference is now a dbt seed (seeds/fl_bh_code_reference.csv).
+  # All models should use ref('fl_bh_code_reference_enriched') instead.
+  # This source block is retained only for reference — no models should use it.

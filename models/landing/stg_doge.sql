@@ -2,6 +2,7 @@
   config(
     materialized='view',
     schema=env_var('BQ_LANDING_MEDICAID_DATASET', 'landing_medicaid_npi_dev'),
+    tags=['expensive'],
   )
 }}
 

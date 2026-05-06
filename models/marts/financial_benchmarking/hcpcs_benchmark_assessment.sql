@@ -24,7 +24,7 @@ with ref as (
         description,
         ahca_category,
         primary_metric
-    from {{ source('financial_reference', 'fl_bh_code_reference') }}
+    from {{ ref('fl_bh_code_reference_enriched') }}
 ),
 
 -- All distinct peer_group × dimension_value combos in the benchmark table

@@ -1,5 +1,6 @@
 {{
   config(
+    enabled=false,
     materialized='table',
     schema=env_var('BQ_MARTS_MEDICAID_DATASET', 'mobius_medicaid_npi_dev'),
     partition_by={
@@ -9,6 +10,7 @@
     cluster_by=['org_id', 'npi', 'org_display_name', 'npi_provider_name'],
   )
 }}
+-- DISABLED 2026-04-23: Scanned 21.46 TiB per run (~$134). Comment claimed "frontend and chat use only this" but zero non-dbt reads in 30d.
 
 -- B6 Integrated report: single read head. Query by org_id, npi, site_id, org_display_name, or npi_provider_name.
 -- Front end and chat use only this; B0–B5 are obfuscated. Table is partitioned by report_date, clustered for live lookups.

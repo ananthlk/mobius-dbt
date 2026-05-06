@@ -34,13 +34,13 @@ jobs:
         env:
           BQ_PROJECT: ${{ vars.BQ_PROJECT || 'your-gcp-project' }}
           BQ_DATASET: ${{ vars.BQ_DATASET || 'mobius_dbt_dev' }}
-        run: dbt run
+        run: dbt run --exclude tag:expensive
 
       - name: dbt test
         env:
           BQ_PROJECT: ${{ vars.BQ_PROJECT || 'your-gcp-project' }}
           BQ_DATASET: ${{ vars.BQ_DATASET || 'mobius_dbt_dev' }}
-        run: dbt test
+        run: dbt test --exclude tag:expensive
 
       # Optional: generate docs (uncomment and add upload step if desired)
       # - name: dbt docs generate

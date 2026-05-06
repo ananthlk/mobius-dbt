@@ -31,7 +31,7 @@ with nppes_fl_professional as (
 
 bh_codes as (
     select hcpcs_code, ahca_category as category, ahca_category as service_line
-    from {{ source('financial_reference', 'fl_bh_code_reference') }}
+    from {{ ref('fl_bh_code_reference_enriched') }}
 ),
 
 billing_org_context as (

@@ -1,9 +1,11 @@
 {{
   config(
+    enabled=false,
     materialized='table',
     schema=env_var('BQ_MARTS_MEDICAID_DATASET', 'mobius_medicaid_npi_dev'),
   )
 }}
+-- DISABLED 2026-04-23: Scanned 21.46 TiB per run (~$134) via b0_roster_list_fl. Zero non-dbt readers.
 -- Step 1: Roster list (org_id, site_id, npi, org_name, site address, …).
 -- Self-sufficient table for front end. See docs/FL_MEDICAID_NPI_STEP_OUTPUTS.md.
 

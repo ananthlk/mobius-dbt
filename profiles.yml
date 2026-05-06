@@ -2,6 +2,10 @@
 # Project-based isolation: each project (dev/staging/prod) has same dataset names (landing_rag, mobius_rag).
 # Set BQ_PROJECT per env. BQ_DATASET and BQ_LANDING_DATASET are always landing_rag and mobius_rag.
 # Auth: gcloud auth application-default login or GOOGLE_APPLICATION_CREDENTIALS
+#
+# maximum_bytes_billed: 2 TiB hard cap per query. Any dbt query exceeding this fails fast
+# rather than running up charges. Set 2026-04-23 after 23.6 TB roster table caused $1k+
+# in daily bills. Override with BQ_MAX_BYTES env var if a legitimate large job needs more.
 
 mobius_dbt:
   target: dev
@@ -13,6 +17,7 @@ mobius_dbt:
       dataset: "{{ env_var('BQ_DATASET', 'mobius_rag') }}"
       threads: 4
       timeout_seconds: 7200
+      maximum_bytes_billed: "{{ env_var('BQ_MAX_BYTES', '2199023255552') | int }}"
     staging:
       type: bigquery
       method: oauth
@@ -20,6 +25,7 @@ mobius_dbt:
       dataset: "{{ env_var('BQ_DATASET', 'mobius_rag') }}"
       threads: 4
       timeout_seconds: 7200
+      maximum_bytes_billed: "{{ env_var('BQ_MAX_BYTES', '2199023255552') | int }}"
     prod:
       type: bigquery
       method: oauth
@@ -27,3 +33,4 @@ mobius_dbt:
       dataset: "{{ env_var('BQ_DATASET', 'mobius_rag') }}"
       threads: 4
       timeout_seconds: 7200
+      maximum_bytes_billed: "{{ env_var('BQ_MAX_BYTES', '2199023255552') | int }}"

@@ -24,7 +24,7 @@
 
 with bh_codes as (
     select hcpcs_code, ahca_category
-    from {{ source('financial_reference', 'fl_bh_code_reference') }}
+    from {{ ref('fl_bh_code_reference_enriched') }}
 ),
 
 org_billing_map as (

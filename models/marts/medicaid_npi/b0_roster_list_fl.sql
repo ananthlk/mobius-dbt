@@ -1,9 +1,13 @@
 {{
   config(
+    enabled=false,
     materialized='table',
     schema=env_var('BQ_MARTS_MEDICAID_DATASET', 'mobius_medicaid_npi_dev'),
   )
 }}
+-- DISABLED 2026-04-23: Table was 23.6 TB / 539M rows from O(N^2) array_agg in billing_based CTE.
+-- Zero non-dbt reads in last 30 days. Daily rebuilds were costing ~$134/run.
+-- If downstream breaks, fix the array_agg explosion before re-enabling. See git blame for context.
 
 -- B0 Roster list: union of (1) address-based org/sub-org/NPI + associated member NPIs,
 -- and (2) billing-NPI-based group + member NPIs. Output: org_id, sub_org_id, npi, tin, associated_member_npis.

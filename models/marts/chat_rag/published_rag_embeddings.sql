@@ -1,6 +1,9 @@
 {{
   config(
-    materialized='table',
+    materialized='incremental',
+    unique_key='id',
+    incremental_strategy='merge',
+    on_schema_change='append_new_columns',
   )
 }}
 
@@ -39,3 +42,6 @@ select
   updated_at,
   source_verification_status
 from {{ source('landing_rag', 'rag_published_embeddings') }}
+{% if is_incremental() %}
+where updated_at > (select coalesce(max(updated_at), timestamp('1970-01-01')) from {{ this }})
+{% endif %}

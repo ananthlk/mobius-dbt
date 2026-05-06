@@ -2,6 +2,7 @@
   config(
     materialized='table',
     schema=env_var('BQ_MARTS_MEDICAID_DATASET', 'mobius_medicaid_npi_dev'),
+    tags=['expensive'],
   )
 }}
 -- FL Medicaid taxonomy-level revenue rates (per-beneficiary low/mid/high, beneficiaries per provider).

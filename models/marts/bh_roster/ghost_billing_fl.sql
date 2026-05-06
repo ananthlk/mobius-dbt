@@ -2,6 +2,7 @@
   config(
     materialized='table',
     schema=env_var('BQ_MARTS_MEDICAID_DATASET', 'mobius_medicaid_npi_dev'),
+    tags=['expensive'],
   )
 }}
 -- Ghost billing: servicing NPIs that BILL under the org (in DOGE) but have WEAK address/roster match (low confidence).

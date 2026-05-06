@@ -14,6 +14,7 @@ with org_billing_map as (
         om.org_slug,
         om.org_name,
         om.org_type,
+        om.cmhc_tier,
         om.org_primary_state  as org_state,
         om.org_primary_zip5   as org_zip5,
         om.org_primary_city   as org_city,
@@ -42,6 +43,14 @@ market_counts as (
     group by 1, 2, 3
 ),
 
+bh_codes as (
+    select distinct
+        hcpcs_code,
+        ahca_category,
+        care_stage as care_spectrum
+    from {{ ref('fl_bh_code_reference_enriched') }}
+),
+
 doge_annual as (
     select
         cast(billing_npi as string)      as billing_npi,
@@ -49,11 +58,15 @@ doge_annual as (
         left(period_month, 4)            as period_year,
         cast(beneficiary_count as int64) as beneficiary_count,
         cast(claim_count as int64)       as claim_count,
-        cast(total_paid as float64)      as total_paid
-    from {{ source('landing_medicaid_npi', 'stg_doge') }}
-    where billing_npi  is not null
-      and servicing_npi is not null
-      and period_month  is not null
+        cast(total_paid as float64)      as total_paid,
+        d.hcpcs_code,
+        bh.ahca_category,
+        bh.care_spectrum
+    from {{ source('landing_medicaid_npi', 'stg_doge') }} d
+    inner join bh_codes bh on bh.hcpcs_code = d.hcpcs_code  -- BH codes only
+    where d.billing_npi  is not null
+      and d.servicing_npi is not null
+      and d.period_month  is not null
 ),
 
 org_claims as (
@@ -65,14 +78,17 @@ org_claims as (
         m.org_city,
         m.primary_taxonomy_code,
         m.org_type,
+        m.cmhc_tier,
         d.period_year,
         d.servicing_npi,
+        d.ahca_category,
+        d.care_spectrum,
         sum(d.beneficiary_count) as bene_count,
         sum(d.claim_count)       as claim_count,
         sum(d.total_paid)        as total_paid
     from org_billing_map m
     join doge_annual d on d.billing_npi = m.billing_npi
-    group by 1, 2, 3, 4, 5, 6, 7, 8, 9
+    group by 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 ),
 
 org_annual as (
@@ -84,21 +100,42 @@ org_annual as (
         org_city,
         primary_taxonomy_code,
         org_type,
+        cmhc_tier,
         period_year,
         count(distinct servicing_npi)   as servicing_npi_count,
         sum(bene_count)                 as panel_size,
         sum(claim_count)                as total_claims,
-        sum(total_paid)                 as total_paid
+        sum(total_paid)                 as total_paid,
+        -- Care spectrum: paid amounts by tier
+        sum(case when care_spectrum = 'intake'             then total_paid else 0 end) as intake_paid,
+        sum(case when care_spectrum = 'high_acuity'        then total_paid else 0 end) as high_acuity_paid,
+        sum(case when care_spectrum = 'ongoing_treatment'  then total_paid else 0 end) as ongoing_paid,
+        -- Care spectrum: claim counts by tier
+        sum(case when care_spectrum = 'intake'             then claim_count else 0 end) as intake_claims,
+        sum(case when care_spectrum = 'high_acuity'        then claim_count else 0 end) as high_acuity_claims,
+        sum(case when care_spectrum = 'ongoing_treatment'  then claim_count else 0 end) as ongoing_claims,
+        -- Care spectrum: bene counts by tier
+        sum(case when care_spectrum = 'intake'             then bene_count else 0 end) as intake_benes,
+        sum(case when care_spectrum = 'high_acuity'        then bene_count else 0 end) as high_acuity_benes,
+        sum(case when care_spectrum = 'ongoing_treatment'  then bene_count else 0 end) as ongoing_benes
     from org_claims
-    group by 1, 2, 3, 4, 5, 6, 7, 8
+    group by 1, 2, 3, 4, 5, 6, 7, 8, 9
 ),
 
+-- Deduplicate NPPES to one taxonomy per NPI (prevents fan-out in clinician_mix join)
 nppes_tax as (
     select
-        cast(npi as string) as npi,
-        coalesce(nullif(trim(cast(healthcare_provider_taxonomy_code_1 as string)),''),'') as taxonomy
-    from {{ source('nppes_public', 'npi_optimized') }}
-    where npi is not null
+        npi,
+        taxonomy
+    from (
+        select
+            cast(npi as string) as npi,
+            coalesce(nullif(trim(cast(healthcare_provider_taxonomy_code_1 as string)),''),'') as taxonomy,
+            row_number() over (partition by cast(npi as string) order by cast(npi as string)) as rn
+        from {{ source('nppes_public', 'npi_optimized') }}
+        where npi is not null
+    )
+    where rn = 1
 ),
 
 org_clinicians as (
@@ -130,6 +167,7 @@ select
     a.primary_taxonomy_code,
     nc.billing_npi_count,
     a.org_type,
+    a.cmhc_tier,
     case
         when mc.orgs_in_market < 3  then 'sparse'
         when mc.orgs_in_market < 10 then 'moderate'
@@ -170,7 +208,48 @@ select
     round(safe_divide(coalesce(m.social_worker_count, 0), a.servicing_npi_count), 4) as social_worker_pct,
     round(safe_divide(coalesce(m.mft_count,           0), a.servicing_npi_count), 4) as mft_pct,
     round(safe_divide(coalesce(m.psychologist_count,  0), a.servicing_npi_count), 4) as psychologist_pct,
-    round(safe_divide(coalesce(m.aprn_count,          0), a.servicing_npi_count), 4) as aprn_pct
+    round(safe_divide(coalesce(m.aprn_count,          0), a.servicing_npi_count), 4) as aprn_pct,
+
+    -- Market share: org's paid as % of all BH spending in same ZIP (local catchment)
+    round(safe_divide(
+        a.total_paid,
+        sum(a.total_paid) over (partition by a.org_zip5, a.period_year)
+    ), 6) as market_share_pct,
+
+    -- Care spectrum: paid amounts and claim/bene counts per tier
+    a.intake_paid,
+    a.high_acuity_paid,
+    a.ongoing_paid,
+    a.intake_claims,
+    a.high_acuity_claims,
+    a.ongoing_claims,
+    a.intake_benes,
+    a.high_acuity_benes,
+    a.ongoing_benes,
+
+    -- Care spectrum market share: org's tier paid as % of all tier spending in same ZIP
+    round(safe_divide(
+        a.intake_paid,
+        sum(a.intake_paid) over (partition by a.org_zip5, a.period_year)
+    ), 6) as intake_market_share,
+    round(safe_divide(
+        a.high_acuity_paid,
+        sum(a.high_acuity_paid) over (partition by a.org_zip5, a.period_year)
+    ), 6) as high_acuity_market_share,
+    round(safe_divide(
+        a.ongoing_paid,
+        sum(a.ongoing_paid) over (partition by a.org_zip5, a.period_year)
+    ), 6) as ongoing_market_share,
+
+    -- Org's own revenue mix across the spectrum (sums to 1.0)
+    round(safe_divide(a.intake_paid,       a.total_paid), 4) as intake_revenue_pct,
+    round(safe_divide(a.high_acuity_paid,  a.total_paid), 4) as high_acuity_revenue_pct,
+    round(safe_divide(a.ongoing_paid,      a.total_paid), 4) as ongoing_revenue_pct,
+
+    -- Org's beneficiary mix across the spectrum (normalized to 1.0)
+    round(safe_divide(a.intake_benes,       a.intake_benes + a.high_acuity_benes + a.ongoing_benes), 4) as intake_bene_pct,
+    round(safe_divide(a.high_acuity_benes,  a.intake_benes + a.high_acuity_benes + a.ongoing_benes), 4) as high_acuity_bene_pct,
+    round(safe_divide(a.ongoing_benes,      a.intake_benes + a.high_acuity_benes + a.ongoing_benes), 4) as ongoing_bene_pct
 
 from org_annual a
 left join clinician_mix m on m.org_slug = a.org_slug and m.period_year = a.period_year

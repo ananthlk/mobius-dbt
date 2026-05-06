@@ -11,8 +11,8 @@
 select
   upload_id,
   org_name,
-  coalesce(nullif(trim(resolved_npi), ''), nullif(trim(npi_number), '')) as npi,
+  coalesce(nullif(cast(resolved_npi as string), ''), nullif(trim(npi_number), '')) as npi,
   provider_name,
   resolve_confidence
 from {{ ref('roster_upload_cleaned') }}
-where coalesce(nullif(trim(resolved_npi), ''), nullif(trim(npi_number), '')) != ''
+where coalesce(nullif(cast(resolved_npi as string), ''), nullif(trim(npi_number), '')) != ''

@@ -2,6 +2,7 @@
   config(
     materialized='table',
     schema=env_var('BQ_MARTS_MEDICAID_DATASET', 'mobius_medicaid_npi_dev'),
+    tags=['expensive'],
   )
 }}
 -- FL Behavioral Health Roster: union of address-based + billing-NPI-based (B0 logic).

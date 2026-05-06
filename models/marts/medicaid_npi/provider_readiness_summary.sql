@@ -1,9 +1,11 @@
 {{
   config(
+    enabled=false,
     materialized='table',
     schema=env_var('BQ_MARTS_MEDICAID_DATASET', 'mobius_medicaid_npi_dev'),
   )
 }}
+-- DISABLED 2026-04-23: Scanned 14.18 TiB per run (~$88). Zero non-dbt reads in 30d.
 
 -- Provider readiness aggregated by billing_npi. One row per billing org.
 -- Percentages: pct_ready_today, pct_ready_3mo.

@@ -32,6 +32,8 @@ vars:
   # PML: use_pml_address true when stg_pml has address_line_1, zip, zip_plus_4
   use_pml_address: true
   use_pml_taxonomy: false
+  # stg_nucc_taxonomy uses taxonomy_code/taxonomy_description (seed format, not full NUCC CSV)
+  nucc_use_code_definition: false
 
 models:
   mobius_dbt:
@@ -45,9 +47,16 @@ models:
       medicaid_npi:
         +materialized: table
         +enabled: true  # Required for roster reconciliation (b0_roster_list_fl)
+        +tags: ['expensive']  # reads NPPES (~8M rows) + DOGE — excluded from CI, run manually/nightly
       bh_roster:
         +materialized: table
         +schema: "{{ env_var('BQ_MARTS_MEDICAID_DATASET', 'mobius_medicaid_npi_dev') }}"
+        +tags: ['expensive']  # depends on medicaid_npi + DOGE — excluded from CI
       financial_benchmarking:
         +materialized: table
         +schema: "{{ env_var('BQ_MARTS_FINANCIAL_DATASET', 'mobius_financial_dev') }}"
+        +tags: ['expensive']  # reads landing_medicaid_npi.medicaid_provider_spending (DOGE, 100M+ rows) — excluded from CI
+      strategy:
+        +materialized: table
+        +schema: "mobius_strategy"
+        +tags: ['expensive']  # reads DOGE via stg_doge — excluded from CI
