@@ -1,10 +1,10 @@
 {
-  "run_ts": "2026-05-05T09:50:18.180387Z",
+  "run_ts": "2026-07-06T09:00:27.797425Z",
   "source_file": "/Users/ananth/Mobius/mobius-dbt/scripts/../data/prw19000.csv",
   "backup": {
     "status": "ok",
-    "backup_table": "mobius-os-dev.landing_medicaid_npi_dev.stg_pml_backup_20260505",
-    "backup_row_count": 263746
+    "backup_table": "mobius-os-dev.landing_medicaid_npi_dev.stg_pml_backup_20260706",
+    "backup_row_count": 267037
   },
   "raw": {
     "raw_row_count": 307664,

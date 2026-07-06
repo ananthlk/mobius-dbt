@@ -1,0 +1,20 @@
+.git
+.gitignore
+.venv
+.env
+.env.*
+__pycache__
+*.pyc
+*.pyo
+.pytest_cache
+
+# dbt working dirs (regenerate in container)
+target/
+logs/
+dbt_packages/
+
+# Local data + reports
+data/
+reports/
+*.log
+*.sqlite

@@ -1,22 +1,22 @@
 {
-  "run_ts": "2026-05-05T09:56:50.557792Z",
+  "run_ts": "2026-07-06T09:00:40.430835Z",
   "source_file": "/Users/ananth/Mobius/mobius-dbt/scripts/../data/prd19100.csv",
   "backup": {
     "status": "ok",
-    "backup_table": "mobius-os-dev.landing_medicaid_npi_dev.stg_ppl_backup_20260505",
-    "backup_row_count": 6348
+    "backup_table": "mobius-os-dev.landing_medicaid_npi_dev.stg_ppl_backup_20260706",
+    "backup_row_count": 6374
   },
   "raw": {
-    "raw_row_count": 10338,
-    "raw_npi_count": 6348
+    "raw_row_count": 10556,
+    "raw_npi_count": 6374
   },
   "cleansed": {
-    "cleansed_row_count": 6348,
-    "cleansed_npi_count": 6348,
-    "cleansed_dropped_no_npi": 2516
+    "cleansed_row_count": 6374,
+    "cleansed_npi_count": 6374,
+    "cleansed_dropped_no_npi": 2846
   },
   "load": {
-    "loaded_row_count": 6348,
-    "gcs_uri": "gs://mobius-os-dev-fl-medicaid-npi-raw/raw/ppl/2026-05-05/ppl_prd19100_cleansed.csv"
+    "loaded_row_count": 6374,
+    "gcs_uri": "gs://mobius-os-dev-fl-medicaid-npi-raw/raw/ppl/2026-07-06/ppl_prd19100_cleansed.csv"
   }
 }
