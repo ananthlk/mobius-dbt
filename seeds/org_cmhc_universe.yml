@@ -1,0 +1,45 @@
+version: 2
+
+seeds:
+  - name: org_cmhc_universe
+    description: >
+      Authoritative FL CMHC roster combining the BHPF client list (tier 1, our
+      direct customers) and the FBHA member list (tier 2, recognized state
+      affiliate members). Used to override the unreliable NPPES "CMHC" taxonomy
+      classification (precision ~12%, recall ~18% verified empirically) and to
+      drive the 3-tier sector framework:
+
+        tier1_bhpf  — BHPF client (we have direct relationship)
+        tier2_fbha  — FBHA member but not a BHPF client
+        tier3_lookalike — claims CMHC taxonomy in NPPES but not on either roster
+
+      Tier 3 is computed downstream in org_profile_v2 by left-anti-join: any
+      org with org_type='CMHC' that does not match any canonical_name (or
+      curated alias) in this seed is tier 3.
+
+    config:
+      schema: "{{ env_var('BQ_MARTS_FINANCIAL_DATASET', 'mobius_financial_dev') }}"
+      column_types:
+        canonical_name: string
+        cmhc_tier: string
+        is_bhpf_client: boolean
+        is_fbha_member: boolean
+        city: string
+        state: string
+        notes: string
+    columns:
+      - name: canonical_name
+        description: Authoritative canonical name (matches org_aliases.canonical_name)
+        tests:
+          - not_null
+          - unique
+      - name: cmhc_tier
+        description: "tier1_bhpf | tier2_fbha"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [tier1_bhpf, tier2_fbha]
+      - name: is_bhpf_client
+        tests: [not_null]
+      - name: is_fbha_member
+        tests: [not_null]

@@ -1,0 +1,68 @@
+canonical_name,cmhc_tier,is_bhpf_client,is_fbha_member,city,state,notes
+Apalachee Center,tier1_bhpf,TRUE,TRUE,Tallahassee,FL,Moved from tier2 to tier1 per BHPF roster
+Aspire Health Partners,tier1_bhpf,TRUE,TRUE,Orlando,FL,
+Banyan Community Health,tier1_bhpf,TRUE,TRUE,Miami,FL,Listed as Banyan Health on BHPF roster
+BayCare Behavioral Health,tier1_bhpf,TRUE,TRUE,New Port Richey,FL,Listed as Baycare on BHPF roster
+Bridgeway Center,tier1_bhpf,TRUE,TRUE,Fort Walton Beach,FL,
+Centerstone Florida,tier1_bhpf,TRUE,TRUE,Bradenton,FL,Listed as Centestone on BHPF roster
+Charlotte Behavioral Health Care,tier1_bhpf,TRUE,TRUE,Punta Gorda,FL,Exit trajectory 2018-2023
+Child Guidance Center,tier1_bhpf,TRUE,TRUE,Jacksonville,FL,
+Circles of Care,tier1_bhpf,TRUE,TRUE,Melbourne,FL,
+Community Health of South Florida,tier1_bhpf,TRUE,TRUE,Miami,FL,
+David Lawrence Centers,tier1_bhpf,TRUE,TRUE,Naples,FL,
+Devereux,tier1_bhpf,TRUE,TRUE,Orlando,FL,Listed as Devereux Advanced Behavioral Health on BHPF
+Directions for Living,tier1_bhpf,TRUE,TRUE,Clearwater,FL,
+Eleos Wellness & Support,tier1_bhpf,TRUE,TRUE,Pinellas Park,FL,Rebrand of PEMHS
+Grace Point Wellness,tier1_bhpf,TRUE,FALSE,,FL,BHPF-only org not on FBHA roster
+Henderson Behavioral Health,tier1_bhpf,TRUE,TRUE,Lauderdale Lakes,FL,
+IMPOWER,tier1_bhpf,TRUE,TRUE,Longwood,FL,
+LifeStream Behavioral Center,tier1_bhpf,TRUE,TRUE,Leesburg,FL,
+Meridian Healthcare,tier1_bhpf,TRUE,TRUE,Gainesville,FL,Legal name Meridian Behavioral Healthcare
+New Horizons Community Mental Health Center,tier1_bhpf,TRUE,TRUE,Miami,FL,Listed as New Horizons CMHC on BHPF
+New Horizons of the Treasure Coast and Okeechobee,tier1_bhpf,TRUE,TRUE,Fort Pierce,FL,
+Park Place Behavioral Health Care,tier1_bhpf,TRUE,TRUE,Kissimmee,FL,
+Peace River Center for Personal Development,tier1_bhpf,TRUE,TRUE,Bartow,FL,Listed as Peace River Center on BHPF
+SMA Healthcare,tier1_bhpf,TRUE,TRUE,Daytona Beach,FL,
+Starting Point Behavioral Healthcare,tier1_bhpf,TRUE,TRUE,Yulee,FL,Not in NPPES under any known name
+Suncoast Center,tier1_bhpf,TRUE,TRUE,St. Petersburg,FL,
+Tri-County Human Services,tier1_bhpf,TRUE,TRUE,Lakeland,FL,
+ACTS,tier2_fbha,FALSE,TRUE,Tampa,FL,Agency for Community Treatment Services
+Agape Network,tier2_fbha,FALSE,TRUE,Miami,FL,
+Alpert Jewish Services of Palm Beach,tier2_fbha,FALSE,TRUE,West Palm Beach,FL,
+Archways,tier2_fbha,FALSE,TRUE,Ft. Lauderdale,FL,Exit trajectory
+Better Way of Miami,tier2_fbha,FALSE,TRUE,Miami,FL,
+Boley Centers,tier2_fbha,FALSE,TRUE,St. Petersburg,FL,
+Brave Health,tier2_fbha,FALSE,TRUE,Miami,FL,
+Bridges International,tier2_fbha,FALSE,TRUE,Orlando,FL,
+Broward Addiction Recovery Center,tier2_fbha,FALSE,TRUE,Fort Lauderdale,FL,BARC
+CDAC Behavioral Healthcare,tier2_fbha,FALSE,TRUE,Pensacola,FL,Not in NPPES under any known name
+Central Florida Treatment Center,tier2_fbha,FALSE,TRUE,Orlando,FL,Methadone clinic; not in NPPES
+Clay Behavioral Health Center,tier2_fbha,FALSE,TRUE,Orange Park,FL,
+Community Assisted and Supported Living,tier2_fbha,FALSE,TRUE,Sarasota,FL,CASL
+Citrus Health Network,tier2_fbha,FALSE,TRUE,Hialeah,FL,Tagged FQHC in our taxonomy
+DISC Village,tier2_fbha,FALSE,TRUE,Tallahassee,FL,
+Douglas Gardens Community Mental Health Center,tier2_fbha,FALSE,TRUE,Miami Beach,FL,
+Drug Abuse Foundation of Palm Beach Co.,tier2_fbha,FALSE,TRUE,Delray Beach,FL,
+Drug Abuse Treatment Association,tier2_fbha,FALSE,TRUE,Jupiter,FL,
+EPIC Behavioral Healthcare,tier2_fbha,FALSE,TRUE,St. Augustine,FL,
+Fellowship House,tier2_fbha,FALSE,TRUE,S Miami,FL,
+Florida Palms Academy,tier2_fbha,FALSE,TRUE,Sunrise,FL,
+Gateway Community Services,tier2_fbha,FALSE,TRUE,Jacksonville,FL,
+Hanley Foundation,tier2_fbha,FALSE,TRUE,West Palm Beach,FL,
+House Next Door,tier2_fbha,FALSE,TRUE,Deland,FL,
+House of Hope,tier2_fbha,FALSE,TRUE,Ft. Lauderdale,FL,
+Ibis Healthcare,tier2_fbha,FALSE,TRUE,Tampa,FL,
+Lakeview Center,tier2_fbha,FALSE,TRUE,Pensacola,FL,
+Life Management Center of Northwest Florida,tier2_fbha,FALSE,TRUE,Panama City,FL,
+Lightshare Behavioral Wellness & Recovery,tier2_fbha,FALSE,TRUE,Sarasota,FL,Rebrand of Coastal Behavioral Healthcare
+Operation PAR,tier2_fbha,FALSE,TRUE,Pinellas Park,FL,
+Passageway Residence of Dade County,tier2_fbha,FALSE,TRUE,Miami,FL,
+Phoenix House Florida,tier2_fbha,FALSE,TRUE,Brandon,FL,Phoenix Houses of Florida
+Recovery Connections of Central Florida,tier2_fbha,FALSE,TRUE,Orlando,FL,
+SalusCare,tier2_fbha,FALSE,TRUE,Fort Myers,FL,
+St. Augustine Youth Services,tier2_fbha,FALSE,TRUE,St. Augustine,FL,
+STEPS,tier2_fbha,FALSE,TRUE,Orlando,FL,
+Tampa General Behavioral Health Hospital,tier2_fbha,FALSE,TRUE,Tampa,FL,
+The Henry and Rilla White Foundation,tier2_fbha,FALSE,TRUE,Tallahassee,FL,
+The Transition House,tier2_fbha,FALSE,TRUE,St. Cloud,FL,
+WestCare Florida,tier2_fbha,FALSE,TRUE,Pembroke Pines,FL,WestCare GulfCoast Florida Inc

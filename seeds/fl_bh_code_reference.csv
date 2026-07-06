@@ -1,0 +1,82 @@
+hcpcs_code,description,ahca_category,primary_metric,care_stage
+H0001,Alcohol and/or drug assessment,Assessment,ppc,intake
+H0031,Mental health assessment by non-physician,Assessment,ppc,intake
+H2000,Comprehensive multidisciplinary evaluation,Assessment,ppc,intake
+H2010,Comprehensive medication services - per 15 min,Assessment,rpb,intake
+S5145,Specialized therapeutic foster care per diem,Behavioral Health Overlay Services,rpb,ongoing_treatment
+H2017,Psychosocial rehabilitation - community support team,Community Support,rpb,ongoing_treatment
+H2030,Mental health clubhouse services,Community Support,rpb,ongoing_treatment
+H0030,BH hotline service per 15 min,Crisis/Screening,rpb,high_acuity
+H1000,Prenatal care at-risk assessment / MH screening by non-MD,Crisis/Screening,rpb,intake
+H1001,Prenatal care at-risk enhanced services / group screening,Crisis/Screening,rpb,intake
+H2011,Crisis intervention service per 15 min,Crisis/Screening,rpb,high_acuity
+S9484,Crisis intervention MH services per hour,Crisis/Screening,rpb,high_acuity
+S9485,Crisis intervention - mental health per diem,Crisis/Screening,rpb,high_acuity
+H0040,Assertive community treatment - per diem,FACT,rpb,high_acuity
+H2014,Skills training and development - per 15 min,MH Rehab/Day Treatment,rpb,ongoing_treatment
+H2015,Comprehensive community support services - per 15 min,MH Rehab/Day Treatment,rpb,ongoing_treatment
+H2016,Comprehensive community support services - per diem,MH Rehab/Day Treatment,rpb,ongoing_treatment
+H2021,Community-based wrap-around services - per 15 min,MH Rehab/Day Treatment,rpb,ongoing_treatment
+H2022,Community-based wrap-around services - per diem,MH Rehab/Day Treatment,rpb,ongoing_treatment
+H0020,Alcohol and/or drug services - methadone administration,Medical/Psychiatric,rpb,high_acuity
+H0033,Oral medication administration - naltrexone,Medical/Psychiatric,rpb,ongoing_treatment
+H0034,Medication training and support per 15 min,Medical/Psychiatric,rpb,ongoing_treatment
+H0046,Mental health services - not otherwise specified,Medical/Psychiatric,rpb,ongoing_treatment
+H0047,BH medical services verbal interaction - substance abuse,Medical/Psychiatric,rpb,ongoing_treatment
+H0048,Alcohol and/or drug testing - collection and handling,Medical/Psychiatric,rpb,ongoing_treatment
+T1015,Clinic visit/encounter - community behavioral health,Medical/Psychiatric,rpb,ongoing_treatment
+T1023,Screening to determine appropriateness of services,Medical/Psychiatric,rpb,intake
+H0023,Behavioral health outreach service,Other BH Support,rpb,ongoing_treatment
+H0049,Alcohol and/or drug screening,Other BH Support,rpb,intake
+S9500,Home infusion therapy - catecholamines / not otherwise classified,Other BH Support,rpb,ongoing_treatment
+S9501,Home infusion therapy - anticoagulant / not otherwise classified,Other BH Support,rpb,ongoing_treatment
+S9502,Home infusion therapy - not otherwise classified,Other BH Support,rpb,ongoing_treatment
+T1027,Family training and counseling for child development,Other BH Support,rpb,ongoing_treatment
+90785,Interactive complexity add-on,Practitioner Therapy,ppc,ongoing_treatment
+90832,Psychotherapy 30 minutes,Practitioner Therapy,ppc,ongoing_treatment
+90833,Psychotherapy 30 min add-on to E/M,Practitioner Therapy,ppc,ongoing_treatment
+90834,Psychotherapy 45 minutes,Practitioner Therapy,ppc,ongoing_treatment
+90836,Psychotherapy 45 min add-on to E/M,Practitioner Therapy,ppc,ongoing_treatment
+90837,Psychotherapy 60 minutes,Practitioner Therapy,ppc,ongoing_treatment
+90838,Psychotherapy 60 min add-on to E/M,Practitioner Therapy,ppc,ongoing_treatment
+90846,Family psychotherapy without patient,Practitioner Therapy,ppc,ongoing_treatment
+90847,Family psychotherapy with patient,Practitioner Therapy,ppc,ongoing_treatment
+90853,Group psychotherapy,Practitioner Therapy,ppc,ongoing_treatment
+90876,Individual psychophysiological therapy with biofeedback,Practitioner Therapy,ppc,ongoing_treatment
+96110,Developmental screening with interpretation,Psych Testing,ppc,intake
+96116,Neurobehavioral status exam - first hour,Psych Testing,ppc,intake
+96127,Brief emotional/behavioral assessment,Psych Testing,ppc,intake
+96130,Psychological testing evaluation - first hour,Psych Testing,ppc,intake
+96131,Psychological testing evaluation - each additional hour,Psych Testing,ppc,intake
+96132,Neuropsychological testing evaluation - first hour,Psych Testing,ppc,intake
+96133,Neuropsychological testing evaluation - each additional hour,Psych Testing,ppc,intake
+96137,Test administration by technician - each additional 30 min,Psych Testing,ppc,intake
+90791,Psychiatric diagnostic evaluation,Psychiatric Evaluation,ppc,intake
+90792,Psychiatric diagnostic evaluation with medical services,Psychiatric Evaluation,ppc,intake
+90887,Interpretation or explanation of psychiatric results,Psychiatric Evaluation,ppc,intake
+H2012,Behavioral health day treatment - per hour,Psychosocial Rehab (TBOS),rpb,ongoing_treatment
+H2019,Therapeutic behavioral on-site services,Psychosocial Rehab (TBOS),rpb,ongoing_treatment
+H2020,Therapeutic behavioral services - day treatment,Psychosocial Rehab (TBOS),rpb,ongoing_treatment
+H0004,Behavioral health counseling and therapy - per 15 min,Substance Use Disorder,rpb,ongoing_treatment
+H0005,Alcohol and/or drug services - group counseling,Substance Use Disorder,ppc,ongoing_treatment
+H0006,Alcohol and/or drug services - case management,Substance Use Disorder,ppc,ongoing_treatment
+H0011,Alcohol and/or drug services - crisis intervention outpatient,Substance Use Disorder,rpb,high_acuity
+H0012,Sub-acute detox residential/outpatient,Substance Use Disorder,rpb,high_acuity
+H0013,Acute detox residential/outpatient,Substance Use Disorder,rpb,high_acuity
+H0014,Alcohol and/or drug services - ambulatory detox,Substance Use Disorder,ppc,high_acuity
+H0015,Alcohol and/or drug services - intensive outpatient,Substance Use Disorder,rpb,high_acuity
+H0016,Alcohol and/or drug services - medical/somatic,Substance Use Disorder,rpb,high_acuity
+H0017,Residential BH treatment - hospital program per diem,Substance Use Disorder,rpb,high_acuity
+H0018,Short-term residential non-hospital per diem,Substance Use Disorder,rpb,high_acuity
+H0019,Alcohol and/or drug services - crisis intervention residential,Substance Use Disorder,rpb,high_acuity
+H0035,Mental health partial hospitalization - treatment less than 24hr,Substance Use Disorder,rpb,high_acuity
+H0036,Community psychiatric supportive treatment - face to face,Substance Use Disorder,rpb,ongoing_treatment
+H0038,Self-help/peer services - per 15 min,Substance Use Disorder,rpb,ongoing_treatment
+H0043,Supported housing - per diem,Substance Use Disorder,rpb,ongoing_treatment
+S9480,Intensive outpatient psychiatric services,Substance Use Disorder,rpb,high_acuity
+T1017,Targeted case management,Targeted Case Management,rpb,ongoing_treatment
+99441,Telephone E/M by physician 5-10 min,Telehealth MH,rpb,ongoing_treatment
+99442,Telephone E/M by physician 11-20 min,Telehealth MH,rpb,ongoing_treatment
+99443,Telephone E/M by physician 21-30 min,Telehealth MH,rpb,ongoing_treatment
+H0032,Mental health service plan development by non-physician,Treatment Planning,ppc,intake
+T1007,Treatment plan development/modification - alcohol/drug,Treatment Planning,rpb,intake

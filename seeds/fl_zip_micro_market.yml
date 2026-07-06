@@ -1,0 +1,11 @@
+version: 2
+
+seeds:
+  - name: fl_zip_micro_market
+    description: "FL ZIP to county to MSA/micro-market mapping. 1,013 ZIPs → 45 micro-markets."
+    config:
+      schema: "mobius_strategy"
+      column_types:
+        zip5: string
+        county_fips: string
+        msa_code: string

@@ -1,0 +1,11 @@
+version: 2
+
+seeds:
+  - name: ruca_fl_zips
+    description: "USDA RUCA 2020 codes for FL ZIP codes. 1,471 ZIPs classified as urban/suburban/rural/ultra_rural."
+    config:
+      schema: "mobius_strategy"
+      column_types:
+        zip5: string
+        primary_ruca: string
+        secondary_ruca: string

@@ -1,0 +1,24 @@
+version: 2
+
+seeds:
+  - name: org_slug_dedup
+    description: >
+      Maps duplicate org_slugs to their canonical (preferred) slug.
+      Generated from landing table analysis: orgs with matching normalized names
+      or shared billing NPIs. Canonical = the credentialing pipeline's clean name
+      (typically without -inc/-llc suffixes).
+      Used in org_npi_map to collapse duplicate org_profiles before aggregation.
+    config:
+      column_types:
+        duplicate_slug: string
+        canonical_slug: string
+    columns:
+      - name: duplicate_slug
+        description: "The org_slug to be replaced (e.g. baycare-behavioral-health-inc)"
+        tests:
+          - unique
+          - not_null
+      - name: canonical_slug
+        description: "The preferred org_slug to use instead (e.g. baycare-behavioral-health)"
+        tests:
+          - not_null

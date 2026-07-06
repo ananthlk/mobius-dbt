@@ -1,0 +1,94 @@
+canonical_name,alias_name,alias_type,state,effective_year,source,notes
+Eleos Wellness & Support,Personal Enrichment Through Mental Health Services,former_legal_name,FL,2023,BHPF intake,PEMHS rebranded to Eleos; legal name in NPPES still PEMHS
+Eleos Wellness & Support,PEMHS,acronym,FL,,BHPF intake,Commonly used acronym
+Lightshare Behavioral Wellness & Recovery,Coastal Behavioral Healthcare,former_legal_name,FL,2022,FBHA research,Coastal Behavioral Healthcare Inc rebranded to Lightshare
+Lightshare Behavioral Wellness & Recovery,Coastal Behavioral Healthcare Inc,former_legal_name,FL,2022,FBHA research,
+Starting Point Behavioral Healthcare,Starting Point Behavioral Health,dba,FL,,FBHA research,Nassau County FL BH provider
+Meridian Healthcare,Meridian Behavioral Healthcare,dba,FL,,FBHA research,Gainesville FL; full legal name
+The Transition House,Transition House Inc,legal_name,FL,,FBHA research,
+Drug Abuse Foundation of Palm Beach Co.,Drug Abuse Foundation of Palm Beach County,legal_name,FL,,FBHA research,
+Community Assisted and Supported Living,CASL,acronym,FL,,FBHA research,Sarasota FL
+CDAC Behavioral Healthcare,Community Drug and Alcohol Council,former_legal_name,FL,,FBHA research,Pensacola FL
+CDAC Behavioral Healthcare,Community Drug and Alcohol Council Inc,former_legal_name,FL,,FBHA research,
+CDAC Behavioral Healthcare,CDAC Inc,legal_name,FL,,FBHA research,
+Central Florida Treatment Center,Central Florida Treatment Centers Inc,legal_name,FL,,FBHA research,Methadone clinic Orlando
+Central Florida Treatment Center,CFTC,acronym,FL,,FBHA research,
+Central Florida Treatment Center,"METRO TREATMENT OF FLORIDA, LP",dba,FL,,NPI dedup,NPPES org name for methadone clinic
+Central Florida Treatment Center,Metro Treatment of Florida LP,dba,FL,,NPI dedup,Without comma variant
+Starting Point Behavioral Healthcare,Starting Point Behavioral Healthcare Inc,legal_name,FL,,FBHA research,Yulee FL Nassau County
+Tampa General Behavioral Health Hospital,Tampa General Hospital Behavioral Health,dba,FL,,FBHA research,
+Tampa General Behavioral Health Hospital,Florida Health Sciences Center Inc,legal_name,FL,,FBHA research,Parent legal entity for TGH
+ACTS,Agency for Community Treatment Services,legal_name,FL,,FBHA research,Tampa FL SUD provider
+Archways,Archways Inc,legal_name,FL,,FBHA research,Ft Lauderdale FL - exit trajectory 2018-2023
+Charlotte Behavioral Health Care,Charlotte Behavioral Healthcare Inc,legal_name,FL,,FBHA research,Punta Gorda FL
+DISC Village,DISC Village Inc,legal_name,FL,,FBHA research,Tallahassee FL
+Bridges International,Bridges International Inc,legal_name,FL,,FBHA research,Orlando FL
+WestCare Florida,WestCare GulfCoast-Florida,dba,FL,,FBHA research,
+WestCare Florida,WestCare GulfCoast Florida Inc,legal_name,FL,,FBHA research,
+Hanley Foundation,Hanley Center Foundation,former_legal_name,FL,,FBHA research,West Palm Beach FL
+Phoenix House Florida,Phoenix Houses of Florida,legal_name,FL,,FBHA research,
+Recovery Connections of Central Florida,Recovery Connections CFL,acronym,FL,,FBHA research,
+House of Hope,House of Hope Inc,legal_name,FL,,FBHA research,
+Florida Palms Academy,Florida Palms Academy Inc,legal_name,FL,,FBHA research,Sunrise FL
+Tampa General Behavioral Health Hospital,TGH Behavioral Health Hospital,dba,FL,,FBHA research,Tampa FL
+Central Florida Treatment Center,Central Florida Treatment Centers,legal_name,FL,,FBHA research,
+Broward Addiction Recovery Center,BARC,acronym,FL,,FBHA research,Fort Lauderdale FL
+Alpert Jewish Services of Palm Beach,Alpert Jewish Family Service,legal_name,FL,,FBHA research,West Palm Beach FL
+Aspire Health Partners,Aspire Health Partners Inc,legal_name,FL,,NPI dedup,NPPES legal name with Inc
+Banyan Community Health,Banyan Community Health Center Inc,legal_name,FL,,NPI dedup,NPPES legal name
+BayCare Behavioral Health,BayCare Behavioral Health Inc,legal_name,FL,,NPI dedup,NPPES legal name with Inc
+Bridgeway Center,Bridgeway Center Inc,legal_name,FL,,NPI dedup,
+Child Guidance Center,Child Guidance Center Inc,legal_name,FL,,NPI dedup,
+Circles of Care,Circles of Care Inc,legal_name,FL,,NPI dedup,
+Community Health of South Florida,Community Health of South Florida Inc,legal_name,FL,,NPI dedup,
+Community Health of South Florida,Community Health of South FL Inc,legal_name,FL,,NPI dedup,Abbreviated variant
+Directions for Living,Directions for Mental Health Inc,former_legal_name,FL,,NPI dedup,Former legal name in NPPES
+Henderson Behavioral Health,Henderson Behavioral Health Inc,legal_name,FL,,NPI dedup,
+IMPOWER,IMPOWER Inc,legal_name,FL,,NPI dedup,
+LifeStream Behavioral Center,LifeStream Behavioral Center Inc,legal_name,FL,,NPI dedup,
+Meridian Healthcare,Meridian Behavioral Healthcare Inc,legal_name,FL,,NPI dedup,Full NPPES legal name
+New Horizons Community Mental Health Center,New Horizons Community Mental Health Center Inc,legal_name,FL,,NPI dedup,
+New Horizons Community Mental Health Center,New Horizons Comm Mentl,legal_name,FL,,NPI dedup,Abbreviated NPPES name
+New Horizons of the Treasure Coast and Okeechobee,New Horizons of the Treasure Coast Inc,legal_name,FL,,NPI dedup,
+Park Place Behavioral Health Care,Osceola Mental Health Inc,former_legal_name,FL,,NPI dedup,Legal entity name
+Park Place Behavioral Health Care,Osceola Mental Health,former_legal_name,FL,,NPI dedup,Without Inc
+Peace River Center for Personal Development,Peace River Center for Personal Development Inc,legal_name,FL,,NPI dedup,
+SMA Healthcare,SMA Healthcare Inc,legal_name,FL,,NPI dedup,
+Suncoast Center,Suncoast Center Inc,legal_name,FL,,NPI dedup,
+Suncoast Center,Suncoast Mental Health Center Inc,former_legal_name,FL,,NPI dedup,Former name
+Suncoast Center,Suncoast Mental Health Ctr,former_legal_name,FL,,NPI dedup,Abbreviated former name
+Tri-County Human Services,Tri-County Human Services Inc,legal_name,FL,,NPI dedup,
+Centerstone Florida,Centerstone of Florida Inc,legal_name,FL,,NPI dedup,NPPES legal name
+Centerstone Florida,"Centerstone of Florida, Inc.",legal_name,FL,,NPI dedup,NPPES legal name with comma
+Centerstone Florida,Centerstone of Florida,legal_name,FL,,NPI dedup,Without Inc
+David Lawrence Centers,David Lawrence Center for Behavioral Health,legal_name,FL,,NPI dedup,NPPES legal name
+David Lawrence Centers,David Lawrence Center,dba,FL,,NPI dedup,Short name
+David Lawrence Centers,David Lawrence Mental Health Center Inc,former_legal_name,FL,,NPI dedup,Former legal name
+Agape Network,Agape Network Inc,legal_name,FL,,NPI dedup,
+Apalachee Center,Apalachee Center Inc,legal_name,FL,,NPI dedup,
+Better Way of Miami,Better Way of Miami Inc,legal_name,FL,,NPI dedup,
+Boley Centers,Boley Centers Inc,legal_name,FL,,NPI dedup,
+Brave Health,Brave Health Inc,legal_name,FL,,NPI dedup,
+Citrus Health Network,Citrus Health Network Inc,legal_name,FL,,NPI dedup,
+Clay Behavioral Health Center,Clay Behavioral Health Center Inc,legal_name,FL,,NPI dedup,
+Douglas Gardens Community Mental Health Center,Douglas Gardens Community Mental Health Center of Miami Beach Inc,legal_name,FL,,NPI dedup,Full NPPES legal name
+Douglas Gardens Community Mental Health Center,Douglas Gardens Comm Mntl Hlth Ctr of Miami Beach,legal_name,FL,,NPI dedup,Abbreviated NPPES name
+Drug Abuse Treatment Association,Drug Abuse Treatment Assoc Inc,legal_name,FL,,NPI dedup,Abbreviated Inc
+EPIC Behavioral Healthcare,EPIC Community Services Inc,former_legal_name,FL,,NPI dedup,Legal entity name
+Fellowship House,Psychosocial Rehabilitation Center Inc,former_legal_name,FL,,NPI dedup,Legal entity name
+Gateway Community Services,Gateway Comm Services,legal_name,FL,,NPI dedup,Abbreviated NPPES
+Ibis Healthcare,Ibis Healthcare Inc,legal_name,FL,,NPI dedup,
+Lakeview Center,Lakeview Center Inc,legal_name,FL,,NPI dedup,
+Operation PAR,Operation PAR Inc,legal_name,FL,,NPI dedup,
+SalusCare,SalusCare Inc,legal_name,FL,,NPI dedup,
+St. Augustine Youth Services,St Augustine Youth Service,dba,FL,,NPI dedup,Variant without period
+Passageway Residence of Dade County,Passageway,dba,FL,,NPI dedup,Short name in NPPES
+Passageway Residence of Dade County,Passageway Residence of Dade County Inc,legal_name,FL,,NPI dedup,
+Devereux,"DEVEREUX FOUNDATION, INC.",legal_name,FL,,NPI dedup,National parent entity billing in FL
+Devereux,Devereux Foundation Inc,legal_name,FL,,NPI dedup,Without comma variant
+Eleos Wellness & Support,Personal Enrichment Through Mental Health Services,former_legal_name,FL,,NPI dedup,PEMHS predecessor
+Eleos Wellness & Support,PEMHS,acronym,FL,,NPI dedup,Common acronym
+Grace Point Wellness,"MENTAL HEALTH CARE, INC",former_legal_name,FL,,NPI dedup,Predecessor entity pre-Gracepoint
+Grace Point Wellness,Mental Health Care Inc,former_legal_name,FL,,NPI dedup,Without comma
+Grace Point Wellness,Gracepoint Wellness,dba,FL,,NPI dedup,Alternate spelling
+Grace Point Wellness,Gracepoint,dba,FL,,NPI dedup,Short name

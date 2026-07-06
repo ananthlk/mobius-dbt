@@ -1,0 +1,44 @@
+version: 2
+
+seeds:
+  - name: org_aliases
+    description: >
+      Curated alias table for organization names. Captures former legal names,
+      DBAs, acronyms, and merger/rename history that NPPES does not track in
+      provider_other_organization_name (proven empty for FL BH orgs).
+      Consumed by the credentialing skill (run_org_name_search) as a first
+      resort alias-expansion step, and by analytics for the 3-tier CMHC
+      framework (BHPF / FBHA / look-alike).
+    config:
+      schema: "{{ env_var('BQ_MARTS_FINANCIAL_DATASET', 'mobius_financial_dev') }}"
+      column_types:
+        canonical_name: string
+        alias_name: string
+        alias_type: string
+        state: string
+        effective_year: string
+        source: string
+        notes: string
+    columns:
+      - name: canonical_name
+        description: Authoritative current organization name
+        tests:
+          - not_null
+      - name: alias_name
+        description: Historical or alternate name that should resolve to canonical
+        tests:
+          - not_null
+      - name: alias_type
+        description: "One of: former_legal_name, dba, acronym, legal_name, merger_predecessor, other"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [former_legal_name, dba, acronym, legal_name, merger_predecessor, other]
+      - name: state
+        description: Two-letter state code where the org operates
+      - name: effective_year
+        description: Year the rename/alias took effect (nullable)
+      - name: source
+        description: Provenance of the alias entry
+      - name: notes
+        description: Free-text context

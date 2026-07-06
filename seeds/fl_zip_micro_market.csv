@@ -1,0 +1,1014 @@
+zip5,county_fips,county_name,msa_code,msa_name,micro_market
+32003,12019,Clay,27260,Jacksonville,Jacksonville
+32008,12067,Lafayette,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32009,12089,Nassau,27260,Jacksonville,Jacksonville
+32011,12089,Nassau,27260,Jacksonville,Jacksonville
+32013,12067,Lafayette,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32024,12023,Columbia,29380,Lake City,Lake City
+32025,12023,Columbia,29380,Lake City,Lake City
+32026,12007,Bradford,,,Bradford
+32033,12109,St. Johns,27260,Jacksonville,Jacksonville
+32034,12089,Nassau,27260,Jacksonville,Jacksonville
+32038,12023,Columbia,29380,Lake City,Lake City
+32040,12003,Baker,27260,Jacksonville,Jacksonville
+32043,12019,Clay,27260,Jacksonville,Jacksonville
+32044,12007,Bradford,,,Bradford
+32046,12089,Nassau,27260,Jacksonville,Jacksonville
+32052,12047,Hamilton,,,Hamilton
+32053,12047,Hamilton,,,Hamilton
+32054,12125,Union,,,Union
+32055,12023,Columbia,29380,Lake City,Lake City
+32058,12007,Bradford,,,Bradford
+32059,12079,Madison,35840,North Port-Sarasota,North Port-Sarasota
+32060,12121,Suwannee,,,Suwannee
+32061,12023,Columbia,29380,Lake City,Lake City
+32062,12121,Suwannee,,,Suwannee
+32063,12003,Baker,27260,Jacksonville,Jacksonville
+32064,12121,Suwannee,,,Suwannee
+32065,12019,Clay,27260,Jacksonville,Jacksonville
+32066,12067,Lafayette,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32068,12019,Clay,27260,Jacksonville,Jacksonville
+32071,12121,Suwannee,,,Suwannee
+32072,12003,Baker,27260,Jacksonville,Jacksonville
+32073,12019,Clay,27260,Jacksonville,Jacksonville
+32079,12019,Clay,27260,Jacksonville,Jacksonville
+32080,12109,St. Johns,27260,Jacksonville,Jacksonville
+32081,12109,St. Johns,27260,Jacksonville,Jacksonville
+32082,12109,St. Johns,27260,Jacksonville,Jacksonville
+32083,12125,Union,,,Union
+32084,12109,St. Johns,27260,Jacksonville,Jacksonville
+32086,12109,St. Johns,27260,Jacksonville,Jacksonville
+32087,12003,Baker,27260,Jacksonville,Jacksonville
+32091,12007,Bradford,,,Bradford
+32092,12109,St. Johns,27260,Jacksonville,Jacksonville
+32094,12121,Suwannee,,,Suwannee
+32095,12109,St. Johns,27260,Jacksonville,Jacksonville
+32096,12023,Columbia,29380,Lake City,Lake City
+32097,12089,Nassau,27260,Jacksonville,Jacksonville
+32102,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+32110,12035,Flagler,37380,Palm Coast,Palm Coast
+32112,12107,Putnam,37460,Palatka,Palatka
+32113,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+32114,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32117,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32118,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32119,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32124,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32127,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32128,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32129,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32130,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32131,12107,Putnam,37460,Palatka,Palatka
+32132,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32133,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+32134,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+32136,12035,Flagler,37380,Palm Coast,Palm Coast
+32137,12035,Flagler,37380,Palm Coast,Palm Coast
+32139,12107,Putnam,37460,Palatka,Palatka
+32140,12107,Putnam,37460,Palatka,Palatka
+32141,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32145,12109,St. Johns,27260,Jacksonville,Jacksonville
+32147,12107,Putnam,37460,Palatka,Palatka
+32148,12107,Putnam,37460,Palatka,Palatka
+32157,12107,Putnam,37460,Palatka,Palatka
+32159,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+32162,12119,Sumter,45540,The Villages,The Villages
+32163,12119,Sumter,45540,The Villages,The Villages
+32164,12035,Flagler,37380,Palm Coast,Palm Coast
+32168,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32169,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32174,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32176,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32177,12107,Putnam,37460,Palatka,Palatka
+32179,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+32180,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32181,12107,Putnam,37460,Palatka,Palatka
+32182,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+32187,12107,Putnam,37460,Palatka,Palatka
+32189,12107,Putnam,37460,Palatka,Palatka
+32190,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32192,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+32193,12107,Putnam,37460,Palatka,Palatka
+32195,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+32202,12031,Duval,37860,Pensacola,Pensacola
+32203,12031,Duval,37860,Pensacola,Pensacola
+32204,12031,Duval,37860,Pensacola,Pensacola
+32205,12031,Duval,37860,Pensacola,Pensacola
+32206,12031,Duval,37860,Pensacola,Pensacola
+32207,12031,Duval,37860,Pensacola,Pensacola
+32208,12031,Duval,37860,Pensacola,Pensacola
+32209,12031,Duval,37860,Pensacola,Pensacola
+32210,12031,Duval,37860,Pensacola,Pensacola
+32211,12031,Duval,37860,Pensacola,Pensacola
+32212,12031,Duval,37860,Pensacola,Pensacola
+32214,12031,Duval,37860,Pensacola,Pensacola
+32216,12031,Duval,37860,Pensacola,Pensacola
+32217,12031,Duval,37860,Pensacola,Pensacola
+32218,12031,Duval,37860,Pensacola,Pensacola
+32219,12031,Duval,37860,Pensacola,Pensacola
+32220,12031,Duval,37860,Pensacola,Pensacola
+32221,12031,Duval,37860,Pensacola,Pensacola
+32222,12031,Duval,37860,Pensacola,Pensacola
+32223,12031,Duval,37860,Pensacola,Pensacola
+32224,12031,Duval,37860,Pensacola,Pensacola
+32225,12031,Duval,37860,Pensacola,Pensacola
+32226,12031,Duval,37860,Pensacola,Pensacola
+32227,12031,Duval,37860,Pensacola,Pensacola
+32228,12031,Duval,37860,Pensacola,Pensacola
+32233,12031,Duval,37860,Pensacola,Pensacola
+32234,12031,Duval,37860,Pensacola,Pensacola
+32244,12031,Duval,37860,Pensacola,Pensacola
+32246,12031,Duval,37860,Pensacola,Pensacola
+32250,12031,Duval,37860,Pensacola,Pensacola
+32254,12031,Duval,37860,Pensacola,Pensacola
+32256,12031,Duval,37860,Pensacola,Pensacola
+32257,12031,Duval,37860,Pensacola,Pensacola
+32258,12031,Duval,37860,Pensacola,Pensacola
+32259,12109,St. Johns,27260,Jacksonville,Jacksonville
+32266,12031,Duval,37860,Pensacola,Pensacola
+32277,12031,Duval,37860,Pensacola,Pensacola
+32301,12073,Leon,,,Leon
+32303,12073,Leon,,,Leon
+32304,12073,Leon,,,Leon
+32305,12073,Leon,,,Leon
+32306,12073,Leon,,,Leon
+32307,12073,Leon,,,Leon
+32308,12073,Leon,,,Leon
+32309,12073,Leon,,,Leon
+32310,12073,Leon,,,Leon
+32311,12073,Leon,,,Leon
+32312,12073,Leon,,,Leon
+32313,12073,Leon,,,Leon
+32317,12073,Leon,,,Leon
+32320,12037,Franklin,,,Franklin
+32321,12077,Liberty,,,Liberty
+32322,12037,Franklin,,,Franklin
+32323,12037,Franklin,,,Franklin
+32324,12039,Gadsden,45220,Tallahassee,Tallahassee
+32327,12129,Wakulla,45220,Tallahassee,Tallahassee
+32328,12037,Franklin,,,Franklin
+32330,12039,Gadsden,45220,Tallahassee,Tallahassee
+32331,12079,Madison,35840,North Port-Sarasota,North Port-Sarasota
+32332,12039,Gadsden,45220,Tallahassee,Tallahassee
+32333,12039,Gadsden,45220,Tallahassee,Tallahassee
+32334,12077,Liberty,,,Liberty
+32336,12123,Taylor,,,Taylor
+32337,12065,Jefferson,,,Jefferson
+32340,12079,Madison,35840,North Port-Sarasota,North Port-Sarasota
+32343,12039,Gadsden,45220,Tallahassee,Tallahassee
+32344,12065,Jefferson,,,Jefferson
+32346,12129,Wakulla,45220,Tallahassee,Tallahassee
+32347,12123,Taylor,,,Taylor
+32348,12123,Taylor,,,Taylor
+32350,12079,Madison,35840,North Port-Sarasota,North Port-Sarasota
+32351,12039,Gadsden,45220,Tallahassee,Tallahassee
+32352,12039,Gadsden,45220,Tallahassee,Tallahassee
+32355,12129,Wakulla,45220,Tallahassee,Tallahassee
+32356,12123,Taylor,,,Taylor
+32358,12129,Wakulla,45220,Tallahassee,Tallahassee
+32359,12029,Dixie,27260,Jacksonville,Jacksonville
+32360,12077,Liberty,,,Liberty
+32361,12065,Jefferson,,,Jefferson
+32399,12073,Leon,,,Leon
+32401,12005,Bay,37460,Panama City,Panama City
+32403,12005,Bay,37460,Panama City,Panama City
+32404,12005,Bay,37460,Panama City,Panama City
+32405,12005,Bay,37460,Panama City,Panama City
+32407,12005,Bay,37460,Panama City,Panama City
+32408,12005,Bay,37460,Panama City,Panama City
+32409,12005,Bay,37460,Panama City,Panama City
+32410,12005,Bay,37460,Panama City,Panama City
+32413,12005,Bay,37460,Panama City,Panama City
+32420,12063,Jackson,45220,Tallahassee,Tallahassee
+32421,12013,Calhoun,,,Calhoun
+32423,12063,Jackson,45220,Tallahassee,Tallahassee
+32424,12013,Calhoun,,,Calhoun
+32425,12059,Holmes,42680,Sebastian-Vero Beach,Sebastian-Vero Beach
+32426,12063,Jackson,45220,Tallahassee,Tallahassee
+32427,12133,Washington,,,Washington
+32428,12133,Washington,,,Washington
+32430,12013,Calhoun,,,Calhoun
+32431,12063,Jackson,45220,Tallahassee,Tallahassee
+32432,12063,Jackson,45220,Tallahassee,Tallahassee
+32433,12131,Walton,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32435,12131,Walton,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32437,12133,Washington,,,Washington
+32438,12005,Bay,37460,Panama City,Panama City
+32439,12131,Walton,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32440,12063,Jackson,45220,Tallahassee,Tallahassee
+32442,12063,Jackson,45220,Tallahassee,Tallahassee
+32443,12063,Jackson,45220,Tallahassee,Tallahassee
+32444,12005,Bay,37460,Panama City,Panama City
+32445,12063,Jackson,45220,Tallahassee,Tallahassee
+32446,12063,Jackson,45220,Tallahassee,Tallahassee
+32448,12063,Jackson,45220,Tallahassee,Tallahassee
+32449,12013,Calhoun,,,Calhoun
+32455,12131,Walton,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32456,12045,Gulf,,,Gulf
+32459,12131,Walton,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32460,12063,Jackson,45220,Tallahassee,Tallahassee
+32461,12131,Walton,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32462,12133,Washington,,,Washington
+32463,12133,Washington,,,Washington
+32464,12059,Holmes,42680,Sebastian-Vero Beach,Sebastian-Vero Beach
+32465,12045,Gulf,,,Gulf
+32466,12005,Bay,37460,Panama City,Panama City
+32501,12033,Escambia,37860,Pensacola,Pensacola
+32502,12033,Escambia,37860,Pensacola,Pensacola
+32503,12033,Escambia,37860,Pensacola,Pensacola
+32504,12033,Escambia,37860,Pensacola,Pensacola
+32505,12033,Escambia,37860,Pensacola,Pensacola
+32506,12033,Escambia,37860,Pensacola,Pensacola
+32507,12033,Escambia,37860,Pensacola,Pensacola
+32508,12033,Escambia,37860,Pensacola,Pensacola
+32509,12033,Escambia,37860,Pensacola,Pensacola
+32511,12033,Escambia,37860,Pensacola,Pensacola
+32512,12033,Escambia,37860,Pensacola,Pensacola
+32514,12033,Escambia,37860,Pensacola,Pensacola
+32526,12033,Escambia,37860,Pensacola,Pensacola
+32530,12113,Santa Rosa,37860,Pensacola,Pensacola
+32531,12091,Okaloosa,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32533,12033,Escambia,37860,Pensacola,Pensacola
+32534,12033,Escambia,37860,Pensacola,Pensacola
+32535,12033,Escambia,37860,Pensacola,Pensacola
+32536,12091,Okaloosa,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32539,12091,Okaloosa,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32541,12091,Okaloosa,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32542,12091,Okaloosa,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32544,12091,Okaloosa,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32547,12091,Okaloosa,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32548,12091,Okaloosa,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32550,12131,Walton,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32561,12033,Escambia,37860,Pensacola,Pensacola
+32563,12113,Santa Rosa,37860,Pensacola,Pensacola
+32564,12113,Santa Rosa,37860,Pensacola,Pensacola
+32565,12113,Santa Rosa,37860,Pensacola,Pensacola
+32566,12113,Santa Rosa,37860,Pensacola,Pensacola
+32567,12091,Okaloosa,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32568,12033,Escambia,37860,Pensacola,Pensacola
+32569,12091,Okaloosa,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32570,12113,Santa Rosa,37860,Pensacola,Pensacola
+32571,12113,Santa Rosa,37860,Pensacola,Pensacola
+32577,12033,Escambia,37860,Pensacola,Pensacola
+32578,12091,Okaloosa,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32579,12091,Okaloosa,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32580,12091,Okaloosa,18880,Crestview-Fort Walton,Crestview-Fort Walton
+32583,12113,Santa Rosa,37860,Pensacola,Pensacola
+32601,12001,Alachua,23540,Gainesville,Gainesville
+32603,12001,Alachua,23540,Gainesville,Gainesville
+32605,12001,Alachua,23540,Gainesville,Gainesville
+32606,12001,Alachua,23540,Gainesville,Gainesville
+32607,12001,Alachua,23540,Gainesville,Gainesville
+32608,12001,Alachua,23540,Gainesville,Gainesville
+32609,12001,Alachua,23540,Gainesville,Gainesville
+32610,12001,Alachua,23540,Gainesville,Gainesville
+32612,12001,Alachua,23540,Gainesville,Gainesville
+32615,12001,Alachua,23540,Gainesville,Gainesville
+32616,12001,Alachua,23540,Gainesville,Gainesville
+32617,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+32618,12001,Alachua,23540,Gainesville,Gainesville
+32619,12041,Gilchrist,,,Gilchrist
+32621,12075,Levy,,,Levy
+32622,12007,Bradford,,,Bradford
+32625,12075,Levy,,,Levy
+32626,12075,Levy,,,Levy
+32628,12029,Dixie,27260,Jacksonville,Jacksonville
+32631,12001,Alachua,23540,Gainesville,Gainesville
+32634,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+32639,12075,Levy,,,Levy
+32640,12001,Alachua,23540,Gainesville,Gainesville
+32641,12001,Alachua,23540,Gainesville,Gainesville
+32643,12001,Alachua,23540,Gainesville,Gainesville
+32648,12029,Dixie,27260,Jacksonville,Jacksonville
+32653,12001,Alachua,23540,Gainesville,Gainesville
+32656,12019,Clay,27260,Jacksonville,Jacksonville
+32658,12001,Alachua,23540,Gainesville,Gainesville
+32664,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+32666,12107,Putnam,37460,Palatka,Palatka
+32667,12001,Alachua,23540,Gainesville,Gainesville
+32668,12075,Levy,,,Levy
+32669,12001,Alachua,23540,Gainesville,Gainesville
+32680,12029,Dixie,27260,Jacksonville,Jacksonville
+32681,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+32683,12075,Levy,,,Levy
+32686,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+32692,12029,Dixie,27260,Jacksonville,Jacksonville
+32693,12041,Gilchrist,,,Gilchrist
+32694,12001,Alachua,23540,Gainesville,Gainesville
+32696,12075,Levy,,,Levy
+32697,12125,Union,,,Union
+32701,12117,Seminole,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32702,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+32703,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32707,12117,Seminole,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32708,12117,Seminole,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32709,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32712,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32713,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32714,12117,Seminole,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32720,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32723,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32724,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32725,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32726,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+32730,12117,Seminole,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32732,12117,Seminole,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32735,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+32736,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+32738,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32744,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32746,12117,Seminole,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32750,12117,Seminole,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32751,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32754,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32757,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+32759,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32763,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32764,12127,Volusia,19660,Deltona-Daytona Beach,Deltona-Daytona Beach
+32765,12117,Seminole,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32766,12117,Seminole,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32767,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+32768,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32771,12117,Seminole,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32773,12117,Seminole,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32775,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32776,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+32778,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+32779,12117,Seminole,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32780,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32784,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+32789,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32792,12117,Seminole,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32796,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32798,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32801,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32803,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32804,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32805,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32806,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32807,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32808,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32809,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32810,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32811,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32812,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32814,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32816,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32817,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32818,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32819,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32820,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32821,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32822,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32824,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32825,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32826,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32827,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32828,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32829,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32830,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32831,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32832,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32833,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32835,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32836,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32837,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32839,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+32899,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32901,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32903,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32904,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32905,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32907,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32908,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32909,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32920,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32922,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32925,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32926,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32927,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32931,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32934,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32935,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32937,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32940,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32948,12061,Indian River,,,Indian River
+32949,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32950,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32951,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32952,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32953,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32955,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32958,12061,Indian River,,,Indian River
+32959,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+32960,12061,Indian River,,,Indian River
+32962,12061,Indian River,,,Indian River
+32963,12061,Indian River,,,Indian River
+32966,12061,Indian River,,,Indian River
+32967,12061,Indian River,,,Indian River
+32968,12061,Indian River,,,Indian River
+32970,12061,Indian River,,,Indian River
+32976,12009,Brevard,37340,Palm Bay-Melbourne,Palm Bay-Melbourne
+33001,12087,Monroe,,,Monroe
+33004,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33009,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33010,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33012,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33013,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33014,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33015,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33016,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33018,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33019,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33020,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33021,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33022,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33023,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33024,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33025,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33026,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33027,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33028,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33029,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33030,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33031,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33032,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33033,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33034,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33035,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33036,12087,Monroe,,,Monroe
+33037,12087,Monroe,,,Monroe
+33039,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33040,12087,Monroe,,,Monroe
+33042,12087,Monroe,,,Monroe
+33043,12087,Monroe,,,Monroe
+33050,12087,Monroe,,,Monroe
+33051,12087,Monroe,,,Monroe
+33054,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33055,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33056,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33060,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33062,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33063,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33064,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33065,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33066,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33067,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33068,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33069,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33070,12087,Monroe,,,Monroe
+33071,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33073,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33076,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33101,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33109,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33122,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33125,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33126,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33127,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33128,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33129,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33130,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33131,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33132,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33133,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33134,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33135,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33136,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33137,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33138,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33139,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33140,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33141,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33142,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33143,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33144,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33145,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33146,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33147,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33149,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33150,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33154,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33155,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33156,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33157,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33158,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33160,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33161,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33162,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33165,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33166,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33167,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33168,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33169,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33170,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33172,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33173,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33174,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33175,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33176,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33177,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33178,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33179,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33180,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33181,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33182,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33183,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33184,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33185,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33186,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33187,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33189,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33190,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33193,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33194,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33196,12086,Miami-Dade,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33301,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33304,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33305,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33306,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33308,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33309,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33311,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33312,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33313,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33314,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33315,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33316,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33317,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33319,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33321,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33322,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33323,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33324,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33325,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33326,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33327,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33328,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33330,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33331,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33332,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33334,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33351,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33388,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33401,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33403,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33404,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33405,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33406,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33407,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33408,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33409,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33410,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33411,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33412,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33413,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33414,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33415,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33417,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33418,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33426,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33428,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33430,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33431,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33432,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33433,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33434,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33435,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33436,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33437,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33438,12085,Martin,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33440,12051,Hendry,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33441,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33442,12011,Broward,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33444,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33445,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33446,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33449,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33455,12085,Martin,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33458,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33460,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33461,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33462,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33463,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33467,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33469,12085,Martin,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33470,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33471,12043,Glades,,,Glades
+33472,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33473,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33476,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33477,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33478,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33480,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33483,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33484,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33486,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33487,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33493,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33496,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33498,12099,Palm Beach,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+33503,12057,Hillsborough,,,Hillsborough
+33510,12057,Hillsborough,,,Hillsborough
+33511,12057,Hillsborough,,,Hillsborough
+33513,12119,Sumter,45540,The Villages,The Villages
+33514,12119,Sumter,45540,The Villages,The Villages
+33521,12119,Sumter,45540,The Villages,The Villages
+33523,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33525,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33527,12057,Hillsborough,,,Hillsborough
+33530,12057,Hillsborough,,,Hillsborough
+33534,12057,Hillsborough,,,Hillsborough
+33538,12119,Sumter,45540,The Villages,The Villages
+33540,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33541,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33542,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33543,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33544,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33545,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33547,12057,Hillsborough,,,Hillsborough
+33548,12057,Hillsborough,,,Hillsborough
+33549,12057,Hillsborough,,,Hillsborough
+33550,12057,Hillsborough,,,Hillsborough
+33556,12057,Hillsborough,,,Hillsborough
+33558,12057,Hillsborough,,,Hillsborough
+33559,12057,Hillsborough,,,Hillsborough
+33563,12057,Hillsborough,,,Hillsborough
+33565,12057,Hillsborough,,,Hillsborough
+33566,12057,Hillsborough,,,Hillsborough
+33567,12057,Hillsborough,,,Hillsborough
+33569,12057,Hillsborough,,,Hillsborough
+33570,12057,Hillsborough,,,Hillsborough
+33572,12057,Hillsborough,,,Hillsborough
+33573,12057,Hillsborough,,,Hillsborough
+33574,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33576,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33578,12057,Hillsborough,,,Hillsborough
+33579,12057,Hillsborough,,,Hillsborough
+33584,12057,Hillsborough,,,Hillsborough
+33585,12119,Sumter,45540,The Villages,The Villages
+33592,12057,Hillsborough,,,Hillsborough
+33594,12057,Hillsborough,,,Hillsborough
+33596,12057,Hillsborough,,,Hillsborough
+33597,12119,Sumter,45540,The Villages,The Villages
+33598,12057,Hillsborough,,,Hillsborough
+33602,12057,Hillsborough,,,Hillsborough
+33603,12057,Hillsborough,,,Hillsborough
+33604,12057,Hillsborough,,,Hillsborough
+33605,12057,Hillsborough,,,Hillsborough
+33606,12057,Hillsborough,,,Hillsborough
+33607,12057,Hillsborough,,,Hillsborough
+33609,12057,Hillsborough,,,Hillsborough
+33610,12057,Hillsborough,,,Hillsborough
+33611,12057,Hillsborough,,,Hillsborough
+33612,12057,Hillsborough,,,Hillsborough
+33613,12057,Hillsborough,,,Hillsborough
+33614,12057,Hillsborough,,,Hillsborough
+33615,12057,Hillsborough,,,Hillsborough
+33616,12057,Hillsborough,,,Hillsborough
+33617,12057,Hillsborough,,,Hillsborough
+33618,12057,Hillsborough,,,Hillsborough
+33619,12057,Hillsborough,,,Hillsborough
+33620,12057,Hillsborough,,,Hillsborough
+33621,12057,Hillsborough,,,Hillsborough
+33624,12057,Hillsborough,,,Hillsborough
+33625,12057,Hillsborough,,,Hillsborough
+33626,12057,Hillsborough,,,Hillsborough
+33629,12057,Hillsborough,,,Hillsborough
+33634,12057,Hillsborough,,,Hillsborough
+33635,12057,Hillsborough,,,Hillsborough
+33637,12057,Hillsborough,,,Hillsborough
+33647,12057,Hillsborough,,,Hillsborough
+33701,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33702,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33703,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33704,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33705,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33706,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33707,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33708,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33709,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33710,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33711,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33712,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33713,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33714,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33715,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33716,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33744,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33755,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33756,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33759,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33760,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33761,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33762,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33763,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33764,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33765,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33767,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33770,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33771,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33772,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33773,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33774,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33776,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33777,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33778,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33781,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33782,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33785,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33786,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33801,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33803,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33805,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33809,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33810,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33811,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33812,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33813,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33815,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33823,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33825,12055,Highlands,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33827,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33830,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33834,12049,Hardee,,,Hardee
+33835,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33837,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33838,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33839,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33840,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33841,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33843,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33844,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33847,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33848,12097,Osceola,36740,Orlando-Kissimmee,Orlando-Kissimmee
+33849,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33850,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33851,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33852,12055,Highlands,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33853,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33854,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33855,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33856,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33857,12055,Highlands,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33858,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33859,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33860,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33865,12049,Hardee,,,Hardee
+33867,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33868,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33870,12055,Highlands,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33872,12055,Highlands,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33873,12049,Hardee,,,Hardee
+33875,12055,Highlands,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33876,12055,Highlands,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33877,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33880,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33881,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33884,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33890,12049,Hardee,,,Hardee
+33896,12097,Osceola,36740,Orlando-Kissimmee,Orlando-Kissimmee
+33897,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33898,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+33901,12071,Lee,45220,Tallahassee,Tallahassee
+33903,12071,Lee,45220,Tallahassee,Tallahassee
+33904,12071,Lee,45220,Tallahassee,Tallahassee
+33905,12071,Lee,45220,Tallahassee,Tallahassee
+33907,12071,Lee,45220,Tallahassee,Tallahassee
+33908,12071,Lee,45220,Tallahassee,Tallahassee
+33909,12071,Lee,45220,Tallahassee,Tallahassee
+33912,12071,Lee,45220,Tallahassee,Tallahassee
+33913,12071,Lee,45220,Tallahassee,Tallahassee
+33914,12071,Lee,45220,Tallahassee,Tallahassee
+33916,12071,Lee,45220,Tallahassee,Tallahassee
+33917,12071,Lee,45220,Tallahassee,Tallahassee
+33919,12071,Lee,45220,Tallahassee,Tallahassee
+33920,12071,Lee,45220,Tallahassee,Tallahassee
+33921,12071,Lee,45220,Tallahassee,Tallahassee
+33922,12071,Lee,45220,Tallahassee,Tallahassee
+33924,12071,Lee,45220,Tallahassee,Tallahassee
+33928,12071,Lee,45220,Tallahassee,Tallahassee
+33930,12051,Hendry,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33931,12071,Lee,45220,Tallahassee,Tallahassee
+33935,12051,Hendry,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33936,12051,Hendry,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33944,12043,Glades,,,Glades
+33946,12015,Charlotte,35840,North Port-Sarasota,North Port-Sarasota
+33947,12015,Charlotte,35840,North Port-Sarasota,North Port-Sarasota
+33948,12015,Charlotte,35840,North Port-Sarasota,North Port-Sarasota
+33950,12015,Charlotte,35840,North Port-Sarasota,North Port-Sarasota
+33952,12015,Charlotte,35840,North Port-Sarasota,North Port-Sarasota
+33953,12015,Charlotte,35840,North Port-Sarasota,North Port-Sarasota
+33954,12015,Charlotte,35840,North Port-Sarasota,North Port-Sarasota
+33955,12015,Charlotte,35840,North Port-Sarasota,North Port-Sarasota
+33956,12071,Lee,45220,Tallahassee,Tallahassee
+33957,12071,Lee,45220,Tallahassee,Tallahassee
+33960,12055,Highlands,45300,Tampa-St Petersburg,Tampa-St Petersburg
+33965,12071,Lee,45220,Tallahassee,Tallahassee
+33966,12071,Lee,45220,Tallahassee,Tallahassee
+33967,12071,Lee,45220,Tallahassee,Tallahassee
+33971,12071,Lee,45220,Tallahassee,Tallahassee
+33972,12071,Lee,45220,Tallahassee,Tallahassee
+33973,12071,Lee,45220,Tallahassee,Tallahassee
+33974,12071,Lee,45220,Tallahassee,Tallahassee
+33976,12071,Lee,45220,Tallahassee,Tallahassee
+33980,12015,Charlotte,35840,North Port-Sarasota,North Port-Sarasota
+33981,12015,Charlotte,35840,North Port-Sarasota,North Port-Sarasota
+33982,12015,Charlotte,35840,North Port-Sarasota,North Port-Sarasota
+33983,12015,Charlotte,35840,North Port-Sarasota,North Port-Sarasota
+33990,12071,Lee,45220,Tallahassee,Tallahassee
+33991,12071,Lee,45220,Tallahassee,Tallahassee
+33993,12071,Lee,45220,Tallahassee,Tallahassee
+34101,12021,Collier,34940,Naples,Naples
+34102,12021,Collier,34940,Naples,Naples
+34103,12021,Collier,34940,Naples,Naples
+34104,12021,Collier,34940,Naples,Naples
+34105,12021,Collier,34940,Naples,Naples
+34108,12021,Collier,34940,Naples,Naples
+34109,12021,Collier,34940,Naples,Naples
+34110,12021,Collier,34940,Naples,Naples
+34112,12021,Collier,34940,Naples,Naples
+34113,12021,Collier,34940,Naples,Naples
+34114,12021,Collier,34940,Naples,Naples
+34116,12021,Collier,34940,Naples,Naples
+34117,12021,Collier,34940,Naples,Naples
+34119,12021,Collier,34940,Naples,Naples
+34120,12021,Collier,34940,Naples,Naples
+34134,12071,Lee,45220,Tallahassee,Tallahassee
+34135,12071,Lee,45220,Tallahassee,Tallahassee
+34137,12021,Collier,34940,Naples,Naples
+34138,12021,Collier,34940,Naples,Naples
+34139,12021,Collier,34940,Naples,Naples
+34140,12021,Collier,34940,Naples,Naples
+34141,12021,Collier,34940,Naples,Naples
+34142,12021,Collier,34940,Naples,Naples
+34145,12021,Collier,34940,Naples,Naples
+34201,12081,Manatee,36100,Ocala,Ocala
+34202,12081,Manatee,36100,Ocala,Ocala
+34203,12081,Manatee,36100,Ocala,Ocala
+34205,12081,Manatee,36100,Ocala,Ocala
+34207,12081,Manatee,36100,Ocala,Ocala
+34208,12081,Manatee,36100,Ocala,Ocala
+34209,12081,Manatee,36100,Ocala,Ocala
+34210,12081,Manatee,36100,Ocala,Ocala
+34211,12081,Manatee,36100,Ocala,Ocala
+34212,12081,Manatee,36100,Ocala,Ocala
+34215,12081,Manatee,36100,Ocala,Ocala
+34216,12081,Manatee,36100,Ocala,Ocala
+34217,12081,Manatee,36100,Ocala,Ocala
+34219,12081,Manatee,36100,Ocala,Ocala
+34221,12081,Manatee,36100,Ocala,Ocala
+34222,12081,Manatee,36100,Ocala,Ocala
+34223,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34224,12015,Charlotte,35840,North Port-Sarasota,North Port-Sarasota
+34228,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34229,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34231,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34232,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34233,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34234,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34235,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34236,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34237,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34238,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34239,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34240,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34241,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34242,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34243,12081,Manatee,36100,Ocala,Ocala
+34250,12081,Manatee,36100,Ocala,Ocala
+34251,12081,Manatee,36100,Ocala,Ocala
+34266,12027,DeSoto,,,DeSoto
+34267,12027,DeSoto,,,DeSoto
+34268,12027,DeSoto,,,DeSoto
+34269,12027,DeSoto,,,DeSoto
+34275,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34285,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34286,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34287,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34288,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34289,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34291,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34292,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34293,12115,Sarasota,35840,North Port-Sarasota,North Port-Sarasota
+34420,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+34428,12017,Citrus,26140,Homosassa Springs,Homosassa Springs
+34429,12017,Citrus,26140,Homosassa Springs,Homosassa Springs
+34431,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+34432,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+34433,12017,Citrus,26140,Homosassa Springs,Homosassa Springs
+34434,12017,Citrus,26140,Homosassa Springs,Homosassa Springs
+34436,12017,Citrus,26140,Homosassa Springs,Homosassa Springs
+34442,12017,Citrus,26140,Homosassa Springs,Homosassa Springs
+34445,12017,Citrus,26140,Homosassa Springs,Homosassa Springs
+34446,12017,Citrus,26140,Homosassa Springs,Homosassa Springs
+34448,12017,Citrus,26140,Homosassa Springs,Homosassa Springs
+34449,12075,Levy,,,Levy
+34450,12017,Citrus,26140,Homosassa Springs,Homosassa Springs
+34452,12017,Citrus,26140,Homosassa Springs,Homosassa Springs
+34453,12017,Citrus,26140,Homosassa Springs,Homosassa Springs
+34461,12017,Citrus,26140,Homosassa Springs,Homosassa Springs
+34465,12017,Citrus,26140,Homosassa Springs,Homosassa Springs
+34470,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+34471,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+34472,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+34473,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+34474,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+34475,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+34476,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+34479,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+34480,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+34481,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+34482,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+34484,12119,Sumter,45540,The Villages,The Villages
+34487,12017,Citrus,26140,Homosassa Springs,Homosassa Springs
+34488,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+34491,12083,Marion,38940,Port St. Lucie,Port St. Lucie
+34498,12075,Levy,,,Levy
+34601,12053,Hernando,42700,Sebring,Sebring
+34602,12053,Hernando,42700,Sebring,Sebring
+34604,12053,Hernando,42700,Sebring,Sebring
+34606,12053,Hernando,42700,Sebring,Sebring
+34607,12053,Hernando,42700,Sebring,Sebring
+34608,12053,Hernando,42700,Sebring,Sebring
+34609,12053,Hernando,42700,Sebring,Sebring
+34610,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34613,12053,Hernando,42700,Sebring,Sebring
+34614,12053,Hernando,42700,Sebring,Sebring
+34637,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34638,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34639,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34652,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34653,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34654,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34655,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34661,12053,Hernando,42700,Sebring,Sebring
+34667,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34668,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34669,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34677,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34679,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34681,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34683,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34684,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34685,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34688,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34689,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34690,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34691,12101,Pasco,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34695,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34698,12103,Pinellas,45300,Tampa-St Petersburg,Tampa-St Petersburg
+34705,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+34711,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+34714,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+34715,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+34729,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+34731,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+34734,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+34736,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+34737,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+34739,12097,Osceola,36740,Orlando-Kissimmee,Orlando-Kissimmee
+34741,12097,Osceola,36740,Orlando-Kissimmee,Orlando-Kissimmee
+34743,12097,Osceola,36740,Orlando-Kissimmee,Orlando-Kissimmee
+34744,12097,Osceola,36740,Orlando-Kissimmee,Orlando-Kissimmee
+34746,12097,Osceola,36740,Orlando-Kissimmee,Orlando-Kissimmee
+34747,12097,Osceola,36740,Orlando-Kissimmee,Orlando-Kissimmee
+34748,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+34753,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+34756,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+34758,12097,Osceola,36740,Orlando-Kissimmee,Orlando-Kissimmee
+34759,12105,Polk,29460,Lakeland-Winter Haven,Lakeland-Winter Haven
+34760,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+34761,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+34762,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+34769,12097,Osceola,36740,Orlando-Kissimmee,Orlando-Kissimmee
+34771,12097,Osceola,36740,Orlando-Kissimmee,Orlando-Kissimmee
+34772,12097,Osceola,36740,Orlando-Kissimmee,Orlando-Kissimmee
+34773,12097,Osceola,36740,Orlando-Kissimmee,Orlando-Kissimmee
+34785,12119,Sumter,45540,The Villages,The Villages
+34786,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+34787,12095,Orange,36740,Orlando-Kissimmee,Orlando-Kissimmee
+34788,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+34797,12069,Lake,12060,Cape Coral-Fort Myers,Cape Coral-Fort Myers
+34945,12111,St. Lucie,38940,Port St. Lucie,Port St. Lucie
+34946,12111,St. Lucie,38940,Port St. Lucie,Port St. Lucie
+34947,12111,St. Lucie,38940,Port St. Lucie,Port St. Lucie
+34949,12111,St. Lucie,38940,Port St. Lucie,Port St. Lucie
+34950,12111,St. Lucie,38940,Port St. Lucie,Port St. Lucie
+34951,12111,St. Lucie,38940,Port St. Lucie,Port St. Lucie
+34952,12111,St. Lucie,38940,Port St. Lucie,Port St. Lucie
+34953,12111,St. Lucie,38940,Port St. Lucie,Port St. Lucie
+34956,12085,Martin,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+34957,12085,Martin,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+34972,12093,Okeechobee,,,Okeechobee
+34974,12043,Glades,,,Glades
+34981,12111,St. Lucie,38940,Port St. Lucie,Port St. Lucie
+34982,12111,St. Lucie,38940,Port St. Lucie,Port St. Lucie
+34983,12111,St. Lucie,38940,Port St. Lucie,Port St. Lucie
+34984,12111,St. Lucie,38940,Port St. Lucie,Port St. Lucie
+34986,12111,St. Lucie,38940,Port St. Lucie,Port St. Lucie
+34987,12111,St. Lucie,38940,Port St. Lucie,Port St. Lucie
+34990,12085,Martin,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+34994,12085,Martin,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+34996,12085,Martin,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale
+34997,12085,Martin,33100,Miami-Fort Lauderdale,Miami-Fort Lauderdale

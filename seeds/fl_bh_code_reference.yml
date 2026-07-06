@@ -1,0 +1,18 @@
+version: 2
+
+seeds:
+  - name: fl_bh_code_reference
+    description: "81 FL Medicaid BH HCPCS codes — source of truth for the strategy mart."
+    config:
+      schema: "mobius_strategy"
+    columns:
+      - name: hcpcs_code
+        description: "HCPCS procedure code"
+      - name: description
+        description: "Human-readable code description"
+      - name: ahca_category
+        description: "AHCA fee schedule service category (22 categories)"
+      - name: primary_metric
+        description: "Primary KPI type: ppc (per-provider-count) or rpb (rate-per-bene)"
+      - name: care_stage
+        description: "3-way roll-up: intake, high_acuity, ongoing_treatment"

@@ -1,0 +1,884 @@
+taxonomy_code,display_name,classification,specialization,section
+193200000X,Multi-Specialty Group,Multi-Specialty,,Individual
+193400000X,Single Specialty Group,Single Specialty,,Individual
+207K00000X,Allergy & Immunology Physician,Allergy & Immunology,,Individual
+207KA0200X,Allergy Physician,Allergy & Immunology,Allergy,Individual
+207KI0005X,Clinical & Laboratory Immunology (Allergy & Immunology) Physician,Allergy & Immunology,Clinical & Laboratory Immunology,Individual
+207L00000X,Anesthesiology Physician,Anesthesiology,,Individual
+207LA0401X,Addiction Medicine (Anesthesiology) Physician,Anesthesiology,Addiction Medicine,Individual
+207LC0200X,Critical Care Medicine (Anesthesiology) Physician,Anesthesiology,Critical Care Medicine,Individual
+207LH0002X,Hospice and Palliative Medicine (Anesthesiology) Physician,Anesthesiology,Hospice and Palliative Medicine,Individual
+207LP2900X,Pain Medicine (Anesthesiology) Physician,Anesthesiology,Pain Medicine,Individual
+207LP3000X,Pediatric Anesthesiology Physician,Anesthesiology,Pediatric Anesthesiology,Individual
+207LP4000X,Physician Nutrition Specialist (Anesthesiology),Anesthesiology,Physician Nutrition Specialist,Individual
+208U00000X,Clinical Pharmacology Physician,Clinical Pharmacology,,Individual
+208C00000X,Colon & Rectal Surgery Physician,Colon & Rectal Surgery,,Individual
+207N00000X,Dermatology Physician,Dermatology,,Individual
+207NI0002X,Clinical & Laboratory Dermatological Immunology Physician,Dermatology,Clinical & Laboratory Dermatological Immunology,Individual
+207ND0900X,Dermatopathology Physician,Dermatology,Dermatopathology,Individual
+207ND0101X,MOHS-Micrographic Surgery Physician,Dermatology,MOHS-Micrographic Surgery,Individual
+207NP0225X,Pediatric Dermatology Physician,Dermatology,Pediatric Dermatology,Individual
+207NS0135X,Procedural Dermatology Physician,Dermatology,Procedural Dermatology,Individual
+204R00000X,Electrodiagnostic Medicine Physician,Electrodiagnostic Medicine,,Individual
+207P00000X,Emergency Medicine Physician,Emergency Medicine,,Individual
+207PE0004X,Emergency Medical Services (Emergency Medicine) Physician,Emergency Medicine,Emergency Medical Services,Individual
+207PH0002X,Hospice and Palliative Medicine (Emergency Medicine) Physician,Emergency Medicine,Hospice and Palliative Medicine,Individual
+207PT0002X,Medical Toxicology (Emergency Medicine) Physician,Emergency Medicine,Medical Toxicology,Individual
+207PP0204X,Pediatric Emergency Medicine (Emergency Medicine) Physician,Emergency Medicine,Pediatric Emergency Medicine,Individual
+207PS0010X,Sports Medicine (Emergency Medicine) Physician,Emergency Medicine,Sports Medicine,Individual
+207PE0005X,Undersea and Hyperbaric Medicine (Emergency Medicine) Physician,Emergency Medicine,Undersea and Hyperbaric Medicine,Individual
+207Q00000X,Family Medicine Physician,Family Medicine,,Individual
+207QA0401X,Addiction Medicine (Family Medicine) Physician,Family Medicine,Addiction Medicine,Individual
+207QA0000X,Adolescent Medicine (Family Medicine) Physician,Family Medicine,Adolescent Medicine,Individual
+207QA0505X,Adult Medicine Physician,Family Medicine,Adult Medicine,Individual
+207QD0401X,Diabetology (Family Medicine) Physician,Family Medicine,Diabetology,Individual
+207QG0300X,Geriatric Medicine (Family Medicine) Physician,Family Medicine,Geriatric Medicine,Individual
+207QH0002X,Hospice and Palliative Medicine (Family Medicine) Physician,Family Medicine,Hospice and Palliative Medicine,Individual
+207QB0002X,Obesity Medicine (Family Medicine) Physician,Family Medicine,Obesity Medicine,Individual
+207QP0002X,Physician Nutrition Specialist (Family Medicine),Family Medicine,Physician Nutrition Specialist,Individual
+207QS1201X,Sleep Medicine (Family Medicine) Physician,Family Medicine,Sleep Medicine,Individual
+207QS0010X,Sports Medicine (Family Medicine) Physician,Family Medicine,Sports Medicine,Individual
+208D00000X,General Practice Physician,General Practice,,Individual
+208M00000X,Hospitalist Physician,Hospitalist,,Individual
+202C00000X,Independent Medical Examiner Physician,Independent Medical Examiner,,Individual
+202D00000X,Integrative Medicine Physician,Integrative Medicine,,Individual
+207R00000X,Internal Medicine Physician,Internal Medicine,,Individual
+207RA0401X,Addiction Medicine (Internal Medicine) Physician,Internal Medicine,Addiction Medicine,Individual
+207RA0000X,Adolescent Medicine (Internal Medicine) Physician,Internal Medicine,Adolescent Medicine,Individual
+207RA0002X,Adult Congenital Heart Disease Physician,Internal Medicine,Adult Congenital Heart Disease,Individual
+207RA0001X,Advanced Heart Failure and Transplant Cardiology Physician,Internal Medicine,Advanced Heart Failure and Transplant Cardiology,Individual
+207RA0201X,Allergy & Immunology (Internal Medicine) Physician,Internal Medicine,Allergy & Immunology,Individual
+207RC0000X,Cardiovascular Disease Physician,Internal Medicine,Cardiovascular Disease,Individual
+207RI0001X,Clinical & Laboratory Immunology (Internal Medicine) Physician,Internal Medicine,Clinical & Laboratory Immunology,Individual
+207RC0001X,Clinical Cardiac Electrophysiology Physician,Internal Medicine,Clinical Cardiac Electrophysiology,Individual
+207RC0200X,Critical Care Medicine (Internal Medicine) Physician,Internal Medicine,Critical Care Medicine,Individual
+207QB0505X,Diabetology (Internal Medicine) Physician,Internal Medicine,Diabetology,Individual
+207RE0101X,"Endocrinology, Diabetes & Metabolism Physician",Internal Medicine,"Endocrinology, Diabetes & Metabolism",Individual
+207RG0100X,Gastroenterology Physician,Internal Medicine,Gastroenterology,Individual
+207RG0300X,Geriatric Medicine (Internal Medicine) Physician,Internal Medicine,Geriatric Medicine,Individual
+207RH0000X,Hematology (Internal Medicine) Physician,Internal Medicine,Hematology,Individual
+207RH0003X,Hematology & Oncology Physician,Internal Medicine,Hematology & Oncology,Individual
+207RI0008X,Hepatology Physician,Internal Medicine,Hepatology,Individual
+207RH0002X,Hospice and Palliative Medicine (Internal Medicine) Physician,Internal Medicine,Hospice and Palliative Medicine,Individual
+207RH0005X,Hypertension Specialist Physician,Internal Medicine,Hypertension Specialist,Individual
+207RI0200X,Infectious Disease Physician,Internal Medicine,Infectious Disease,Individual
+207RI0011X,Interventional Cardiology Physician,Internal Medicine,Interventional Cardiology,Individual
+207RM1200X,Magnetic Resonance Imaging (MRI) Internal Medicine Physician,Internal Medicine,Magnetic Resonance Imaging (MRI),Individual
+207RX0202X,Medical Oncology Physician,Internal Medicine,Medical Oncology,Individual
+207RN0300X,Nephrology Physician,Internal Medicine,Nephrology,Individual
+207RB0002X,Obesity Medicine (Internal Medicine) Physician,Internal Medicine,Obesity Medicine,Individual
+207RP1002X,Physician Nutrition Specialist (Internal Medicine),Internal Medicine,Physician Nutrition Specialist,Individual
+207RP1001X,Pulmonary Disease Physician,Internal Medicine,Pulmonary Disease,Individual
+207RR0500X,Rheumatology Physician,Internal Medicine,Rheumatology,Individual
+207RS0012X,Sleep Medicine (Internal Medicine) Physician,Internal Medicine,Sleep Medicine,Individual
+207RS0010X,Sports Medicine (Internal Medicine) Physician,Internal Medicine,Sports Medicine,Individual
+207RT0003X,Transplant Hepatology Physician,Internal Medicine,Transplant Hepatology,Individual
+209800000X,Legal Medicine (M.D./D.O.) Physician,Legal Medicine,,Individual
+207SG0202X,Clinical Biochemical Genetics Physician,Medical Genetics,Clinical Biochemical Genetics,Individual
+207SC0300X,Clinical Cytogenetics Physician,Medical Genetics,Clinical Cytogenetics,Individual
+207SG0201X,Clinical Genetics (M.D.) Physician,Medical Genetics,Clinical Genetics (M.D.),Individual
+207SG0203X,Clinical Molecular Genetics Physician,Medical Genetics,Clinical Molecular Genetics,Individual
+207SG0207X,Medical Biochemical Genetics,Medical Genetics,Medical Biochemical Genetics,Individual
+207SM0001X,Molecular Genetic Pathology (Medical Genetics) Physician,Medical Genetics,Molecular Genetic Pathology,Individual
+207SG0205X,Ph.D. Medical Genetics Physician,Medical Genetics,Ph.D. Medical Genetics,Individual
+207T00000X,Neurological Surgery Physician,Neurological Surgery,,Individual
+204D00000X,Neuromusculoskeletal Medicine & OMM Physician,Neuromusculoskeletal Medicine & OMM,,Individual
+204C00000X,Sports Medicine (Neuromusculoskeletal Medicine) Physician,"Neuromusculoskeletal Medicine, Sports Medicine",,Individual
+207U00000X,Nuclear Medicine Physician,Nuclear Medicine,,Individual
+207UN0903X,In Vivo & In Vitro Nuclear Medicine Physician,Nuclear Medicine,In Vivo & In Vitro Nuclear Medicine,Individual
+207UN0901X,Nuclear Cardiology Physician,Nuclear Medicine,Nuclear Cardiology,Individual
+207UN0902X,Nuclear Imaging & Therapy Physician,Nuclear Medicine,Nuclear Imaging & Therapy,Individual
+207V00000X,Obstetrics & Gynecology Physician,Obstetrics & Gynecology,,Individual
+207VC0300X,Complex Family Planning Physician,Obstetrics & Gynecology,Complex Family Planning,Individual
+207VC0200X,Critical Care Medicine (Obstetrics & Gynecology) Physician,Obstetrics & Gynecology,Critical Care Medicine,Individual
+207VF0040X,Urogynecology and Reconstructive Pelvic Surgery (Obstetrics & Gynecology) Physician,Obstetrics & Gynecology,Urogynecology and Reconstructive Pelvic Surgery,Individual
+207VX0201X,Gynecologic Oncology Physician,Obstetrics & Gynecology,Gynecologic Oncology,Individual
+207VG0400X,Gynecology Physician,Obstetrics & Gynecology,Gynecology,Individual
+207VH0002X,Hospice and Palliative Medicine (Obstetrics & Gynecology) Physician,Obstetrics & Gynecology,Hospice and Palliative Medicine,Individual
+207VM0101X,Maternal & Fetal Medicine Physician,Obstetrics & Gynecology,Maternal & Fetal Medicine,Individual
+207VB0002X,Obesity Medicine (Obstetrics & Gynecology) Physician,Obstetrics & Gynecology,Obesity Medicine,Individual
+207VX0000X,Obstetrics Physician,Obstetrics & Gynecology,Obstetrics,Individual
+207VE0102X,Reproductive Endocrinology Physician,Obstetrics & Gynecology,Reproductive Endocrinology,Individual
+207W00000X,Ophthalmology Physician,Ophthalmology,,Individual
+207WX0120X,Cornea and External Diseases Specialist Physician,Ophthalmology,Cornea and External Diseases Specialist,Individual
+207WX0009X,Glaucoma Specialist (Ophthalmology) Physician,Ophthalmology,Glaucoma Specialist,Individual
+207WX0109X,Neuro-ophthalmology Physician,Ophthalmology,Neuro-ophthalmology,Individual
+207WX0200X,Ophthalmic Plastic and Reconstructive Surgery Physician,Ophthalmology,Ophthalmic Plastic and Reconstructive Surgery,Individual
+207WX0110X,Pediatric Ophthalmology and Strabismus Specialist Physician,Ophthalmology,Pediatric Ophthalmology and Strabismus Specialist,Individual
+207WX0107X,Retina Specialist (Ophthalmology) Physician,Ophthalmology,Retina Specialist,Individual
+207WX0108X,Uveitis and Ocular Inflammatory Disease (Ophthalmology) Physician,Ophthalmology,Uveitis and Ocular Inflammatory Disease,Individual
+204E00000X,Oral & Maxillofacial Surgery (D.M.D.),Oral & Maxillofacial Surgery,,Individual
+207X00000X,Orthopaedic Surgery Physician,Orthopaedic Surgery,,Individual
+207XS0114X,Adult Reconstructive Orthopaedic Surgery Physician,Orthopaedic Surgery,Adult Reconstructive Orthopaedic Surgery,Individual
+207XX0004X,Orthopaedic Foot and Ankle Surgery Physician,Orthopaedic Surgery,Foot and Ankle Surgery,Individual
+207XS0106X,Orthopaedic Hand Surgery Physician,Orthopaedic Surgery,Hand Surgery,Individual
+207XS0117X,Orthopaedic Surgery of the Spine Physician,Orthopaedic Surgery,Orthopaedic Surgery of the Spine,Individual
+207XX0801X,Orthopaedic Trauma Physician,Orthopaedic Surgery,Orthopaedic Trauma,Individual
+207XP3100X,Pediatric Orthopaedic Surgery Physician,Orthopaedic Surgery,Pediatric Orthopaedic Surgery,Individual
+207XX0005X,Sports Medicine (Orthopaedic Surgery) Physician,Orthopaedic Surgery,Sports Medicine,Individual
+207Y00000X,Otolaryngology Physician,Otolaryngology,,Individual
+207YS0123X,Facial Plastic Surgery Physician,Otolaryngology,Facial Plastic Surgery,Individual
+207YX0602X,Otolaryngic Allergy Physician,Otolaryngology,Otolaryngic Allergy,Individual
+207YX0905X,Otolaryngology/Facial Plastic Surgery Physician,Otolaryngology,Otolaryngology/Facial Plastic Surgery,Individual
+207YX0901X,Otology & Neurotology Physician,Otolaryngology,Otology & Neurotology,Individual
+207YP0228X,Pediatric Otolaryngology Physician,Otolaryngology,Pediatric Otolaryngology,Individual
+207YX0007X,Plastic Surgery within the Head & Neck (Otolaryngology) Physician,Otolaryngology,Plastic Surgery within the Head & Neck,Individual
+207YS0012X,Sleep Medicine (Otolaryngology) Physician,Otolaryngology,Sleep Medicine,Individual
+208VP0014X,Interventional Pain Medicine Physician,Pain Medicine,Interventional Pain Medicine,Individual
+208VP0000X,Pain Medicine Physician,Pain Medicine,Pain Medicine,Individual
+207ZP0101X,Anatomic Pathology Physician,Pathology,Anatomic Pathology,Individual
+207ZP0102X,Anatomic Pathology & Clinical Pathology Physician,Pathology,Anatomic Pathology & Clinical Pathology,Individual
+207ZB0001X,Blood Banking & Transfusion Medicine Physician,Pathology,Blood Banking & Transfusion Medicine,Individual
+207ZP0104X,Chemical Pathology Physician,Pathology,Chemical Pathology,Individual
+207ZC0008X,Clinical Informatics (Pathology) Physician,Pathology,Clinical Informatics,Individual
+207ZC0006X,Clinical Pathology Physician,Pathology,Clinical Pathology,Individual
+207ZP0105X,Clinical Pathology/Laboratory Medicine Physician,Pathology,Clinical Pathology/Laboratory Medicine,Individual
+207ZC0500X,Cytopathology Physician,Pathology,Cytopathology,Individual
+207ZD0900X,Dermatopathology (Pathology) Physician,Pathology,Dermatopathology,Individual
+207ZF0201X,Forensic Pathology Physician,Pathology,Forensic Pathology,Individual
+207ZH0000X,Hematology (Pathology) Physician,Pathology,Hematology,Individual
+207ZI0100X,Immunopathology Physician,Pathology,Immunopathology,Individual
+207ZM0300X,Medical Microbiology Physician,Pathology,Medical Microbiology,Individual
+207ZP0007X,Molecular Genetic Pathology (Pathology) Physician,Pathology,Molecular Genetic Pathology,Individual
+207ZN0500X,Neuropathology Physician,Pathology,Neuropathology,Individual
+207ZP0213X,Pediatric Pathology Physician,Pathology,Pediatric Pathology,Individual
+208000000X,Pediatrics Physician,Pediatrics,,Individual
+2080A0000X,Pediatric Adolescent Medicine Physician,Pediatrics,Adolescent Medicine,Individual
+2080C0008X,Child Abuse Pediatrics Physician,Pediatrics,Child Abuse Pediatrics,Individual
+2080I0007X,Pediatric Clinical & Laboratory Immunology Physician,Pediatrics,Clinical & Laboratory Immunology,Individual
+2080P0006X,Developmental - Behavioral Pediatrics Physician,Pediatrics,Developmental - Behavioral Pediatrics,Individual
+2080H0002X,Pediatric Hospice and Palliative Medicine Physician,Pediatrics,Hospice and Palliative Medicine,Individual
+2080T0002X,Pediatric Medical Toxicology Physician,Pediatrics,Medical Toxicology,Individual
+2080N0001X,Neonatal-Perinatal Medicine Physician,Pediatrics,Neonatal-Perinatal Medicine,Individual
+2080P0008X,Pediatric Neurodevelopmental Disabilities Physician,Pediatrics,Neurodevelopmental Disabilities,Individual
+2080B0002X,Pediatric Obesity Medicine Physician,Pediatrics,Obesity Medicine,Individual
+2080P0201X,Pediatric Allergy/Immunology Physician,Pediatrics,Pediatric Allergy/Immunology,Individual
+2080P0202X,Pediatric Cardiology Physician,Pediatrics,Pediatric Cardiology,Individual
+2080P0203X,Pediatric Critical Care Medicine Physician,Pediatrics,Pediatric Critical Care Medicine,Individual
+2080P0204X,Pediatric Emergency Medicine (Pediatrics) Physician,Pediatrics,Pediatric Emergency Medicine,Individual
+2080P0205X,Pediatric Endocrinology Physician,Pediatrics,Pediatric Endocrinology,Individual
+2080P0206X,Pediatric Gastroenterology Physician,Pediatrics,Pediatric Gastroenterology,Individual
+2080P0207X,Pediatric Hematology & Oncology Physician,Pediatrics,Pediatric Hematology-Oncology,Individual
+2080P0208X,Pediatric Infectious Diseases Physician,Pediatrics,Pediatric Infectious Diseases,Individual
+2080P0210X,Pediatric Nephrology Physician,Pediatrics,Pediatric Nephrology,Individual
+2080P0214X,Pediatric Pulmonology Physician,Pediatrics,Pediatric Pulmonology,Individual
+2080P0216X,Pediatric Rheumatology Physician,Pediatrics,Pediatric Rheumatology,Individual
+2080T0004X,Pediatric Transplant Hepatology Physician,Pediatrics,Pediatric Transplant Hepatology,Individual
+2080P1004X,Physician Nutrition Specialist (Pediatrics),Pediatrics,Physician Nutrition Specialist,Individual
+2080S0012X,Pediatric Sleep Medicine Physician,Pediatrics,Sleep Medicine,Individual
+2080S0010X,Pediatric Sports Medicine Physician,Pediatrics,Sports Medicine,Individual
+202K00000X,Phlebology Physician,Phlebology,,Individual
+208100000X,Physical Medicine & Rehabilitation Physician,Physical Medicine & Rehabilitation,,Individual
+2081P0301X,Brain Injury Medicine (Physical Medicine & Rehabilitation) Physician,Physical Medicine & Rehabilitation,Brain Injury Medicine,Individual
+2081H0002X,Hospice and Palliative Medicine (Physical Medicine & Rehabilitation) Physician,Physical Medicine & Rehabilitation,Hospice and Palliative Medicine,Individual
+2081N0008X,Neuromuscular Medicine (Physical Medicine & Rehabilitation) Physician,Physical Medicine & Rehabilitation,Neuromuscular Medicine,Individual
+2081P2900X,Pain Medicine (Physical Medicine & Rehabilitation) Physician,Physical Medicine & Rehabilitation,Pain Medicine,Individual
+2081P0010X,Pediatric Rehabilitation Medicine Physician,Physical Medicine & Rehabilitation,Pediatric Rehabilitation Medicine,Individual
+2081P0004X,Spinal Cord Injury Medicine Physician,Physical Medicine & Rehabilitation,Spinal Cord Injury Medicine,Individual
+2081S0010X,Sports Medicine (Physical Medicine & Rehabilitation) Physician,Physical Medicine & Rehabilitation,Sports Medicine,Individual
+208200000X,Plastic Surgery Physician,Plastic Surgery,,Individual
+2082S0099X,Plastic Surgery Within the Head and Neck (Plastic Surgery) Physician,Plastic Surgery,Plastic Surgery Within the Head and Neck,Individual
+2082S0105X,Surgery of the Hand (Plastic Surgery) Physician,Plastic Surgery,Surgery of the Hand,Individual
+2083A0300X,Addiction Medicine (Preventive Medicine) Physician,Preventive Medicine,Addiction Medicine,Individual
+2083A0100X,Aerospace Medicine Physician,Preventive Medicine,Aerospace Medicine,Individual
+2083C0008X,Clinical Informatics Physician,Preventive Medicine,Clinical Informatics,Individual
+2083T0002X,Medical Toxicology (Preventive Medicine) Physician,Preventive Medicine,Medical Toxicology,Individual
+2083B0002X,Obesity Medicine (Preventive Medicine) Physician,Preventive Medicine,Obesity Medicine,Individual
+2083X0100X,Occupational Medicine Physician,Preventive Medicine,Occupational Medicine,Individual
+2083P0500X,Preventive Medicine/Occupational Environmental Medicine Physician,Preventive Medicine,Preventive Medicine/Occupational Environmental Medicine,Individual
+2083P0901X,Public Health & General Preventive Medicine Physician,Preventive Medicine,Public Health & General Preventive Medicine,Individual
+2083S0010X,Sports Medicine (Preventive Medicine) Physician,Preventive Medicine,Sports Medicine,Individual
+2083P0011X,Undersea and Hyperbaric Medicine (Preventive Medicine) Physician,Preventive Medicine,Undersea and Hyperbaric Medicine,Individual
+2084A0401X,Addiction Medicine (Psychiatry & Neurology) Physician,Psychiatry & Neurology,Addiction Medicine,Individual
+2084P0802X,Addiction Psychiatry Physician,Psychiatry & Neurology,Addiction Psychiatry,Individual
+2084B0040X,Behavioral Neurology & Neuropsychiatry Physician,Psychiatry & Neurology,Behavioral Neurology & Neuropsychiatry,Individual
+2084P0301X,Brain Injury Medicine (Psychiatry & Neurology) Physician,Psychiatry & Neurology,Brain Injury Medicine,Individual
+2084P0804X,Child & Adolescent Psychiatry Physician,Psychiatry & Neurology,Child & Adolescent Psychiatry,Individual
+2084N0600X,Clinical Neurophysiology Physician,Psychiatry & Neurology,Clinical Neurophysiology,Individual
+2084D0003X,Diagnostic Neuroimaging (Psychiatry & Neurology) Physician,Psychiatry & Neurology,Diagnostic Neuroimaging,Individual
+2084E0001X,Epilepsy Physician,Psychiatry & Neurology,Epilepsy,Individual
+2084F0202X,Forensic Psychiatry Physician,Psychiatry & Neurology,Forensic Psychiatry,Individual
+2084P0805X,Geriatric Psychiatry Physician,Psychiatry & Neurology,Geriatric Psychiatry,Individual
+2084H0002X,Hospice and Palliative Medicine (Psychiatry & Neurology) Physician,Psychiatry & Neurology,Hospice and Palliative Medicine,Individual
+2084A2900X,Neurocritical Care Physician,Psychiatry & Neurology,Neurocritical Care,Individual
+2084P0005X,Neurodevelopmental Disabilities Physician,Psychiatry & Neurology,Neurodevelopmental Disabilities,Individual
+2084N0400X,Neurology Physician,Psychiatry & Neurology,Neurology,Individual
+2084N0402X,Neurology with Special Qualifications in Child Neurology Physician,Psychiatry & Neurology,Neurology with Special Qualifications in Child Neurology,Individual
+2084N0008X,Neuromuscular Medicine (Psychiatry & Neurology) Physician,Psychiatry & Neurology,Neuromuscular Medicine,Individual
+2084B0002X,Obesity Medicine (Psychiatry & Neurology) Physician,Psychiatry & Neurology,Obesity Medicine,Individual
+2084P2900X,Pain Medicine (Psychiatry & Neurology) Physician,Psychiatry & Neurology,Pain Medicine,Individual
+2084P0800X,Psychiatry Physician,Psychiatry & Neurology,Psychiatry,Individual
+2084P0015X,Psychosomatic Medicine Physician,Psychiatry & Neurology,Psychosomatic Medicine,Individual
+2084S0012X,Sleep Medicine (Psychiatry & Neurology) Physician,Psychiatry & Neurology,Sleep Medicine,Individual
+2084S0010X,Sports Medicine (Psychiatry & Neurology) Physician,Psychiatry & Neurology,Sports Medicine,Individual
+2084V0102X,Vascular Neurology Physician,Psychiatry & Neurology,Vascular Neurology,Individual
+2085B0100X,Body Imaging Physician,Radiology,Body Imaging,Individual
+2085D0003X,Diagnostic Neuroimaging (Radiology) Physician,Radiology,Diagnostic Neuroimaging,Individual
+2085R0202X,Diagnostic Radiology Physician,Radiology,Diagnostic Radiology,Individual
+2085U0001X,Diagnostic Ultrasound Physician,Radiology,Diagnostic Ultrasound,Individual
+2085H0002X,Hospice and Palliative Medicine (Radiology) Physician,Radiology,Hospice and Palliative Medicine,Individual
+2085N0700X,Neuroradiology Physician,Radiology,Neuroradiology,Individual
+2085N0904X,Nuclear Radiology Physician,Radiology,Nuclear Radiology,Individual
+2085P0229X,Pediatric Radiology Physician,Radiology,Pediatric Radiology,Individual
+2085R0001X,Radiation Oncology Physician,Radiology,Radiation Oncology,Individual
+2085R0205X,Radiological Physics Physician,Radiology,Radiological Physics,Individual
+2085R0203X,Therapeutic Radiology Physician,Radiology,Therapeutic Radiology,Individual
+2085R0204X,Vascular & Interventional Radiology Physician,Radiology,Vascular & Interventional Radiology,Individual
+208600000X,Surgery Physician,Surgery,,Individual
+2086H0002X,Hospice and Palliative Medicine (Surgery) Physician,Surgery,Hospice and Palliative Medicine,Individual
+2086S0120X,Pediatric Surgery Physician,Surgery,Pediatric Surgery,Individual
+2086P0122X,Physician Nutrition Specialist (Surgery),Surgery,Physician Nutrition Specialist,Individual
+2086S0122X,Plastic and Reconstructive Surgery Physician,Surgery,Plastic and Reconstructive Surgery,Individual
+2086S0105X,Surgery of the Hand (Surgery) Physician,Surgery,Surgery of the Hand,Individual
+2086S0102X,Surgical Critical Care Physician,Surgery,Surgical Critical Care,Individual
+2086X0206X,Surgical Oncology Physician,Surgery,Surgical Oncology,Individual
+2086S0127X,Trauma Surgery Physician,Surgery,Trauma Surgery,Individual
+2086S0129X,Vascular Surgery Physician,Surgery,Vascular Surgery,Individual
+208G00000X,Thoracic Surgery (Cardiothoracic Vascular Surgery) Physician,Thoracic Surgery (Cardiothoracic Vascular Surgery),,Individual
+204F00000X,Transplant Surgery Physician,Transplant Surgery,,Individual
+208800000X,Urology Physician,Urology,,Individual
+2088F0040X,Urogynecology and Reconstructive Pelvic Surgery (Urology) Physician,Urology,Urogynecology and Reconstructive Pelvic Surgery,Individual
+2088P0231X,Pediatric Urology Physician,Urology,Pediatric Urology,Individual
+106E00000X,Assistant Behavior Analyst,Assistant Behavior Analyst,,Individual
+106S00000X,Behavior Technician,Behavior Technician,,Individual
+103K00000X,Behavior Analyst,Behavior Analyst,,Individual
+103G00000X,Clinical Neuropsychologist,Clinical Neuropsychologist,,Individual
+103GC0700X,Deactivated - Clinical Neuropsychologist,Clinical Neuropsychologist,Clinical,Individual
+101Y00000X,Counselor,Counselor,,Individual
+101YA0400X,Addiction (Substance Use Disorder) Counselor,Counselor,Addiction (Substance Use Disorder),Individual
+101YM0800X,Mental Health Counselor,Counselor,Mental Health,Individual
+101YP1600X,Pastoral Counselor,Counselor,Pastoral,Individual
+101YP2500X,Professional Counselor,Counselor,Professional,Individual
+101YS0200X,School Counselor,Counselor,School,Individual
+101200000X,Drama Therapist,Drama Therapist,,Individual
+106H00000X,Marriage & Family Therapist,Marriage & Family Therapist,,Individual
+102X00000X,Poetry Therapist,Poetry Therapist,,Individual
+102L00000X,Psychoanalyst,Psychoanalyst,,Individual
+103T00000X,Psychologist,Psychologist,,Individual
+103TA0400X,Addiction (Substance Use Disorder) Psychologist,Psychologist,Addiction (Substance Use Disorder),Individual
+103TA0700X,Adult Development & Aging Psychologist,Psychologist,Adult Development & Aging,Individual
+103TC0700X,Clinical Psychologist,Psychologist,Clinical,Individual
+103TC2200X,Clinical Child & Adolescent Psychologist,Psychologist,Clinical Child & Adolescent,Individual
+103TB0200X,Cognitive & Behavioral Psychologist,Psychologist,Cognitive & Behavioral,Individual
+103TC1900X,Counseling Psychologist,Psychologist,Counseling,Individual
+103TE1000X,Deactivated - Psychologist,Psychologist,Educational,Individual
+103TE1100X,Exercise & Sports Psychologist,Psychologist,Exercise & Sports,Individual
+103TF0000X,Family Psychologist,Psychologist,Family,Individual
+103TF0200X,Forensic Psychologist,Psychologist,Forensic,Individual
+103TP2701X,Group Psychotherapy Psychologist,Psychologist,Group Psychotherapy,Individual
+103TH0004X,Health Psychologist,Psychologist,Health,Individual
+103TH0100X,Health Service Psychologist,Psychologist,Health Service,Individual
+103TM1700X,Deactivated - Psychologist Men & Masculinity,Psychologist,Men & Masculinity,Individual
+103TM1800X,Intellectual & Developmental Disabilities Psychologist,Psychologist,Intellectual & Developmental Disabilities,Individual
+103TP0016X,Prescribing (Medical) Psychologist,Psychologist,Prescribing (Medical),Individual
+103TP0814X,Psychoanalysis Psychologist,Psychologist,Psychoanalysis,Individual
+103TP2700X,Deactivated - Psychologist Psychotherapy,Psychologist,Psychotherapy,Individual
+103TR0400X,Rehabilitation Psychologist,Psychologist,Rehabilitation,Individual
+103TS0200X,School Psychologist,Psychologist,School,Individual
+103TW0100X,Deactivated - Psychotherapy Women,Psychologist,Women,Individual
+104100000X,Social Worker,Social Worker,,Individual
+1041C0700X,Clinical Social Worker,Social Worker,Clinical,Individual
+1041S0200X,School Social Worker,Social Worker,School,Individual
+111N00000X,Chiropractor,Chiropractor,,Individual
+111NI0013X,Independent Medical Examiner Chiropractor,Chiropractor,Independent Medical Examiner,Individual
+111NI0900X,Internist Chiropractor,Chiropractor,Internist,Individual
+111NN0400X,Neurology Chiropractor,Chiropractor,Neurology,Individual
+111NN1001X,Nutrition Chiropractor,Chiropractor,Nutrition,Individual
+111NX0100X,Occupational Health Chiropractor,Chiropractor,Occupational Health,Individual
+111NX0800X,Orthopedic Chiropractor,Chiropractor,Orthopedic,Individual
+111NP0017X,Pediatric Chiropractor,Chiropractor,Pediatric Chiropractor,Individual
+111NR0200X,Radiology Chiropractor,Chiropractor,Radiology,Individual
+111NR0400X,Rehabilitation Chiropractor,Chiropractor,Rehabilitation,Individual
+111NS0005X,Sports Physician Chiropractor,Chiropractor,Sports Physician,Individual
+111NT0100X,Thermography Chiropractor,Chiropractor,Thermography,Individual
+125K00000X,Advanced Practice Dental Therapist,Advanced Practice Dental Therapist,,Individual
+126800000X,Dental Assistant,Dental Assistant,,Individual
+124Q00000X,Dental Hygienist,Dental Hygienist,,Individual
+126900000X,Dental Laboratory Technician,Dental Laboratory Technician,,Individual
+125J00000X,Dental Therapist,Dental Therapist,,Individual
+122300000X,Dentist,Dentist,,Individual
+1223D0004X,Dental Anesthesiology,Dentist,Dental Anesthesiology,Individual
+1223D0001X,Public Health Dentistry,Dentist,Dental Public Health,Individual
+1223E0200X,Endodontics,Dentist,Endodontics,Individual
+1223G0001X,General Practice Dentistry,Dentist,General Practice,Individual
+1223P0106X,Oral and Maxillofacial Pathology Dentistry,Dentist,Oral and Maxillofacial Pathology,Individual
+1223X0008X,Oral and Maxillofacial Radiology Dentistry,Dentist,Oral and Maxillofacial Radiology,Individual
+1223S0112X,Oral and Maxillofacial Surgery (Dentist),Dentist,Oral and Maxillofacial Surgery,Individual
+125Q00000X,Oral Medicine Dentistry,Dentist,Oral Medicine,Individual
+1223X2210X,Orofacial Pain Dentistry,Dentist,Orofacial Pain,Individual
+1223X0400X,Orthodontics and Dentofacial Orthopedics Dentistry,Dentist,Orthodontics and Dentofacial Orthopedics,Individual
+1223P0221X,Pediatric Dentistry,Dentist,Pediatric Dentistry,Individual
+1223P0300X,Periodontics,Dentist,Periodontics,Individual
+1223P0700X,Prosthodontics,Dentist,Prosthodontics,Individual
+122400000X,Denturist,Denturist,,Individual
+132700000X,Dietary Manager,Dietary Manager,,Individual
+136A00000X,Registered Dietetic Technician,"Dietetic Technician, Registered",,Individual
+133V00000X,Registered Dietitian,"Dietitian, Registered",,Individual
+133VN1101X,Gerontological Nutrition Registered Dietitian,"Dietitian, Registered","Nutrition, Gerontological",Individual
+133VN1006X,Metabolic Nutrition Registered Dietitian,"Dietitian, Registered","Nutrition, Metabolic",Individual
+133VN1201X,Obesity and Weight Management Nutrition Registered Dietitian,"Dietitian, Registered","Nutrition, Obesity and Weight Management",Individual
+133VN1301X,Oncology Nutrition Registered Dietitian,"Dietitian, Registered","Nutrition, Oncology",Individual
+133VN1004X,Pediatric Nutrition Registered Dietitian,"Dietitian, Registered","Nutrition, Pediatric",Individual
+133VN1401X,Pediatric Critical Care Nutrition Registered Dietitian,"Dietitian, Registered","Nutrition, Pediatric Critical Care",Individual
+133VN1005X,Renal Nutrition Registered Dietitian,"Dietitian, Registered","Nutrition, Renal",Individual
+133VN1501X,Sports Dietetics Nutrition Registered Dietitian,"Dietitian, Registered","Nutrition, Sports Dietetics",Individual
+133N00000X,Nutritionist,Nutritionist,,Individual
+133NN1002X,Nutrition Education Nutritionist,Nutritionist,"Nutrition, Education",Individual
+146E00000X,Community Paramedic,Community Paramedic,,Individual
+146N00000X,Basic Emergency Medical Technician,"Emergency Medical Technician, Basic",,Individual
+146M00000X,Intermediate Emergency Medical Technician,"Emergency Medical Technician, Intermediate",,Individual
+146L00000X,Paramedic,"Emergency Medical Technician, Paramedic",,Individual
+146D00000X,Personal Emergency Response Attendant,Personal Emergency Response Attendant,,Individual
+152W00000X,Optometrist,Optometrist,,Individual
+152WC0802X,Corneal and Contact Management Optometrist,Optometrist,Corneal and Contact Management,Individual
+152WL0500X,Low Vision Rehabilitation Optometrist,Optometrist,Low Vision Rehabilitation,Individual
+152WX0102X,Occupational Vision Optometrist,Optometrist,Occupational Vision,Individual
+152WP0200X,Pediatric Optometrist,Optometrist,Pediatrics,Individual
+152WS0006X,Sports Vision Optometrist,Optometrist,Sports Vision,Individual
+152WV0400X,Vision Therapy Optometrist,Optometrist,Vision Therapy,Individual
+156F00000X,Technician/Technologist,Technician/Technologist,,Individual
+156FC0800X,Contact Lens Technician/Technologist,Technician/Technologist,Contact Lens,Individual
+156FC0801X,Contact Lens Fitter,Technician/Technologist,Contact Lens Fitter,Individual
+156FX1700X,Ocularist,Technician/Technologist,Ocularist,Individual
+156FX1100X,Ophthalmic Technician/Technologist,Technician/Technologist,Ophthalmic,Individual
+156FX1101X,Ophthalmic Assistant,Technician/Technologist,Ophthalmic Assistant,Individual
+156FX1800X,Optician,Technician/Technologist,Optician,Individual
+156FX1201X,Optometric Assistant Technician,Technician/Technologist,Optometric Assistant,Individual
+156FX1202X,Optometric Technician,Technician/Technologist,Optometric Technician,Individual
+156FX1900X,Orthoptist,Technician/Technologist,Orthoptist,Individual
+164W00000X,Licensed Practical Nurse,Licensed Practical Nurse,,Individual
+167G00000X,Licensed Psychiatric Technician,Licensed Psychiatric Technician,,Individual
+164X00000X,Licensed Vocational Nurse,Licensed Vocational Nurse,,Individual
+163W00000X,Registered Nurse,Registered Nurse,,Individual
+163WA0400X,Addiction (Substance Use Disorder) Registered Nurse,Registered Nurse,Addiction (Substance Use Disorder),Individual
+163WA2000X,Administrator Registered Nurse,Registered Nurse,Administrator,Individual
+163WP2201X,Ambulatory Care Registered Nurse,Registered Nurse,Ambulatory Care,Individual
+163WC3500X,Cardiac Rehabilitation Registered Nurse,Registered Nurse,Cardiac Rehabilitation,Individual
+163WC0400X,Case Management Registered Nurse,Registered Nurse,Case Management,Individual
+163WC1400X,College Health Registered Nurse,Registered Nurse,College Health,Individual
+163WC1500X,Community Health Registered Nurse,Registered Nurse,Community Health,Individual
+163WC2100X,Continence Care Registered Nurse,Registered Nurse,Continence Care,Individual
+163WC1600X,Continuing Education/Staff Development Registered Nurse,Registered Nurse,Continuing Education/Staff Development,Individual
+163WC0200X,Critical Care Medicine Registered Nurse,Registered Nurse,Critical Care Medicine,Individual
+163WD0400X,Diabetes Educator Registered Nurse,Registered Nurse,Diabetes Educator,Individual
+163WD1100X,Peritoneal Dialysis Registered Nurse,Registered Nurse,"Dialysis, Peritoneal",Individual
+163WE0003X,Emergency Registered Nurse,Registered Nurse,Emergency,Individual
+163WE0900X,Enterostomal Therapy Registered Nurse,Registered Nurse,Enterostomal Therapy,Individual
+163WF0300X,Flight Registered Nurse,Registered Nurse,Flight,Individual
+163WG0100X,Gastroenterology Registered Nurse,Registered Nurse,Gastroenterology,Individual
+163WG0000X,General Practice Registered Nurse,Registered Nurse,General Practice,Individual
+163WG0600X,Gerontology Registered Nurse,Registered Nurse,Gerontology,Individual
+163WH0500X,Hemodialysis Registered Nurse,Registered Nurse,Hemodialysis,Individual
+163WH0200X,Home Health Registered Nurse,Registered Nurse,Home Health,Individual
+163WH1000X,Hospice Registered Nurse,Registered Nurse,Hospice,Individual
+163WI0600X,Infection Control Registered Nurse,Registered Nurse,Infection Control,Individual
+163WI0500X,Infusion Therapy Registered Nurse,Registered Nurse,Infusion Therapy,Individual
+163WL0100X,Lactation Consultant (Registered Nurse),Registered Nurse,Lactation Consultant,Individual
+163WM0102X,Maternal Newborn Registered Nurse,Registered Nurse,Maternal Newborn,Individual
+163WM0705X,Medical-Surgical Registered Nurse,Registered Nurse,Medical-Surgical,Individual
+163WN0002X,Neonatal Intensive Care Registered Nurse,Registered Nurse,Neonatal Intensive Care,Individual
+163WN0003X,Low-Risk Neonatal Registered Nurse,Registered Nurse,"Neonatal, Low-Risk",Individual
+163WN0300X,Nephrology Registered Nurse,Registered Nurse,Nephrology,Individual
+163WN0800X,Neuroscience Registered Nurse,Registered Nurse,Neuroscience,Individual
+163WM1400X,Nurse Massage Therapist (NMT),Registered Nurse,Nurse Massage Therapist (NMT),Individual
+163WN1003X,Nutrition Support Registered Nurse,Registered Nurse,Nutrition Support,Individual
+163WX0002X,High-Risk Obstetric Registered Nurse,Registered Nurse,"Obstetric, High-Risk",Individual
+163WX0003X,Inpatient Obstetric Registered Nurse,Registered Nurse,"Obstetric, Inpatient",Individual
+163WX0106X,Occupational Health Registered Nurse,Registered Nurse,Occupational Health,Individual
+163WX0200X,Oncology Registered Nurse,Registered Nurse,Oncology,Individual
+163WX1100X,Ophthalmic Registered Nurse,Registered Nurse,Ophthalmic,Individual
+163WX0800X,Orthopedic Registered Nurse,Registered Nurse,Orthopedic,Individual
+163WX1500X,Ostomy Care Registered Nurse,Registered Nurse,Ostomy Care,Individual
+163WX0601X,Otorhinolaryngology & Head-Neck Registered Nurse,Registered Nurse,Otorhinolaryngology & Head-Neck,Individual
+163WP0000X,Pain Management Registered Nurse,Registered Nurse,Pain Management,Individual
+163WP0218X,Pediatric Oncology Registered Nurse,Registered Nurse,Pediatric Oncology,Individual
+163WP0200X,Pediatric Registered Nurse,Registered Nurse,Pediatrics,Individual
+163WP1700X,Perinatal Registered Nurse,Registered Nurse,Perinatal,Individual
+163WS0121X,Plastic Surgery Registered Nurse,Registered Nurse,Plastic Surgery,Individual
+163WP0808X,Psychiatric/Mental Health Registered Nurse,Registered Nurse,Psychiatric/Mental Health,Individual
+163WP0809X,Adult Psychiatric/Mental Health Registered Nurse,Registered Nurse,"Psychiatric/Mental Health, Adult",Individual
+163WP0807X,Child & Adolescent Psychiatric/Mental Health Registered Nurse,Registered Nurse,"Psychiatric/Mental Health, Child & Adolescent",Individual
+163WR0006X,Registered Nurse First Assistant,Registered Nurse,Registered Nurse First Assistant,Individual
+163WR0400X,Rehabilitation Registered Nurse,Registered Nurse,Rehabilitation,Individual
+163WR1000X,Reproductive Endocrinology/Infertility Registered Nurse,Registered Nurse,Reproductive Endocrinology/Infertility,Individual
+163WS0200X,School Registered Nurse,Registered Nurse,School,Individual
+163WU0100X,Urology Registered Nurse,Registered Nurse,Urology,Individual
+163WW0101X,Ambulatory Women's Health Care Registered Nurse,Registered Nurse,"Women's Health Care, Ambulatory",Individual
+163WW0000X,Wound Care Registered Nurse,Registered Nurse,Wound Care,Individual
+372600000X,Adult Companion,Adult Companion,,Individual
+372500000X,Chore Provider,Chore Provider,,Individual
+373H00000X,Day Training/Habilitation Specialist,Day Training/Habilitation Specialist,,Individual
+374J00000X,Doula,Doula,,Individual
+374U00000X,Home Health Aide,Home Health Aide,,Individual
+376J00000X,Homemaker,Homemaker,,Individual
+376K00000X,Nurse's Aide,Nurse's Aide,,Individual
+376G00000X,Nursing Home Administrator,Nursing Home Administrator,,Individual
+374T00000X,Religious Nonmedical Nursing Personnel,Religious Nonmedical Nursing Personnel,,Individual
+374K00000X,Religious Nonmedical Practitioner,Religious Nonmedical Practitioner,,Individual
+374700000X,Technician,Technician,,Individual
+3747A0650X,Attendant Care Provider,Technician,Attendant Care Provider,Individual
+3747P1801X,Personal Care Attendant,Technician,Personal Care Attendant,Individual
+171100000X,Acupuncturist,Acupuncturist,,Individual
+171M00000X,Case Manager/Care Coordinator,Case Manager/Care Coordinator,,Individual
+174V00000X,Clinical Ethicist,Clinical Ethicist,,Individual
+172V00000X,Community Health Worker,Community Health Worker,,Individual
+171W00000X,Contractor,Contractor,,Individual
+171WH0202X,Home Modifications Contractor,Contractor,Home Modifications,Individual
+171WV0202X,Vehicle Modifications Contractor,Contractor,Vehicle Modifications,Individual
+172A00000X,Driver,Driver,,Individual
+176P00000X,Funeral Director,Funeral Director,,Individual
+170300000X,Genetic Counselor (M.S.),"Genetic Counselor, MS",,Individual
+171400000X,Health & Wellness Coach,Health & Wellness Coach,,Individual
+174H00000X,Health Educator,Health Educator,,Individual
+175L00000X,Homeopath,Homeopath,,Individual
+171R00000X,Interpreter,Interpreter,,Individual
+174N00000X,Lactation Consultant (Non-RN),"Lactation Consultant, Non-RN",,Individual
+175M00000X,Lay Midwife,"Midwife, Lay",,Individual
+173000000X,Legal Medicine,Legal Medicine,,Individual
+172M00000X,Mechanotherapist,Mechanotherapist,,Individual
+176B00000X,Midwife,Midwife,,Individual
+171000000X,Military Health Care Provider,Military Health Care Provider,,Individual
+1710I1002X,Independent Duty Corpsman,Military Health Care Provider,Independent Duty Corpsman,Individual
+1710I1003X,Independent Duty Medical Technicians,Military Health Care Provider,Independent Duty Medical Technicians,Individual
+172P00000X,Naprapath,Naprapath,,Individual
+175F00000X,Naturopath,Naturopath,,Individual
+175T00000X,Peer Specialist,Peer Specialist,,Individual
+170100000X,Ph.D. Medical Genetics,"Medical Genetics, Ph.D. Medical Genetics",,Individual
+405300000X,Prevention Professional,Prevention Professional,,Individual
+173C00000X,Reflexologist,Reflexologist,,Individual
+173F00000X,Sleep Specialist (PhD),"Sleep Specialist, PhD",,Individual
+174400000X,Specialist,Specialist,,Individual
+1744G0900X,Graphics Designer,Specialist,Graphics Designer,Individual
+1744P3200X,Prosthetics Case Management,Specialist,Prosthetics Case Management,Individual
+1744R1103X,Research Study Abstracter/Coder,Specialist,Research Data Abstracter/Coder,Individual
+1744R1102X,Research Study Specialist,Specialist,Research Study,Individual
+174M00000X,Veterinarian,Veterinarian,,Individual
+174MM1900X,Medical Research Veterinarian,Veterinarian,Medical Research,Individual
+183500000X,Pharmacist,Pharmacist,,Individual
+1835P2201X,Ambulatory Care Pharmacist,Pharmacist,Ambulatory Care,Individual
+1835C0206X,Cardiology Pharmacist,Pharmacist,Cardiology,Individual
+1835C0207X,Compounded Sterile Preparations Pharmacist,Pharmacist,Compounded Sterile Preparations,Individual
+1835C0205X,Critical Care Pharmacist,Pharmacist,Critical Care,Individual
+1835E0208X,Emergency Medicine Pharmacist,Pharmacist,Emergency Medicine,Individual
+1835G0000X,Deactivated - Pharmacist,Pharmacist,General Practice,Individual
+1835G0303X,Geriatric Pharmacist,Pharmacist,Geriatric,Individual
+1835I0206X,Infectious Diseases Pharmacist,Pharmacist,Infectious Diseases,Individual
+1835N0905X,Nuclear Pharmacist,Pharmacist,Nuclear,Individual
+1835N1003X,Nutrition Support Pharmacist,Pharmacist,Nutrition Support,Individual
+1835X0200X,Oncology Pharmacist,Pharmacist,Oncology,Individual
+1835P1400X,Pain Management Pharmacist,Pharmacist,Pain Management,Individual
+1835P0200X,Pediatric Pharmacist,Pharmacist,Pediatrics,Individual
+1835P0018X,Pharmacist Clinician (PhC)/ Clinical Pharmacy Specialist,Pharmacist,Pharmacist Clinician (PhC)/ Clinical Pharmacy Specialist,Individual
+1835P1200X,Pharmacotherapy Pharmacist,Pharmacist,Pharmacotherapy,Individual
+1835P1300X,Psychiatric Pharmacist,Pharmacist,Psychiatric,Individual
+1835S0206X,Solid Organ Transplant Pharmacist,Pharmacist,Solid Organ Transplant,Individual
+183700000X,Pharmacy Technician,Pharmacy Technician,,Individual
+367A00000X,Advanced Practice Midwife,Advanced Practice Midwife,,Individual
+367H00000X,Anesthesiologist Assistant,Anesthesiologist Assistant,,Individual
+364S00000X,Clinical Nurse Specialist,Clinical Nurse Specialist,,Individual
+364SA2100X,Acute Care Clinical Nurse Specialist,Clinical Nurse Specialist,Acute Care,Individual
+364SA2200X,Adult Health Clinical Nurse Specialist,Clinical Nurse Specialist,Adult Health,Individual
+364SC2300X,Chronic Care Clinical Nurse Specialist,Clinical Nurse Specialist,Chronic Care,Individual
+364SC1501X,Community Health/Public Health Clinical Nurse Specialist,Clinical Nurse Specialist,Community Health/Public Health,Individual
+364SC0200X,Critical Care Medicine Clinical Nurse Specialist,Clinical Nurse Specialist,Critical Care Medicine,Individual
+364SE0003X,Emergency Clinical Nurse Specialist,Clinical Nurse Specialist,Emergency,Individual
+364SE1400X,Ethics Clinical Nurse Specialist,Clinical Nurse Specialist,Ethics,Individual
+364SF0001X,Family Health Clinical Nurse Specialist,Clinical Nurse Specialist,Family Health,Individual
+364SG0600X,Gerontology Clinical Nurse Specialist,Clinical Nurse Specialist,Gerontology,Individual
+364SH1100X,Holistic Clinical Nurse Specialist,Clinical Nurse Specialist,Holistic,Individual
+364SH0200X,Home Health Clinical Nurse Specialist,Clinical Nurse Specialist,Home Health,Individual
+364SI0800X,Informatics Clinical Nurse Specialist,Clinical Nurse Specialist,Informatics,Individual
+364SL0600X,Long-Term Care Clinical Nurse Specialist,Clinical Nurse Specialist,Long-Term Care,Individual
+364SM0705X,Medical-Surgical Clinical Nurse Specialist,Clinical Nurse Specialist,Medical-Surgical,Individual
+364SN0000X,Neonatal Clinical Nurse Specialist,Clinical Nurse Specialist,Neonatal,Individual
+364SN0800X,Neuroscience Clinical Nurse Specialist,Clinical Nurse Specialist,Neuroscience,Individual
+364SX0106X,Occupational Health Clinical Nurse Specialist,Clinical Nurse Specialist,Occupational Health,Individual
+364SX0200X,Oncology Clinical Nurse Specialist,Clinical Nurse Specialist,Oncology,Individual
+364SX0204X,Pediatric Oncology Clinical Nurse Specialist,Clinical Nurse Specialist,"Oncology, Pediatrics",Individual
+364SP0200X,Pediatric Clinical Nurse Specialist,Clinical Nurse Specialist,Pediatrics,Individual
+364SP1700X,Perinatal Clinical Nurse Specialist,Clinical Nurse Specialist,Perinatal,Individual
+364SP2800X,Perioperative Clinical Nurse Specialist,Clinical Nurse Specialist,Perioperative,Individual
+364SP0808X,Psychiatric/Mental Health Clinical Nurse Specialist,Clinical Nurse Specialist,Psychiatric/Mental Health,Individual
+364SP0809X,Adult Psychiatric/Mental Health Clinical Nurse Specialist,Clinical Nurse Specialist,"Psychiatric/Mental Health, Adult",Individual
+364SP0807X,Child & Adolescent Psychiatric/Mental Health Clinical Nurse Specialist,Clinical Nurse Specialist,"Psychiatric/Mental Health, Child & Adolescent",Individual
+364SP0810X,Child & Family Psychiatric/Mental Health Clinical Nurse Specialist,Clinical Nurse Specialist,"Psychiatric/Mental Health, Child & Family",Individual
+364SP0811X,Chronically Ill Psychiatric/Mental Health Clinical Nurse Specialist,Clinical Nurse Specialist,"Psychiatric/Mental Health, Chronically Ill",Individual
+364SP0812X,Community Psychiatric/Mental Health Clinical Nurse Specialist,Clinical Nurse Specialist,"Psychiatric/Mental Health, Community",Individual
+364SP0813X,Geropsychiatric Psychiatric/Mental Health Clinical Nurse Specialist,Clinical Nurse Specialist,"Psychiatric/Mental Health, Geropsychiatric",Individual
+364SR0400X,Rehabilitation Clinical Nurse Specialist,Clinical Nurse Specialist,Rehabilitation,Individual
+364SS0200X,School Clinical Nurse Specialist,Clinical Nurse Specialist,School,Individual
+364ST0500X,Transplantation Clinical Nurse Specialist,Clinical Nurse Specialist,Transplantation,Individual
+364SW0102X,Women's Health Clinical Nurse Specialist,Clinical Nurse Specialist,Women's Health,Individual
+367500000X,Certified Registered Nurse Anesthetist,"Nurse Anesthetist, Certified Registered",,Individual
+363L00000X,Nurse Practitioner,Nurse Practitioner,,Individual
+363LA2100X,Acute Care Nurse Practitioner,Nurse Practitioner,Acute Care,Individual
+363LA2200X,Adult Health Nurse Practitioner,Nurse Practitioner,Adult Health,Individual
+363LC1500X,Community Health Nurse Practitioner,Nurse Practitioner,Community Health,Individual
+363LC0200X,Critical Care Medicine Nurse Practitioner,Nurse Practitioner,Critical Care Medicine,Individual
+363LF0000X,Family Nurse Practitioner,Nurse Practitioner,Family,Individual
+363LG0600X,Gerontology Nurse Practitioner,Nurse Practitioner,Gerontology,Individual
+363LN0000X,Neonatal Nurse Practitioner,Nurse Practitioner,Neonatal,Individual
+363LN0005X,Critical Care Neonatal Nurse Practitioner,Nurse Practitioner,"Neonatal, Critical Care",Individual
+363LX0001X,Obstetrics & Gynecology Nurse Practitioner,Nurse Practitioner,Obstetrics & Gynecology,Individual
+363LX0106X,Occupational Health Nurse Practitioner,Nurse Practitioner,Occupational Health,Individual
+363LP0200X,Pediatric Nurse Practitioner,Nurse Practitioner,Pediatrics,Individual
+363LP0222X,Critical Care Pediatric Nurse Practitioner,Nurse Practitioner,"Pediatrics, Critical Care",Individual
+363LP1700X,Perinatal Nurse Practitioner,Nurse Practitioner,Perinatal,Individual
+363LP2300X,Primary Care Nurse Practitioner,Nurse Practitioner,Primary Care,Individual
+363LP0808X,Psychiatric/Mental Health Nurse Practitioner,Nurse Practitioner,Psychiatric/Mental Health,Individual
+363LS0200X,School Nurse Practitioner,Nurse Practitioner,School,Individual
+363LW0102X,Women's Health Nurse Practitioner,Nurse Practitioner,Women's Health,Individual
+363A00000X,Physician Assistant,Physician Assistant,,Individual
+363AM0700X,Medical Physician Assistant,Physician Assistant,Medical,Individual
+363AS0400X,Surgical Physician Assistant,Physician Assistant,Surgical,Individual
+211D00000X,Podiatric Assistant,"Assistant, Podiatric",,Individual
+213E00000X,Podiatrist,Podiatrist,,Individual
+213ES0103X,Foot & Ankle Surgery Podiatrist,Podiatrist,Foot & Ankle Surgery,Individual
+213ES0131X,Foot Surgery Podiatrist,Podiatrist,Foot Surgery,Individual
+213EG0000X,Deactivated - Podiatrist,Podiatrist,General Practice,Individual
+213EP1101X,Primary Podiatric Medicine Podiatrist,Podiatrist,Primary Podiatric Medicine,Individual
+213EP0504X,Public Medicine Podiatrist,Podiatrist,Public Medicine,Individual
+213ER0200X,Radiology Podiatrist,Podiatrist,Radiology,Individual
+213ES0000X,Sports Medicine Podiatrist,Podiatrist,Sports Medicine,Individual
+229N00000X,Anaplastologist,Anaplastologist,,Individual
+221700000X,Art Therapist,Art Therapist,,Individual
+224Y00000X,Clinical Exercise Physiologist,Clinical Exercise Physiologist,,Individual
+225600000X,Dance Therapist,Dance Therapist,,Individual
+222Q00000X,Developmental Therapist,Developmental Therapist,,Individual
+226300000X,Kinesiotherapist,Kinesiotherapist,,Individual
+225700000X,Massage Therapist,Massage Therapist,,Individual
+224900000X,Mastectomy Fitter,Mastectomy Fitter,,Individual
+225A00000X,Music Therapist,Music Therapist,,Individual
+225X00000X,Occupational Therapist,Occupational Therapist,,Individual
+225XR0403X,Driving and Community Mobility Occupational Therapist,Occupational Therapist,Driving and Community Mobility,Individual
+225XE0001X,Environmental Modification Occupational Therapist,Occupational Therapist,Environmental Modification,Individual
+225XE1200X,Ergonomics Occupational Therapist,Occupational Therapist,Ergonomics,Individual
+225XF0002X,"Feeding, Eating & Swallowing Occupational Therapist",Occupational Therapist,"Feeding, Eating & Swallowing",Individual
+225XG0600X,Gerontology Occupational Therapist,Occupational Therapist,Gerontology,Individual
+225XH1200X,Hand Occupational Therapist,Occupational Therapist,Hand,Individual
+225XH1300X,Human Factors Occupational Therapist,Occupational Therapist,Human Factors,Individual
+225XL0004X,Low Vision Occupational Therapist,Occupational Therapist,Low Vision,Individual
+225XM0800X,Mental Health Occupational Therapist,Occupational Therapist,Mental Health,Individual
+225XN1300X,Neurorehabilitation Occupational Therapist,Occupational Therapist,Neurorehabilitation,Individual
+225XP0200X,Pediatric Occupational Therapist,Occupational Therapist,Pediatrics,Individual
+225XP0019X,Physical Rehabilitation Occupational Therapist,Occupational Therapist,Physical Rehabilitation,Individual
+224Z00000X,Occupational Therapy Assistant,Occupational Therapy Assistant,,Individual
+224ZR0403X,Driving and Community Mobility Occupational Therapy Assistant,Occupational Therapy Assistant,Driving and Community Mobility,Individual
+224ZE0001X,Environmental Modification Occupational Therapy Assistant,Occupational Therapy Assistant,Environmental Modification,Individual
+224ZF0002X,"Feeding, Eating & Swallowing Occupational Therapy Assistant",Occupational Therapy Assistant,"Feeding, Eating & Swallowing",Individual
+224ZL0004X,Low Vision Occupational Therapy Assistant,Occupational Therapy Assistant,Low Vision,Individual
+225000000X,Orthotic Fitter,Orthotic Fitter,,Individual
+222Z00000X,Orthotist,Orthotist,,Individual
+224L00000X,Pedorthist,Pedorthist,,Individual
+225100000X,Physical Therapist,Physical Therapist,,Individual
+2251C2600X,Cardiopulmonary Physical Therapist,Physical Therapist,Cardiopulmonary,Individual
+2251E1300X,Clinical Electrophysiology Physical Therapist,Physical Therapist,"Electrophysiology, Clinical",Individual
+2251E1200X,Ergonomics Physical Therapist,Physical Therapist,Ergonomics,Individual
+2251G0304X,Geriatric Physical Therapist,Physical Therapist,Geriatrics,Individual
+2251H1200X,Hand Physical Therapist,Physical Therapist,Hand,Individual
+2251H1300X,Human Factors Physical Therapist,Physical Therapist,Human Factors,Individual
+2251N0400X,Neurology Physical Therapist,Physical Therapist,Neurology,Individual
+2251X0800X,Orthopedic Physical Therapist,Physical Therapist,Orthopedic,Individual
+2251P0200X,Pediatric Physical Therapist,Physical Therapist,Pediatrics,Individual
+2251S0007X,Sports Physical Therapist,Physical Therapist,Sports,Individual
+225200000X,Physical Therapy Assistant,Physical Therapy Assistant,,Individual
+224P00000X,Prosthetist,Prosthetist,,Individual
+225B00000X,Pulmonary Function Technologist,Pulmonary Function Technologist,,Individual
+225800000X,Recreation Therapist,Recreation Therapist,,Individual
+226000000X,Recreational Therapist Assistant,Recreational Therapist Assistant,,Individual
+225C00000X,Rehabilitation Counselor,Rehabilitation Counselor,,Individual
+225CA2400X,Assistive Technology Practitioner Rehabilitation Counselor,Rehabilitation Counselor,Assistive Technology Practitioner,Individual
+225CA2500X,Assistive Technology Supplier Rehabilitation Counselor,Rehabilitation Counselor,Assistive Technology Supplier,Individual
+225CX0006X,Orientation and Mobility Training Rehabilitation Counselor,Rehabilitation Counselor,Orientation and Mobility Training Provider,Individual
+225400000X,Rehabilitation Practitioner,Rehabilitation Practitioner,,Individual
+227800000X,Certified Respiratory Therapist,"Respiratory Therapist, Certified",,Individual
+2278C0205X,Critical Care Certified Respiratory Therapist,"Respiratory Therapist, Certified",Critical Care,Individual
+2278E1000X,Educational Certified Respiratory Therapist,"Respiratory Therapist, Certified",Educational,Individual
+2278E0002X,Emergency Care Certified Respiratory Therapist,"Respiratory Therapist, Certified",Emergency Care,Individual
+2278G1100X,General Care Certified Respiratory Therapist,"Respiratory Therapist, Certified",General Care,Individual
+2278G0305X,Geriatric Care Certified Respiratory Therapist,"Respiratory Therapist, Certified",Geriatric Care,Individual
+2278H0200X,Home Health Certified Respiratory Therapist,"Respiratory Therapist, Certified",Home Health,Individual
+2278P3900X,Neonatal/Pediatric Certified Respiratory Therapist,"Respiratory Therapist, Certified",Neonatal/Pediatrics,Individual
+2278P3800X,Palliative/Hospice Certified Respiratory Therapist,"Respiratory Therapist, Certified",Palliative/Hospice,Individual
+2278P4000X,Patient Transport Certified Respiratory Therapist,"Respiratory Therapist, Certified",Patient Transport,Individual
+2278P1004X,Pulmonary Diagnostics Certified Respiratory Therapist,"Respiratory Therapist, Certified",Pulmonary Diagnostics,Individual
+2278P1006X,Pulmonary Function Technologist Certified Respiratory Therapist,"Respiratory Therapist, Certified",Pulmonary Function Technologist,Individual
+2278P1005X,Pulmonary Rehabilitation Certified Respiratory Therapist,"Respiratory Therapist, Certified",Pulmonary Rehabilitation,Individual
+2278S1500X,SNF/Subacute Care Certified Respiratory Therapist,"Respiratory Therapist, Certified",SNF/Subacute Care,Individual
+227900000X,Registered Respiratory Therapist,"Respiratory Therapist, Registered",,Individual
+2279C0205X,Critical Care Registered Respiratory Therapist,"Respiratory Therapist, Registered",Critical Care,Individual
+2279E1000X,Educational Registered Respiratory Therapist,"Respiratory Therapist, Registered",Educational,Individual
+2279E0002X,Emergency Care Registered Respiratory Therapist,"Respiratory Therapist, Registered",Emergency Care,Individual
+2279G1100X,General Care Registered Respiratory Therapist,"Respiratory Therapist, Registered",General Care,Individual
+2279G0305X,Geriatric Care Registered Respiratory Therapist,"Respiratory Therapist, Registered",Geriatric Care,Individual
+2279H0200X,Home Health Registered Respiratory Therapist,"Respiratory Therapist, Registered",Home Health,Individual
+2279P3900X,Neonatal/Pediatric Registered Respiratory Therapist,"Respiratory Therapist, Registered",Neonatal/Pediatrics,Individual
+2279P3800X,Palliative/Hospice Registered Respiratory Therapist,"Respiratory Therapist, Registered",Palliative/Hospice,Individual
+2279P4000X,Patient Transport Registered Respiratory Therapist,"Respiratory Therapist, Registered",Patient Transport,Individual
+2279P1004X,Pulmonary Diagnostics Registered Respiratory Therapist,"Respiratory Therapist, Registered",Pulmonary Diagnostics,Individual
+2279P1006X,Pulmonary Function Technologist Registered Respiratory Therapist,"Respiratory Therapist, Registered",Pulmonary Function Technologist,Individual
+2279P1005X,Pulmonary Rehabilitation Registered Respiratory Therapist,"Respiratory Therapist, Registered",Pulmonary Rehabilitation,Individual
+2279S1500X,SNF/Subacute Care Registered Respiratory Therapist,"Respiratory Therapist, Registered",SNF/Subacute Care,Individual
+225500000X,Respiratory/Developmental/Rehabilitative Specialist/Technologist,Specialist/Technologist,,Individual
+2255A2300X,Athletic Trainer,Specialist/Technologist,Athletic Trainer,Individual
+2255R0406X,Blind Rehabilitation Specialist/Technologist,Specialist/Technologist,"Rehabilitation, Blind",Individual
+231H00000X,Audiologist,Audiologist,,Individual
+231HA2400X,Assistive Technology Practitioner Audiologist,Audiologist,Assistive Technology Practitioner,Individual
+231HA2500X,Assistive Technology Supplier Audiologist,Audiologist,Assistive Technology Supplier,Individual
+237600000X,Audiologist-Hearing Aid Fitter,Audiologist-Hearing Aid Fitter,,Individual
+237700000X,Hearing Instrument Specialist,Hearing Instrument Specialist,,Individual
+235500000X,Speech/Language/Hearing Specialist/Technologist,Specialist/Technologist,,Individual
+2355A2700X,Audiology Assistant,Specialist/Technologist,Audiology Assistant,Individual
+2355S0801X,Speech-Language Assistant,Specialist/Technologist,Speech-Language Assistant,Individual
+235Z00000X,Speech-Language Pathologist,Speech-Language Pathologist,,Individual
+390200000X,Student in an Organized Health Care Education/Training Program,Student in an Organized Health Care Education/Training Program,,Individual
+242T00000X,Perfusionist,Perfusionist,,Individual
+247100000X,Radiologic Technologist,Radiologic Technologist,,Individual
+2471B0102X,Bone Densitometry Radiologic Technologist,Radiologic Technologist,Bone Densitometry,Individual
+2471C1106X,Cardiac-Interventional Technology Radiologic Technologist,Radiologic Technologist,Cardiac-Interventional Technology,Individual
+2471C1101X,Cardiovascular-Interventional Technology Radiologic Technologist,Radiologic Technologist,Cardiovascular-Interventional Technology,Individual
+2471C3401X,Computed Tomography Radiologic Technologist,Radiologic Technologist,Computed Tomography,Individual
+2471M1202X,Magnetic Resonance Imaging Radiologic Technologist,Radiologic Technologist,Magnetic Resonance Imaging,Individual
+2471M2300X,Mammography Radiologic Technologist,Radiologic Technologist,Mammography,Individual
+2471N0900X,Nuclear Medicine Technology Radiologic Technologist,Radiologic Technologist,Nuclear Medicine Technology,Individual
+2471Q0001X,Quality Management Radiologic Technologist,Radiologic Technologist,Quality Management,Individual
+2471R0002X,Radiation Therapy Radiologic Technologist,Radiologic Technologist,Radiation Therapy,Individual
+2471C3402X,Radiography Radiologic Technologist,Radiologic Technologist,Radiography,Individual
+2471S1302X,Sonography Radiologic Technologist,Radiologic Technologist,Sonography,Individual
+2471V0105X,Vascular Sonography Radiologic Technologist,Radiologic Technologist,Vascular Sonography,Individual
+2471V0106X,Vascular-Interventional Technology Radiologic Technologist,Radiologic Technologist,Vascular-Interventional Technology,Individual
+243U00000X,Radiology Practitioner Assistant,Radiology Practitioner Assistant,,Individual
+246X00000X,Cardiovascular Specialist/Technologist,Specialist/Technologist Cardiovascular,,Individual
+246XC2901X,Cardiovascular Invasive Specialist/Technologist,Specialist/Technologist Cardiovascular,Cardiovascular Invasive Specialist,Individual
+246XS1301X,Sonography Specialist/Technologist Cardiovascular,Specialist/Technologist Cardiovascular,Sonography,Individual
+246XC2903X,Vascular Specialist/Technologist Cardiovascular,Specialist/Technologist Cardiovascular,Vascular Specialist,Individual
+246Y00000X,Health Information Specialist/Technologist,"Specialist/Technologist, Health Information",,Individual
+246YC3301X,Hospital Based Coding Specialist,"Specialist/Technologist, Health Information","Coding Specialist, Hospital Based",Individual
+246YC3302X,Physician Office Based Coding Specialist,"Specialist/Technologist, Health Information","Coding Specialist, Physician Office Based",Individual
+246YR1600X,Registered Record Administrator,"Specialist/Technologist, Health Information",Registered Record Administrator,Individual
+246Z00000X,Other Specialist/Technologist,"Specialist/Technologist, Other",,Individual
+246ZA2600X,Medical Art Specialist/Technologist,"Specialist/Technologist, Other","Art, Medical",Individual
+246ZB0500X,Biochemist,"Specialist/Technologist, Other",Biochemist,Individual
+246ZB0301X,Biomedical Engineer,"Specialist/Technologist, Other",Biomedical Engineering,Individual
+246ZB0302X,Biomedical Photographer,"Specialist/Technologist, Other",Biomedical Photographer,Individual
+246ZB0600X,Biostatiscian,"Specialist/Technologist, Other",Biostatistician,Individual
+246ZE0500X,EEG Specialist/Technologist,"Specialist/Technologist, Other",EEG,Individual
+246ZE0600X,Electroneurodiagnostic Specialist/Technologist,"Specialist/Technologist, Other",Electroneurodiagnostic,Individual
+246ZG1000X,Medical Geneticist (PhD) Specialist/Technologist,"Specialist/Technologist, Other","Geneticist, Medical (PhD)",Individual
+246ZG0701X,Graphics Methods Specialist/Technologist,"Specialist/Technologist, Other",Graphics Methods,Individual
+246ZI1000X,Medical Illustrator,"Specialist/Technologist, Other","Illustration, Medical",Individual
+246ZN0300X,Nephrology Specialist/Technologist,"Specialist/Technologist, Other",Nephrology,Individual
+246ZX2200X,Orthopedic Assistant,"Specialist/Technologist, Other",Orthopedic Assistant,Individual
+246ZC0007X,Surgical Assistant,"Specialist/Technologist, Other",Surgical Assistant,Individual
+246ZS0410X,Surgical Technologist,"Specialist/Technologist, Other",Surgical Technologist,Individual
+246Q00000X,Pathology Specialist/Technologist,"Specialist/Technologist, Pathology",,Individual
+246QB0000X,Blood Banking Specialist/Technologist,"Specialist/Technologist, Pathology",Blood Banking,Individual
+246QC1000X,Chemistry Pathology Specialist/Technologist,"Specialist/Technologist, Pathology",Chemistry,Individual
+246QC2700X,Cytotechnology Specialist/Technologist,"Specialist/Technologist, Pathology",Cytotechnology,Individual
+246QH0401X,Hemapheresis Practitioner,"Specialist/Technologist, Pathology",Hemapheresis Practitioner,Individual
+246QH0000X,Hematology Specialist/Technologist,"Specialist/Technologist, Pathology",Hematology,Individual
+246QH0600X,Histology Specialist/Technologist,"Specialist/Technologist, Pathology",Histology,Individual
+246QI0000X,Immunology Pathology Specialist/Technologist,"Specialist/Technologist, Pathology",Immunology,Individual
+246QL0900X,Laboratory Management Specialist/Technologist,"Specialist/Technologist, Pathology",Laboratory Management,Individual
+246QL0901X,Diplomate Laboratory Management Specialist/Technologist,"Specialist/Technologist, Pathology","Laboratory Management, Diplomate",Individual
+246QM0706X,Medical Technologist,"Specialist/Technologist, Pathology",Medical Technologist,Individual
+246QM0900X,Microbiology Specialist/Technologist,"Specialist/Technologist, Pathology",Microbiology,Individual
+246W00000X,Cardiology Technician,"Technician, Cardiology",,Individual
+247000000X,Health Information Technician,"Technician, Health Information",,Individual
+2470A2800X,Assistant Health Information Record Technician,"Technician, Health Information",Assistant Record Technician,Individual
+247200000X,Other Technician,"Technician, Other",,Individual
+2472B0301X,Biomedical Engineering Technician,"Technician, Other",Biomedical Engineering,Individual
+2472D0500X,Darkroom Technician,"Technician, Other",Darkroom,Individual
+2472E0500X,EEG Technician,"Technician, Other",EEG,Individual
+2472R0900X,Renal Dialysis Technician,"Technician, Other",Renal Dialysis,Individual
+2472V0600X,Veterinary Technician,"Technician, Other",Veterinary,Individual
+246R00000X,Pathology Technician,"Technician, Pathology",,Individual
+247ZC0005X,Clinical Laboratory Director (Non-physician),"Technician, Pathology","Clinical Laboratory Director, Non-physician",Individual
+246RH0600X,Histology Technician,"Technician, Pathology",Histology,Individual
+246RM2200X,Medical Laboratory Technician,"Technician, Pathology",Medical Laboratory,Individual
+246RP1900X,Phlebotomy Technician,"Technician, Pathology",Phlebotomy,Individual
+251B00000X,Case Management Agency,Case Management,,Non-Individual
+251S00000X,Community/Behavioral Health Agency,Community/Behavioral Health,,Non-Individual
+251C00000X,Developmentally Disabled Services Day Training Agency,"Day Training, Developmentally Disabled Services",,Non-Individual
+252Y00000X,Early Intervention Provider Agency,Early Intervention Provider Agency,,Non-Individual
+253J00000X,Foster Care Agency,Foster Care Agency,,Non-Individual
+251E00000X,Home Health Agency,Home Health,,Non-Individual
+251F00000X,Home Infusion Agency,Home Infusion,,Non-Individual
+251G00000X,Community Based Hospice Care Agency,"Hospice Care, Community Based",,Non-Individual
+253Z00000X,In Home Supportive Care Agency,In Home Supportive Care,,Non-Individual
+251300000X,Local Education Agency (LEA),Local Education Agency (LEA),,Non-Individual
+251J00000X,Nursing Care Agency,Nursing Care,,Non-Individual
+251T00000X,PACE Provider Organization,Program of All-Inclusive Care for the Elderly (PACE) Provider Organization,,Non-Individual
+251K00000X,Public Health or Welfare Agency,Public Health or Welfare,,Non-Individual
+251X00000X,Supports Brokerage Agency,Supports Brokerage,,Non-Individual
+251V00000X,Voluntary or Charitable Agency,Voluntary or Charitable,,Non-Individual
+261Q00000X,Clinic/Center,Clinic/Center,,Non-Individual
+261QM0855X,Adolescent and Children Mental Health Clinic/Center,Clinic/Center,Adolescent and Children Mental Health,Non-Individual
+261QA0600X,Adult Day Care Clinic/Center,Clinic/Center,Adult Day Care,Non-Individual
+261QM0850X,Adult Mental Health Clinic/Center,Clinic/Center,Adult Mental Health,Non-Individual
+261QA0005X,Ambulatory Family Planning Facility,Clinic/Center,Ambulatory Family Planning Facility,Non-Individual
+261QA0006X,Ambulatory Fertility Facility,Clinic/Center,Ambulatory Fertility Facility,Non-Individual
+261QA1903X,Ambulatory Surgical Clinic/Center,Clinic/Center,Ambulatory Surgical,Non-Individual
+261QA0900X,Amputee Clinic/Center,Clinic/Center,Amputee,Non-Individual
+261QA3000X,Augmentative Communication Clinic/Center,Clinic/Center,Augmentative Communication,Non-Individual
+261QB0400X,Birthing Clinic/Center,Clinic/Center,Birthing,Non-Individual
+261QC1500X,Community Health Clinic/Center,Clinic/Center,Community Health,Non-Individual
+261QC1800X,Corporate Health Clinic/Center,Clinic/Center,Corporate Health,Non-Individual
+261QC0050X,Critical Access Hospital Clinic/Center,Clinic/Center,Critical Access Hospital,Non-Individual
+261QD0000X,Dental Clinic/Center,Clinic/Center,Dental,Non-Individual
+261QD1600X,Developmental Disabilities Clinic/Center,Clinic/Center,Developmental Disabilities,Non-Individual
+261QE0002X,Emergency Care Clinic/Center,Clinic/Center,Emergency Care,Non-Individual
+261QE0700X,End-Stage Renal Disease (ESRD) Treatment Clinic/Center,Clinic/Center,End-Stage Renal Disease (ESRD) Treatment,Non-Individual
+261QE0800X,Endoscopy Clinic/Center,Clinic/Center,Endoscopy,Non-Individual
+261QF0050X,Non-Surgical Family Planning Clinic/Center,Clinic/Center,"Family Planning, Non-Surgical",Non-Individual
+261QF0400X,Federally Qualified Health Center (FQHC),Clinic/Center,Federally Qualified Health Center (FQHC),Non-Individual
+261QG0250X,Genetics Clinic/Center,Clinic/Center,Genetics,Non-Individual
+261QH0100X,Health Service Clinic/Center,Clinic/Center,Health Service,Non-Individual
+261QH0700X,Hearing and Speech Clinic/Center,Clinic/Center,Hearing and Speech,Non-Individual
+261QI0500X,Infusion Therapy Clinic/Center,Clinic/Center,Infusion Therapy,Non-Individual
+261QL0400X,Lithotripsy Clinic/Center,Clinic/Center,Lithotripsy,Non-Individual
+261QM1200X,Magnetic Resonance Imaging (MRI) Clinic/Center,Clinic/Center,Magnetic Resonance Imaging (MRI),Non-Individual
+261QM2500X,Medical Specialty Clinic/Center,Clinic/Center,Medical Specialty,Non-Individual
+261QM3000X,Medically Fragile Infants and Children Day Care,Clinic/Center,Medically Fragile Infants and Children Day Care,Non-Individual
+261QM0801X,Mental Health Clinic/Center (Including Community Mental Health Center),Clinic/Center,Mental Health (Including Community Mental Health Center),Non-Individual
+261QM2800X,Methadone Clinic,Clinic/Center,Methadone,Non-Individual
+261QM1000X,Migrant Health Clinic/Center,Clinic/Center,Migrant Health,Non-Individual
+261QM1103X,Military Ambulatory Procedure Visits Operational (Transportable) Clinic/Center,Clinic/Center,Military Ambulatory Procedure Visits Operational (Transportable),Non-Individual
+261QM1101X,Military and U.S. Coast Guard Ambulatory Procedure Clinic/Center,Clinic/Center,Military and U.S. Coast Guard Ambulatory Procedure,Non-Individual
+261QM1102X,Military Outpatient Operational (Transportable) Component Clinic/Center,Clinic/Center,Military Outpatient Operational (Transportable) Component,Non-Individual
+261QM1100X,Military/U.S. Coast Guard Outpatient Clinic/Center,Clinic/Center,Military/U.S. Coast Guard Outpatient,Non-Individual
+261QM1300X,Multi-Specialty Clinic/Center,Clinic/Center,Multi-Specialty,Non-Individual
+261QX0100X,Occupational Medicine Clinic/Center,Clinic/Center,Occupational Medicine,Non-Individual
+261QX0200X,Oncology Clinic/Center,Clinic/Center,Oncology,Non-Individual
+261QX0203X,Radiation Oncology Clinic/Center,Clinic/Center,"Oncology, Radiation",Non-Individual
+261QS0132X,Ophthalmologic Surgery Clinic/Center,Clinic/Center,Ophthalmologic Surgery,Non-Individual
+261QS0112X,Oral and Maxillofacial Surgery Clinic/Center,Clinic/Center,Oral and Maxillofacial Surgery,Non-Individual
+261QP3300X,Pain Clinic/Center,Clinic/Center,Pain,Non-Individual
+261QP2000X,Physical Therapy Clinic/Center,Clinic/Center,Physical Therapy,Non-Individual
+261QP1100X,Podiatric Clinic/Center,Clinic/Center,Podiatric,Non-Individual
+261QP2300X,Primary Care Clinic/Center,Clinic/Center,Primary Care,Non-Individual
+261QP2400X,Prison Health Clinic/Center,Clinic/Center,Prison Health,Non-Individual
+261QP0904X,Federal Public Health Clinic/Center,Clinic/Center,"Public Health, Federal",Non-Individual
+261QP0905X,State or Local Public Health Clinic/Center,Clinic/Center,"Public Health, State or Local",Non-Individual
+261QR0200X,Radiology Clinic/Center,Clinic/Center,Radiology,Non-Individual
+261QR0206X,Mammography Clinic/Center,Clinic/Center,"Radiology, Mammography",Non-Individual
+261QR0208X,Mobile Radiology Clinic/Center,Clinic/Center,"Radiology, Mobile",Non-Individual
+261QR0207X,Mobile Mammography Clinic/Center,Clinic/Center,"Radiology, Mobile Mammography",Non-Individual
+261QR0800X,Recovery Care Clinic/Center,Clinic/Center,Recovery Care,Non-Individual
+261QR0400X,Rehabilitation Clinic/Center,Clinic/Center,Rehabilitation,Non-Individual
+261QR0404X,Cardiac Rehabilitation Clinic/Center,Clinic/Center,"Rehabilitation, Cardiac Facilities",Non-Individual
+261QR0401X,Comprehensive Outpatient Rehabilitation Facility (CORF),Clinic/Center,"Rehabilitation, Comprehensive Outpatient Rehabilitation Facility (CORF)",Non-Individual
+261QR0405X,Substance Use Disorder Rehabilitation Clinic/Center,Clinic/Center,"Rehabilitation, Substance Use Disorder",Non-Individual
+261QR1100X,Research Clinic/Center,Clinic/Center,Research,Non-Individual
+261QR1300X,Rural Health Clinic/Center,Clinic/Center,Rural Health,Non-Individual
+261QS1200X,Sleep Disorder Diagnostic Clinic/Center,Clinic/Center,Sleep Disorder Diagnostic,Non-Individual
+261QS1000X,Student Health Clinic/Center,Clinic/Center,Student Health,Non-Individual
+261QU0200X,Urgent Care Clinic/Center,Clinic/Center,Urgent Care,Non-Individual
+261QV0200X,VA Clinic/Center,Clinic/Center,VA,Non-Individual
+273100000X,Epilepsy Hospital Unit,Epilepsy Unit,,Non-Individual
+275N00000X,Medicare Defined Swing Bed Hospital Unit,Medicare Defined Swing Bed Unit,,Non-Individual
+273R00000X,Psychiatric Hospital Unit,Psychiatric Unit,,Non-Individual
+273Y00000X,Rehabilitation Hospital Unit,Rehabilitation Unit,,Non-Individual
+276400000X,Substance Use Disorder Rehabilitation Hospital Unit,"Rehabilitation, Substance Use Disorder Unit",,Non-Individual
+287300000X,Deactivated - Christian Science Sanitorium,Christian Science Sanitorium,,Non-Individual
+281P00000X,Chronic Disease Hospital,Chronic Disease Hospital,,Non-Individual
+281PC2000X,Children's Chronic Disease Hospital,Chronic Disease Hospital,Children,Non-Individual
+282N00000X,General Acute Care Hospital,General Acute Care Hospital,,Non-Individual
+282NC2000X,Children's Hospital,General Acute Care Hospital,Children,Non-Individual
+282NC0060X,Critical Access Hospital,General Acute Care Hospital,Critical Access,Non-Individual
+282NR1301X,Rural Acute Care Hospital,General Acute Care Hospital,Rural,Non-Individual
+282NW0100X,Women's Hospital,General Acute Care Hospital,Women,Non-Individual
+282E00000X,Long Term Care Hospital,Long Term Care Hospital,,Non-Individual
+286500000X,Military Hospital,Military Hospital,,Non-Individual
+2865C1500X,Deactivated - Military Hospital,Military Hospital,Community Health,Non-Individual
+2865M2000X,Military General Acute Care Hospital,Military Hospital,Military General Acute Care Hospital,Non-Individual
+2865X1600X,Operational (Transportable) Military General Acute Care Hospital,Military Hospital,Military General Acute Care Hospital. Operational (Transportable),Non-Individual
+283Q00000X,Psychiatric Hospital,Psychiatric Hospital,,Non-Individual
+283X00000X,Rehabilitation Hospital,Rehabilitation Hospital,,Non-Individual
+283XC2000X,Children's Rehabilitation Hospital,Rehabilitation Hospital,Children,Non-Individual
+282J00000X,Religious Nonmedical Health Care Institution,Religious Nonmedical Health Care Institution,,Non-Individual
+284300000X,Special Hospital,Special Hospital,,Non-Individual
+291U00000X,Clinical Medical Laboratory,Clinical Medical Laboratory,,Non-Individual
+292200000X,Dental Laboratory,Dental Laboratory,,Non-Individual
+291900000X,Military Clinical Medical Laboratory,Military Clinical Medical Laboratory,,Non-Individual
+293D00000X,Physiological Laboratory,Physiological Laboratory,,Non-Individual
+302F00000X,Exclusive Provider Organization,Exclusive Provider Organization,,Non-Individual
+302R00000X,Health Maintenance Organization,Health Maintenance Organization,,Non-Individual
+305S00000X,Point of Service,Point of Service,,Non-Individual
+305R00000X,Preferred Provider Organization,Preferred Provider Organization,,Non-Individual
+311500000X,Alzheimer Center (Dementia Center),Alzheimer Center (Dementia Center),,Non-Individual
+310400000X,Assisted Living Facility,Assisted Living Facility,,Non-Individual
+3104A0630X,Assisted Living Facility (Behavioral Disturbances),Assisted Living Facility,"Assisted Living, Behavioral Disturbances",Non-Individual
+3104A0625X,Assisted Living Facility (Mental Illness),Assisted Living Facility,"Assisted Living, Mental Illness",Non-Individual
+317400000X,Deactivated - Christian Science Facility,Christian Science Facility,,Non-Individual
+311Z00000X,Custodial Care Facility,Custodial Care Facility,,Non-Individual
+311ZA0620X,Adult Care Home Facility,Custodial Care Facility,Adult Care Home,Non-Individual
+315D00000X,Inpatient Hospice,"Hospice, Inpatient",,Non-Individual
+315P00000X,Intellectual Disabilities Intermediate Care Facility,"Intermediate Care Facility, Intellectual Disabilities",,Non-Individual
+310500000X,Mental Illness Intermediate Care Facility,"Intermediate Care Facility, Mental Illness",,Non-Individual
+313M00000X,Nursing Facility/Intermediate Care Facility,Nursing Facility/Intermediate Care Facility,,Non-Individual
+314000000X,Skilled Nursing Facility,Skilled Nursing Facility,,Non-Individual
+3140N1450X,Pediatric Skilled Nursing Facility,Skilled Nursing Facility,"Nursing Care, Pediatric",Non-Individual
+177F00000X,Lodging Provider,Lodging,,Non-Individual
+174200000X,Meals Provider,Meals,,Non-Individual
+320800000X,Mental Illness Community Based Residential Treatment Facility,"Community Based Residential Treatment Facility, Mental Illness",,Non-Individual
+320900000X,Intellectual and/or Developmental Disabilities Community Based Residential Treatment Facility,"Community Based Residential Treatment Facility, Intellectual and/or Developmental Disabilities",,Non-Individual
+323P00000X,Psychiatric Residential Treatment Facility,Psychiatric Residential Treatment Facility,,Non-Individual
+322D00000X,Emotionally Disturbed Childrens' Residential Treatment Facility,"Residential Treatment Facility, Emotionally Disturbed Children",,Non-Individual
+320600000X,Intellectual and/or Developmental Disabilities Residential Treatment Facility,"Residential Treatment Facility, Intellectual and/or Developmental Disabilities",,Non-Individual
+320700000X,Physical Disabilities Residential Treatment Facility,"Residential Treatment Facility, Physical Disabilities",,Non-Individual
+324500000X,Substance Abuse Rehabilitation Facility,Substance Abuse Rehabilitation Facility,,Non-Individual
+3245S0500X,Children's Substance Abuse Rehabilitation Facility,Substance Abuse Rehabilitation Facility,"Substance Abuse Treatment, Children",Non-Individual
+385H00000X,Respite Care,Respite Care,,Non-Individual
+385HR2050X,Respite Care Camp,Respite Care,Respite Care Camp,Non-Individual
+385HR2055X,Child Mental Illness Respite Care,Respite Care,"Respite Care, Mental Illness, Child",Non-Individual
+385HR2060X,Child Intellectual and/or Developmental Disabilities Respite Care,Respite Care,"Respite Care, Intellectual and/or Developmental Disabilities, Child",Non-Individual
+385HR2065X,Child Physical Disabilities Respite Care,Respite Care,"Respite Care, Physical Disabilities, Child",Non-Individual
+331L00000X,Blood Bank,Blood Bank,,Non-Individual
+332100000X,Department of Veterans Affairs (VA) Pharmacy,Department of Veterans Affairs (VA) Pharmacy,,Non-Individual
+332B00000X,Durable Medical Equipment & Medical Supplies,Durable Medical Equipment & Medical Supplies,,Non-Individual
+332BC3200X,Customized Equipment (DME),Durable Medical Equipment & Medical Supplies,Customized Equipment,Non-Individual
+332BD1200X,Dialysis Equipment & Supplies (DME),Durable Medical Equipment & Medical Supplies,Dialysis Equipment & Supplies,Non-Individual
+332BN1400X,Nursing Facility Supplies (DME),Durable Medical Equipment & Medical Supplies,Nursing Facility Supplies,Non-Individual
+332BX2000X,Oxygen Equipment & Supplies (DME),Durable Medical Equipment & Medical Supplies,Oxygen Equipment & Supplies,Non-Individual
+332BP3500X,Parenteral & Enteral Nutrition Supplies (DME),Durable Medical Equipment & Medical Supplies,Parenteral & Enteral Nutrition,Non-Individual
+333300000X,Emergency Response System Companies,Emergency Response System Companies,,Non-Individual
+332G00000X,Eye Bank,Eye Bank,,Non-Individual
+332H00000X,Eyewear Supplier,Eyewear Supplier,,Non-Individual
+332S00000X,Hearing  Aid Equipment,Hearing Aid Equipment,,Non-Individual
+332U00000X,Home Delivered Meals,Home Delivered Meals,,Non-Individual
+332800000X,Indian Health Service/Tribal/Urban Indian Health (I/T/U) Pharmacy,Indian Health Service/Tribal/Urban Indian Health (I/T/U) Pharmacy,,Non-Individual
+335G00000X,Medical Foods Supplier,Medical Foods Supplier,,Non-Individual
+332000000X,Military/U.S. Coast Guard Pharmacy,Military/U.S. Coast Guard Pharmacy,,Non-Individual
+332900000X,Non-Pharmacy Dispensing Site,Non-Pharmacy Dispensing Site,,Non-Individual
+335U00000X,Organ Procurement Organization,Organ Procurement Organization,,Non-Individual
+333600000X,Pharmacy,Pharmacy,,Non-Individual
+3336C0002X,Clinic Pharmacy,Pharmacy,Clinic Pharmacy,Non-Individual
+3336C0003X,Community/Retail Pharmacy,Pharmacy,Community/Retail Pharmacy,Non-Individual
+3336C0004X,Compounding Pharmacy,Pharmacy,Compounding Pharmacy,Non-Individual
+3336H0001X,Home Infusion Therapy Pharmacy,Pharmacy,Home Infusion Therapy Pharmacy,Non-Individual
+3336I0012X,Institutional Pharmacy,Pharmacy,Institutional Pharmacy,Non-Individual
+3336L0003X,Long Term Care Pharmacy,Pharmacy,Long Term Care Pharmacy,Non-Individual
+3336M0002X,Mail Order Pharmacy,Pharmacy,Mail Order Pharmacy,Non-Individual
+3336M0003X,Managed Care Organization Pharmacy,Pharmacy,Managed Care Organization Pharmacy,Non-Individual
+3336N0007X,Nuclear Pharmacy,Pharmacy,Nuclear Pharmacy,Non-Individual
+3336S0011X,Specialty Pharmacy,Pharmacy,Specialty Pharmacy,Non-Individual
+335V00000X,Portable X-ray and/or Other Portable Diagnostic Imaging Supplier,Portable X-ray and/or Other Portable Diagnostic Imaging Supplier,,Non-Individual
+335E00000X,Prosthetic/Orthotic Supplier,Prosthetic/Orthotic Supplier,,Non-Individual
+344800000X,Air Carrier,Air Carrier,,Non-Individual
+341600000X,Ambulance,Ambulance,,Non-Individual
+3416A0800X,Air Ambulance,Ambulance,Air Transport,Non-Individual
+3416L0300X,Land Ambulance,Ambulance,Land Transport,Non-Individual
+3416S0300X,Water Ambulance,Ambulance,Water Transport,Non-Individual
+347B00000X,Bus,Bus,,Non-Individual
+341800000X,Military/U.S. Coast Guard Transport,Military/U.S. Coast Guard Transport,,Non-Individual
+3418M1120X,Military or U.S. Coast Guard Air Transport Ambulance,Military/U.S. Coast Guard Transport,"Military or U.S. Coast Guard Ambulance, Air Transport",Non-Individual
+3418M1110X,Military or U.S. Coast Guard Ground Transport Ambulance,Military/U.S. Coast Guard Transport,"Military or U.S. Coast Guard Ambulance, Ground Transport",Non-Individual
+3418M1130X,Military or U.S. Coast Guard Water Transport Ambulance,Military/U.S. Coast Guard Transport,"Military or U.S. Coast Guard Ambulance, Water Transport",Non-Individual
+343900000X,Non-emergency Medical Transport (VAN),Non-emergency Medical Transport (VAN),,Non-Individual
+347C00000X,Private Vehicle,Private Vehicle,,Non-Individual
+343800000X,Secured Medical Transport (VAN),Secured Medical Transport (VAN),,Non-Individual
+344600000X,Taxi,Taxi,,Non-Individual
+347D00000X,Train,Train,,Non-Individual
+347E00000X,Transportation Broker,Transportation Broker,,Non-Individual
+342000000X,Transportation Network Company,Transportation Network Company,,Non-Individual

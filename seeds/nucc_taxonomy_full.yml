@@ -1,0 +1,7 @@
+version: 2
+
+seeds:
+  - name: nucc_taxonomy_full
+    description: "Full NUCC Healthcare Provider Taxonomy code set (v25.1). 883 codes with display names and classifications."
+    config:
+      schema: "mobius_strategy"

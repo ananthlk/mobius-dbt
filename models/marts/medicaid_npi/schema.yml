@@ -32,8 +32,6 @@ models:
     description: "Billing-servicing pairs where both NPIs are in current run state. Use var('state_code') to switch state."
   - name: taxonomy_prevalence_fl
     description: "Analysis 1: Taxonomy prevalence in FL cohort. All 15 slots; pct and rank."
-  - name: taxonomy_combo_turf_fl
-    description: "Analysis 2: TURF-style taxonomy combos. T1 (primary) -> T2 -> T3 -> T4 -> T5; npi_count, pct_of_cohort."
   - name: taxonomy_hcpcs_volume_fl
     description: "Analysis 3: Taxonomy → HCPCS volume at TURF level. (primary_taxonomy, t2) + hcpcs → claim_count, total_paid, beneficiary_count."
   - name: taxonomy_hcpcs_volume_indexed_fl
@@ -50,8 +48,6 @@ models:
     description: "Address validation flags per (billing_npi, servicing_npi): B1, B2, B3. is_orphan = true when servicing NPI does not map to any site (no roster row with sub_org_id)."
   - name: taxonomy_validation_fl
     description: "Taxonomy validation: C1–C4, D (HCPCS outlier), F (entity type mismatch)."
-  - name: provider_taxonomy_coverage_fl
-    description: "Analysis 4: Taxonomy coverage score (0–100) vs cohort prevalence."
   - name: provider_missed_opportunities_fl
     description: "Analysis 5: Add taxonomy T to unlock high-volume HCPCS."
   - name: provider_danger_opportunities_fl
@@ -80,8 +76,6 @@ models:
     description: "Reconciliation: in_both, external_only, internal_only. Requires var roster_upload_id, roster_org_id."
   - name: roster_reconciliation_union_fl
     description: "Union of all NPIs from reconciliation for PML/NPPES validation."
-  - name: roster_reconciliation_validation_fl
-    description: "Validation on union: NPPES check per NPI. in_nppes, reconciliation_status."
   - name: b6_integrated_report_fl
     description: "B6 Integrated report: single read head (table). Partitioned by report_date, clustered by org_id, npi, org_display_name, npi_provider_name. Query by org_id, npi, site_id, org name, or provider name; always filter by report_date = (SELECT MAX(report_date)...) for latest. Front end and chat use only this."
 
