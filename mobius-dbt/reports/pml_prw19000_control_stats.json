@@ -1,30 +1,33 @@
 {
-  "run_ts": "2026-07-06T09:00:27.797425Z",
+  "run_ts": "2026-07-08T11:53:57.321527Z",
   "source_file": "/Users/ananth/Mobius/mobius-dbt/scripts/../data/prw19000.csv",
   "backup": {
     "status": "ok",
-    "backup_table": "mobius-os-dev.landing_medicaid_npi_dev.stg_pml_backup_20260706",
-    "backup_row_count": 267037
+    "backup_table": "mobius-os-dev.landing_medicaid_npi_dev.stg_pml_backup_20260708",
+    "backup_row_count": 267247
   },
   "raw": {
-    "raw_row_count": 307664,
-    "raw_enrollment_row_count": 0,
-    "raw_location_only_row_count": 307664,
-    "raw_npi_count": 0,
-    "raw_medicaid_id_count": 241191
+    "raw_row_count": 453404,
+    "raw_enrollment_row_count": 276920,
+    "raw_location_only_row_count": 165380,
+    "raw_npi_count": 228440,
+    "raw_medicaid_id_count": 281737
   },
   "cleansed": {
-    "cleansed_dropped_no_npi": 254085,
-    "cleansed_dropped_location_only": 53579,
-    "cleansed_dedup_dropped": 0,
-    "cleansed_row_count": 0,
-    "cleansed_npi_count": 0,
-    "cleansed_npi_with_zip9_count": 0,
-    "cleansed_status_active_count": 0,
-    "cleansed_status_inactive_count": 0,
-    "cleansed_status_ineligible_count": 0,
-    "cleansed_contract_end_null_count": 0,
-    "cleansed_npi_with_taxonomy_count": 0
+    "cleansed_dropped_no_npi": 26046,
+    "cleansed_dropped_location_only": 139334,
+    "cleansed_dedup_dropped": 9621,
+    "cleansed_row_count": 267299,
+    "cleansed_npi_count": 228440,
+    "cleansed_npi_with_zip9_count": 267299,
+    "cleansed_status_active_count": 251786,
+    "cleansed_status_inactive_count": 15348,
+    "cleansed_status_ineligible_count": 165,
+    "cleansed_contract_end_null_count": 251569,
+    "cleansed_npi_with_taxonomy_count": 253097
   },
-  "load": null
+  "load": {
+    "loaded_row_count": 267299,
+    "gcs_uri": "gs://mobius-os-dev-fl-medicaid-npi-raw/raw/pml/2026-07-08/pml_prw19000_cleansed.csv"
+  }
 }
